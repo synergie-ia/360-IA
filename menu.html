@@ -16,7 +16,8 @@
     header {
       background-color: #2c3e50;
       color: white;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 1.5rem;
+      position: relative;
     }
 
     header h1 {
@@ -27,23 +28,42 @@
     header h2 {
       margin-top: 0.5rem;
       font-weight: 400;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #dfe6e9;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 1rem;
+      top: 1.5rem;
+      background: white;
+      color: #2c3e50;
+      border: none;
+      border-radius: 10px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #ecf0f1;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr); /* ✅ 2 colonnes fixes */
       gap: 1.5rem;
       padding: 2rem;
-      max-width: 700px;
+      max-width: 800px;
       margin: auto;
     }
 
     .card {
       background: white;
-      border-radius: 18px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
       padding: 2rem 1rem;
       transition: transform 0.2s ease;
       cursor: pointer;
@@ -59,7 +79,7 @@
 
     .icon {
       font-size: 3rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .label {
@@ -80,6 +100,7 @@
 
 <body>
   <header>
+    <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
     <h1>Menu principal</h1>
     <h2 id="rappel"></h2>
   </header>
@@ -121,6 +142,10 @@
 
     document.getElementById("rappel").textContent =
       "Univers : " + (universLabels[univers] || "Inconnu");
+
+    function retourAccueil() {
+      window.location.href = "index.html";
+    }
 
     document.getElementById("orientation").onclick = () => window.location.href = `orientation.html?univers=${univers}`;
     document.getElementById("formations").onclick = () => window.location.href = `formations.html?univers=${univers}`;
