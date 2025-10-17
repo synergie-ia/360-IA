@@ -6,11 +6,11 @@
   <title>Le Portail des Métiers – Orientation IA360</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #f5f6fa;
       margin: 0;
       padding: 0;
+      text-align: center;
     }
 
     header {
@@ -21,47 +21,50 @@
 
     header h1 {
       margin: 0;
-      font-size: 2.4rem;
+      font-size: 2rem;
     }
 
     header p {
-      margin-top: 0.6rem;
-      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
       color: #dfe6e9;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 🔹 3 colonnes fixes */
-      gap: 2rem;
-      padding: 3rem;
-      max-width: 1000px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 900px;
       margin: auto;
     }
 
     .card {
       background: white;
-      border-radius: 16px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-      padding: 2.5rem 1rem;
+      border-radius: 18px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      padding: 2rem 1rem;
+      transition: transform 0.2s ease;
       cursor: pointer;
-      transition: all 0.25s ease;
-      font-size: 1.3rem;
-      min-height: 180px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      background-color: #ecf0f1;
+      transform: scale(1.05);
     }
 
     .icon {
-      font-size: 3.5rem; /* 🔹 icônes plus grandes */
+      font-size: 3.8rem;
       margin-bottom: 1rem;
+    }
+
+    .label {
+      font-size: 1.1rem;
+      color: #2c3e50;
+      font-weight: 500;
     }
 
     footer {
@@ -69,17 +72,16 @@
       color: #dfe6e9;
       padding: 1rem;
       font-size: 0.9rem;
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
 
-    /* 🔹 Adaptation mobile (1 ou 2 colonnes) */
-    @media (max-width: 900px) {
+    @media (max-width: 800px) {
       .grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 500px) {
       .grid {
         grid-template-columns: 1fr;
       }
@@ -94,23 +96,23 @@
   </header>
 
   <div class="grid">
-    <div class="card" onclick="ouvrirUnivers('batiment')"><div class="icon">🏗️</div>Construction & Habitat</div>
-    <div class="card" onclick="ouvrirUnivers('energie')"><div class="icon">⚡</div>Énergie & Transition</div>
-    <div class="card" onclick="ouvrirUnivers('numerique')"><div class="icon">💻</div>Numérique & Technologies</div>
-    <div class="card" onclick="ouvrirUnivers('sante')"><div class="icon">💊</div>Santé & Social</div>
-    <div class="card" onclick="ouvrirUnivers('culture')"><div class="icon">🎭</div>Culture & Création</div>
-    <div class="card" onclick="ouvrirUnivers('environnement')"><div class="icon">🌿</div>Environnement & Écologie</div>
-    <div class="card" onclick="ouvrirUnivers('industrie')"><div class="icon">⚙️</div>Industrie & Production</div>
-    <div class="card" onclick="ouvrirUnivers('commerce')"><div class="icon">🛍️</div>Commerce & Vente</div>
-    <div class="card" onclick="ouvrirUnivers('agriculture')"><div class="icon">🚜</div>Agriculture & Alimentation</div>
-    <div class="card" onclick="ouvrirUnivers('logistique')"><div class="icon">🚛</div>Logistique & Transport</div>
-    <div class="card" onclick="ouvrirUnivers('tourisme')"><div class="icon">🗺️</div>Tourisme & Hôtellerie</div>
-    <div class="card" onclick="ouvrirUnivers('education')"><div class="icon">📚</div>Éducation & Formation</div>
-    <div class="card" onclick="ouvrirUnivers('securite')"><div class="icon">🛡️</div>Sécurité & Défense</div>
-    <div class="card" onclick="ouvrirUnivers('finance')"><div class="icon">💼</div>Gestion & Finance</div>
-    <div class="card" onclick="ouvrirUnivers('droit')"><div class="icon">⚖️</div>Droit & Administration</div>
-    <div class="card" onclick="ouvrirUnivers('communication')"><div class="icon">📢</div>Communication & Médias</div>
-    <div class="card" onclick="ouvrirUnivers('recherche')"><div class="icon">🔬</div>Recherche & Innovation</div>
+    <div class="card" onclick="ouvrirUnivers('batiment')"><div class="icon">🏗️</div><div class="label">Construction & Habitat</div></div>
+    <div class="card" onclick="ouvrirUnivers('energie')"><div class="icon">⚡</div><div class="label">Énergie & Transition</div></div>
+    <div class="card" onclick="ouvrirUnivers('numerique')"><div class="icon">💻</div><div class="label">Numérique & Technologies</div></div>
+    <div class="card" onclick="ouvrirUnivers('sante')"><div class="icon">💊</div><div class="label">Santé & Social</div></div>
+    <div class="card" onclick="ouvrirUnivers('culture')"><div class="icon">🎭</div><div class="label">Culture & Création</div></div>
+    <div class="card" onclick="ouvrirUnivers('environnement')"><div class="icon">🌿</div><div class="label">Environnement & Écologie</div></div>
+    <div class="card" onclick="ouvrirUnivers('industrie')"><div class="icon">⚙️</div><div class="label">Industrie & Production</div></div>
+    <div class="card" onclick="ouvrirUnivers('commerce')"><div class="icon">🛍️</div><div class="label">Commerce & Vente</div></div>
+    <div class="card" onclick="ouvrirUnivers('agriculture')"><div class="icon">🚜</div><div class="label">Agriculture & Alimentation</div></div>
+    <div class="card" onclick="ouvrirUnivers('logistique')"><div class="icon">🚛</div><div class="label">Logistique & Transport</div></div>
+    <div class="card" onclick="ouvrirUnivers('tourisme')"><div class="icon">🗺️</div><div class="label">Tourisme & Hôtellerie</div></div>
+    <div class="card" onclick="ouvrirUnivers('education')"><div class="icon">📚</div><div class="label">Éducation & Formation</div></div>
+    <div class="card" onclick="ouvrirUnivers('securite')"><div class="icon">🛡️</div><div class="label">Sécurité & Défense</div></div>
+    <div class="card" onclick="ouvrirUnivers('finance')"><div class="icon">💼</div><div class="label">Gestion & Finance</div></div>
+    <div class="card" onclick="ouvrirUnivers('droit')"><div class="icon">⚖️</div><div class="label">Droit & Administration</div></div>
+    <div class="card" onclick="ouvrirUnivers('communication')"><div class="icon">📢</div><div class="label">Communication & Médias</div></div>
+    <div class="card" onclick="ouvrirUnivers('recherche')"><div class="icon">🔬</div><div class="label">Recherche & Innovation</div></div>
   </div>
 
   <footer>
