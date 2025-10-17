@@ -3,99 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IA360 – Portail des domaines</title>
+  <title>IA360 – Domaines</title>
   <style>
+    :root {
+      --bg: #f5f6fa;
+      --text: #222;
+      --radius: 18px;
+      --shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    }
+
     body {
-      font-family: system-ui, sans-serif;
-      background: #f6f6f6;
-      color: #333;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
       margin: 0;
       padding: 0;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
 
     header {
-      background: #333;
-      color: white;
+      background: #2c3e50;
+      color: #fff;
+      width: 100%;
       padding: 1rem 0;
-    }
-
-    h1 {
-      font-size: 1.4rem;
-      margin: 0;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
 
     main {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 1.4rem;
+      padding: 2rem 1rem;
+      width: 100%;
+      max-width: 900px;
     }
 
     .card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      width: 140px;
-      padding: 1rem;
-      text-align: center;
-      transition: transform 0.2s ease;
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 0.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .card:hover {
-      transform: scale(1.05);
+    .card:active {
+      transform: scale(0.96);
     }
 
     .icon {
-      width: 80px;
-      height: 80px;
+      width: 50px;
+      height: 50px;
       margin-bottom: 0.5rem;
-      color: #E67E22; /* orange brique */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
     }
 
     .label {
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
     }
 
     footer {
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      color: #888;
+      margin-top: auto;
+      padding: 1rem;
+      font-size: 0.75rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Portail IA360 – Domaines d’activités</h1>
-  </header>
+  <header>IA360 – Domaines d’activités</header>
 
   <main>
-
-    <!-- 1. Domaine : Construction & Habitat -->
-    <div class="card" onclick="window.open('https://chat.openai.com/g/gpt-batiment-ia360','_blank')">
-      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-        <title id="title">Construction & Habitat</title>
-        <desc id="desc">Icône de briques stylisées pour représenter le domaine Construction & Habitat</desc>
-        <g fill="currentColor">
-          <!-- Rangée du haut -->
-          <rect x="6"  y="22" width="18" height="10" rx="2" />
-          <rect x="26" y="22" width="18" height="10" rx="2" />
-          <rect x="46" y="22" width="12" height="10" rx="2" />
-          <!-- Rangée du bas (décalée) -->
-          <rect x="12" y="36" width="18" height="10" rx="2" />
-          <rect x="32" y="36" width="18" height="10" rx="2" />
-          <rect x="52" y="36" width="6"  height="10" rx="2" />
-        </g>
-      </svg>
+    <div class="card" onclick="window.open('#','_blank')">
+      <div class="icon" style="color:#E67E22;">🧱</div>
       <div class="label">Construction & Habitat</div>
     </div>
 
+    <div class="card" onclick="window.open('#','_blank')">
+      <div class="icon" style="color:#2980B9;">💻</div>
+      <div class="label">Numérique & Technologies</div>
+    </div>
+
+    <div class="card"><div class="icon" style="color:#F1C40F;">⚡</div><div class="label">Énergie & Climat</div></div>
+    <div class="card"><div class="icon" style="color:#27AE60;">🌿</div><div class="label">Environnement</div></div>
+    <div class="card"><div class="icon" style="color:#7F8C8D;">⚙️</div><div class="label">Industrie</div></div>
+    <div class="card"><div class="icon" style="color:#2C3E50;">🚗</div><div class="label">Mobilité</div></div>
+    <div class="card"><div class="icon" style="color:#D4AC0D;">🌾</div><div class="label">Agriculture</div></div>
+    <div class="card"><div class="icon" style="color:#16A085;">💊</div><div class="label">Santé</div></div>
+    <div class="card"><div class="icon" style="color:#9B59B6;">👩‍🏫</div><div class="label">Éducation</div></div>
+    <div class="card"><div class="icon" style="color:#E74C3C;">🏪</div><div class="label">Commerce</div></div>
+    <div class="card"><div class="icon" style="color:#34495E;">💼</div><div class="label">Finance & Droit</div></div>
+    <div class="card"><div class="icon" style="color:#AF7AC5;">🎙️</div><div class="label">Culture</div></div>
+    <div class="card"><div class="icon" style="color:#8E44AD;">🎨</div><div class="label">Artisanat</div></div>
+    <div class="card"><div class="icon" style="color:#1ABC9C;">🛡️</div><div class="label">Sécurité</div></div>
+    <div class="card"><div class="icon" style="color:#1ABC9C;">🔬</div><div class="label">Sciences</div></div>
   </main>
 
-  <footer>
-    © IA360 – Prototype interactif
-  </footer>
+  <footer>© IA360 – Prototype interactif</footer>
 </body>
 </html>
