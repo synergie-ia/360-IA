@@ -39,10 +39,27 @@
     }
 
     header p {
-      margin: 0.5rem 0 0 0;
+      margin: 0.5rem 0 1rem 0;
       font-size: 1rem;
       font-weight: 400;
       opacity: 0.9;
+    }
+
+    .btn-about {
+      display: inline-block;
+      background: #ffffff;
+      color: #2c3e50;
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-about:hover {
+      background: #ecf0f1;
+      transform: translateY(-2px);
     }
 
     main {
@@ -95,19 +112,13 @@
       font-size: 0.8rem;
       color: #555;
     }
-
-    footer a {
-      color: #2c3e50;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
   </style>
 </head>
 <body>
   <header>
     <h1>Le Portail des Métiers</h1>
     <p>L’intelligence artificielle au service de l’orientation scolaire et professionnelle</p>
+    <a href="a-propos.html" class="btn-about">En savoir plus</a>
   </header>
 
   <main>
@@ -128,6 +139,8 @@
     <div class="card"><div class="icon" style="color:#1ABC9C;">🔬</div><div class="label">Sciences & Innovation</div></div>
   </main>
 
-  <footer style="text-align:center; margin-top:auto; padding:1rem; font-size:0.8rem; color:#555;">
-  © Synergie IA – Tous droits réservés
-</footer>
+  <footer>
+    © Synergie IA – Tous droits réservés
+  </footer>
+</body>
+</html>
