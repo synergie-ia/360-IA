@@ -1,108 +1,50 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Choisir son parcours – IA360</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background-color: #f5f6fa;
-      margin: 0;
-      text-align: center;
-    }
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#f5f6fa;margin:0;text-align:center;}
 
-    header {
-      position: relative;
-      background-color: #2c3e50;
-      color: white;
-      padding: 2rem 1rem 1.5rem;
+    /* ----- HEADER FIX: grille 3 colonnes ----- */
+    header{background:#2c3e50;color:#fff;padding:1.25rem 1rem 1.25rem;}
+    .topbar{
+      display:grid;
+      grid-template-columns:auto 1fr auto; /* bouton | titre centré | espace */
+      align-items:center;
+      gap:.5rem;
     }
+    .title{margin:0;font-size:1.9rem;font-weight:600; text-align:center;}
+    .rappel{margin:.35rem 0 0; font-weight:400; font-size:1.1rem; color:#dfe6e9;}
 
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 600;
+    .back-btn{
+      background:#fff; color:#2c3e50; border:none; border-radius:10px;
+      padding:.5rem 1rem; font-size:1rem; font-weight:600; cursor:pointer;
+      box-shadow:0 2px 6px rgba(0,0,0,.12);
     }
+    .back-btn:hover{background:#ecf0f1;}
 
-    header h2 {
-      margin-top: 0.5rem;
-      font-weight: 400;
-      font-size: 1.1rem;
-      color: #dfe6e9;
-    }
+    /* Cartes 2 par ligne */
+    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; padding:2rem; max-width:800px; margin:auto;}
+    .card{background:#fff; border-radius:16px; box-shadow:0 3px 8px rgba(0,0,0,.08);
+      padding:2rem 1rem; transition:transform .2s ease; cursor:pointer;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;}
+    .card:hover{transform:scale(1.05);}
+    .icon{font-size:3rem; margin-bottom:.8rem;}
+    .label{font-size:1.1rem; color:#2c3e50; font-weight:500;}
 
-    .back-btn {
-      position: absolute;
-      left: 1rem;
-      top: 1.2rem;
-      background: white;
-      color: #2c3e50;
-      border: none;
-      border-radius: 10px;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .back-btn:hover {
-      background: #ecf0f1;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-      padding: 2rem 1rem;
-      transition: transform 0.2s ease;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .icon {
-      font-size: 3rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .label {
-      font-size: 1.1rem;
-      color: #2c3e50;
-      font-weight: 500;
-    }
-
-    footer {
-      background-color: #2c3e50;
-      color: #dfe6e9;
-      padding: 1rem;
-      font-size: 0.9rem;
-      margin-top: 2rem;
-    }
+    footer{background:#2c3e50; color:#dfe6e9; padding:1rem; font-size:.9rem; margin-top:2rem;}
   </style>
 </head>
-
 <body>
   <header>
-    <button class="back-btn" onclick="history.back()" aria-label="Retour">⬅️ Retour</button>
-    <h1>Choisir son parcours</h1>
-    <h2 id="rappel"></h2>
+    <div class="topbar">
+      <button class="back-btn" onclick="history.back()" aria-label="Retour">⬅️ Retour</button>
+      <h1 class="title">Choisir son parcours</h1>
+      <div></div><!-- espace à droite pour garder le titre centré -->
+    </div>
+    <div id="rappel" class="rappel"></div>
   </header>
 
   <div class="grid">
@@ -112,36 +54,22 @@
     <div class="card" id="candidature"><div class="icon">📄</div><div class="label">Candidater</div></div>
   </div>
 
-  <footer>
-    © 2025 Synergie IA – Orientation IA360
-  </footer>
+  <footer>© 2025 Synergie IA – Orientation IA360</footer>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const univers = params.get("univers") || "general";
 
     const universLabels = {
-      batiment: "Construction & Habitat",
-      energie: "Énergie & Transition",
-      numerique: "Numérique & Technologies",
-      sante: "Santé & Social",
-      culture: "Culture & Création",
-      environnement: "Environnement & Écologie",
-      industrie: "Industrie & Production",
-      commerce: "Commerce & Vente",
-      agriculture: "Agriculture & Alimentation",
-      logistique: "Logistique & Transport",
-      tourisme: "Tourisme & Hôtellerie",
-      education: "Éducation & Formation",
-      securite: "Sécurité & Défense",
-      finance: "Gestion & Finance",
-      droit: "Droit & Administration",
-      communication: "Communication & Médias",
-      recherche: "Recherche & Innovation"
+      batiment:"Construction & Habitat", energie:"Énergie & Transition", numerique:"Numérique & Technologies",
+      sante:"Santé & Social", culture:"Culture & Création", environnement:"Environnement & Écologie",
+      industrie:"Industrie & Production", commerce:"Commerce & Vente", agriculture:"Agriculture & Alimentation",
+      logistique:"Logistique & Transport", tourisme:"Tourisme & Hôtellerie", education:"Éducation & Formation",
+      securite:"Sécurité & Défense", finance:"Gestion & Finance", droit:"Droit & Administration",
+      communication:"Communication & Médias", recherche:"Recherche & Innovation"
     };
 
-    document.getElementById("rappel").textContent =
-      "Univers : " + (universLabels[univers] || "Inconnu");
+    document.getElementById("rappel").textContent = "Univers : " + (universLabels[univers] || "Inconnu");
 
     document.getElementById("orientation").onclick = () => location.href = `orientation.html?univers=${univers}`;
     document.getElementById("formations").onclick = () => location.href = `formations.html?univers=${univers}`;
