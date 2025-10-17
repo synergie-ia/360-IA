@@ -1,146 +1,83 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Le Portail des Métiers – L’intelligence artificielle au service de l’orientation scolaire et professionnelle</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Portail des Métiers – Orientation IA360</title>
   <style>
-    :root {
-      --bg: #f5f6fa;
-      --text: #222;
-      --radius: 18px;
-      --shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-    }
-
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    header {
-      background: #2c3e50;
-      color: #fff;
-      width: 100%;
-      padding: 1.5rem 0 1rem 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
       text-align: center;
+      padding: 2rem;
     }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    header p {
-      margin: 0.5rem 0 1rem 0;
-      font-size: 1rem;
-      font-weight: 400;
-      opacity: 0.9;
-    }
-
-    .btn-about {
-      display: inline-block;
-      background: #ffffff;
+    h1 {
       color: #2c3e50;
-      border-radius: 25px;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s ease, transform 0.2s ease;
+      margin-bottom: 0.5rem;
     }
-
-    .btn-about:hover {
-      background: #ecf0f1;
-      transform: translateY(-2px);
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1.5rem;
-      padding: 2.5rem 1rem;
-      width: 100%;
-      max-width: 900px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.6rem 0.5rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:active {
-      transform: scale(0.96);
-    }
-
-    .icon {
-      width: 90px;
-      height: 90px;
-      margin-bottom: 0.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      line-height: 1;
-    }
-
-    .label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      text-align: center;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: auto;
-      padding: 1rem;
-      font-size: 0.8rem;
+    p {
       color: #555;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+      font-size: 1.2rem;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      background: #ecf0f1;
+    }
+    footer {
+      margin-top: 3rem;
+      color: #777;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Le Portail des Métiers</h1>
-    <p>L’intelligence artificielle au service de l’orientation scolaire et professionnelle</p>
-    <a href="a-propos.html" class="btn-about">En savoir plus</a>
-  </header>
+  <h1>Le Portail des Métiers</h1>
+  <p>L’intelligence artificielle au service de l’orientation scolaire et professionnelle</p>
 
-  <main>
-    <div class="card"><div class="icon" style="color:#E67E22;">🏗️</div><div class="label">Construction & Habitat</div></div>
-    <div class="card"><div class="icon" style="color:#2980B9;">💻</div><div class="label">Numérique & Technologies</div></div>
-    <div class="card"><div class="icon" style="color:#F1C40F;">⚡</div><div class="label">Énergie & Climat</div></div>
-    <div class="card"><div class="icon" style="color:#27AE60;">🌿</div><div class="label">Environnement & Territoires</div></div>
-    <div class="card"><div class="icon" style="color:#7F8C8D;">⚙️</div><div class="label">Industrie & Production</div></div>
-    <div class="card"><div class="icon" style="color:#2C3E50;">🚗</div><div class="label">Mobilité & Logistique</div></div>
-    <div class="card"><div class="icon" style="color:#D4AC0D;">🌾</div><div class="label">Agriculture & Alimentation</div></div>
-    <div class="card"><div class="icon" style="color:#16A085;">💊</div><div class="label">Santé & Soins</div></div>
-    <div class="card"><div class="icon" style="color:#9B59B6;">📚</div><div class="label">Éducation & Solidarité</div></div>
-    <div class="card"><div class="icon" style="color:#E74C3C;">🏪</div><div class="label">Commerce & Services</div></div>
-    <div class="card"><div class="icon" style="color:#34495E;">💼</div><div class="label">Finance & Droit</div></div>
-    <div class="card"><div class="icon" style="color:#AF7AC5;">🎭</div><div class="label">Culture & Spectacle</div></div>
-    <div class="card"><div class="icon" style="color:#8E44AD;">🎨</div><div class="label">Artisanat & Création</div></div>
-    <div class="card"><div class="icon" style="color:#1ABC9C;">🛡️</div><div class="label">Sécurité & Engagement</div></div>
-    <div class="card"><div class="icon" style="color:#1ABC9C;">🔬</div><div class="label">Sciences & Innovation</div></div>
-  </main>
+  <div class="grid">
+    <div class="card" onclick="ouvrirUnivers('batiment')">🏗️ Construction & Habitat</div>
+    <div class="card" onclick="ouvrirUnivers('energie')">⚡ Énergie & Transition</div>
+    <div class="card" onclick="ouvrirUnivers('numerique')">💻 Numérique & Technologies</div>
+    <div class="card" onclick="ouvrirUnivers('sante')">💊 Santé & Social</div>
+    <div class="card" onclick="ouvrirUnivers('culture')">🎭 Culture & Création</div>
+    <div class="card" onclick="ouvrirUnivers('environnement')">🌿 Environnement & Écologie</div>
+    <div class="card" onclick="ouvrirUnivers('industrie')">⚙️ Industrie & Production</div>
+    <div class="card" onclick="ouvrirUnivers('commerce')">🛍️ Commerce & Vente</div>
+    <div class="card" onclick="ouvrirUnivers('agriculture')">🚜 Agriculture & Alimentation</div>
+    <div class="card" onclick="ouvrirUnivers('logistique')">🚛 Logistique & Transport</div>
+    <div class="card" onclick="ouvrirUnivers('tourisme')">🗺️ Tourisme & Hôtellerie</div>
+    <div class="card" onclick="ouvrirUnivers('education')">📚 Éducation & Formation</div>
+    <div class="card" onclick="ouvrirUnivers('securite')">🛡️ Sécurité & Défense</div>
+    <div class="card" onclick="ouvrirUnivers('finance')">💼 Gestion & Finance</div>
+    <div class="card" onclick="ouvrirUnivers('droit')">⚖️ Droit & Administration</div>
+    <div class="card" onclick="ouvrirUnivers('communication')">📢 Communication & Médias</div>
+    <div class="card" onclick="ouvrirUnivers('recherche')">🔬 Recherche & Innovation</div>
+  </div>
 
   <footer>
-    © Synergie IA – Tous droits réservés
+    © 2025 Synergie IA – Orientation IA360
   </footer>
+
+  <script>
+    function ouvrirUnivers(univers) {
+      window.location.href = `menu.html?univers=${univers}`;
+    }
+  </script>
 </body>
 </html>
