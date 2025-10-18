@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les univers qui me correspondent – Portail IA360</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #f5f6fa;
+      margin: 0;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* Bandeau principal */
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 2.5rem 1rem 1.5rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    header h2 {
+      margin-top: 0.8rem;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: #dfe6e9;
+    }
+
+    /* Grille des univers */
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      width: 260px;
+      height: 230px;
+      padding: 2rem 1rem;
+      transition: transform 0.3s ease, opacity 0.6s ease;
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: reveal 0.8s forwards;
+    }
+
+    .icon {
+      font-size: 3.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .label {
+      font-size: 1.2rem;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    /* Animation d'apparition progressive */
+    @keyframes reveal {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Boutons en bas */
+    .buttons {
+      margin: 2rem 0 3rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #2c3e50;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 0.9rem 1.6rem;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #34495e;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: #dfe6e9;
+      padding: 1rem;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🎯 Tes univers révélés</h1>
+    <h2>Voici les 3 domaines qui te correspondent le mieux</h2>
+  </header>
+
+  <div class="grid" id="resultats"></div>
+
+  <div class="buttons">
+    <a href="quiz.html" class="btn">🔁 Refaire le quiz</a>
+    <a href="index.html" class="btn">🏠 Retour à l’accueil</a>
+  </div>
+
+  <footer>© Synergie IA</footer>
+
+  <script>
+    // Dictionnaire des secteurs
+    const secteurs = {
+      numerique: { emoji: "💻", nom: "Numérique & Technologies" },
+      energie: { emoji: "⚡", nom: "Énergie & Environnement" },
+      culture: { emoji: "🎭", nom: "Culture & Création" },
+      construction: { emoji: "🏗️", nom: "Construction & Habitat" },
+      agriculture: { emoji: "🌾", nom: "Agriculture & Alimentation" },
+      finance: { emoji: "💶", nom: "Gestion & Finance" },
+      industrie: { emoji: "⚙️", nom: "Industrie & Production" },
+      sante: { emoji: "💊", nom: "Santé & Social" },
+      securite: { emoji: "🛡️", nom: "Sécurité & Défense" },
+      artisanat: { emoji: "🪚", nom: "Artisanat & Métiers d’Art" },
+      communication: { emoji: "📢", nom: "Communication & Médias" },
+      droit: { emoji: "⚖️", nom: "Droit & Administration" },
+      education: { emoji: "📚", nom: "Éducation & Formation" },
+      logistique: { emoji: "🚚", nom: "Logistique & Transport" },
+      recherche: { emoji: "🔬", nom: "Recherche & Innovation" },
+      tourisme: { emoji: "🧳", nom: "Tourisme & Hôtellerie" },
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const liste = params.get("secteurs");
+    const conteneur = document.getElementById("resultats");
+
+    if (liste) {
+      const ids = liste.split(",");
+      ids.forEach((id, index) => {
+        const s = secteurs[id.trim()];
+        if (s) {
+          const div = document.createElement("div");
+          div.className = "card";
+          div.style.animationDelay = `${index * 0.5}s`; // apparition progressive
+          div.innerHTML = `
+            <div class="icon">${s.emoji}</div>
+            <div class="label">${s.nom}</div>
+          `;
+          div.onclick = () => window.location.href = `menu.html?univers=${id}`;
+          conteneur.appendChild(div);
+        }
+      });
+    } else {
+      conteneur.innerHTML = "<p>Aucun résultat trouvé.</p>";
+    }
+  </script>
+</body>
+</html>
