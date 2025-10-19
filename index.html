@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Le Portail de l’Orientation</title>
+
 <style>
   :root {
     --bg: #f5f6fa;
@@ -27,6 +28,7 @@
     padding: 2rem 1rem 1rem;
   }
   header h1 { margin: 0; font-size: 2rem; font-weight: 700; }
+  header h2 { margin-top: 0.5rem; font-weight: 400; font-size: 1.1rem; color: #dfe6e9; }
 
   .grid {
     position: relative;
@@ -43,7 +45,7 @@
     position: relative;
     background: white;
     border-radius: 16px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
     padding: 2rem 1rem;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
@@ -59,7 +61,6 @@
   .icon { font-size: 4rem; margin-bottom: 0.8rem; }
   .label { font-size: 1.1rem; color: var(--ink); font-weight: 500; }
 
-  /* Infobulle contrôlée par JS (hover desktop + tap mobile) */
   .tooltip {
     position: absolute;
     left: 50%;
@@ -73,7 +74,6 @@
     box-shadow: 0 12px 28px rgba(0,0,0,0.25);
     line-height: 1.5;
     font-size: 0.95rem;
-
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.22s ease, transform 0.22s ease;
@@ -82,7 +82,6 @@
   }
   .tooltip.up { bottom: 110%; transform: translateX(-50%) translateY(-4px); }
   .tooltip.down { top: 110%; transform: translateX(-50%) translateY(4px); }
-
   .tooltip.show { visibility: visible; opacity: 1; }
 
   footer {
@@ -93,143 +92,305 @@
     text-align: center;
   }
 
-  /* Empêche le :hover mobile de “coller” */
   @media (hover: none) and (pointer: coarse) {
     .card:hover { transform: none; }
   }
 </style>
 </head>
 <body>
+
 <header>
   <h1>Le Portail de l’Orientation</h1>
+  <h2>L’intelligence artificielle au service de l’orientation</h2>
 </header>
 
 <div class="grid">
 
-  <!-- 1. Agriculture -->
+  <!-- 1. AGRICULTURE -->
   <div class="card" data-url="https://chat.openai.com/g/example-agriculture">
     <div class="icon">🌾</div>
     <div class="label">Agriculture, Nature & Animaux</div>
-    <div class="tooltip">🌱 Cultures<br>🐄 Élevage<br>🍇 Viticulture<br>🧀 Agroalimentaire<br>🌲 Gestion forestière<br>🌼 Paysage<br>🦋 Biodiversité<br>🔬 Agronomie</div>
+    <div class="tooltip">
+      🌱 Cultures<br>
+      🐄 Élevage<br>
+      🍇 Viticulture<br>
+      🧀 Agroalimentaire<br>
+      🌲 Forêts<br>
+      🌼 Paysage<br>
+      🦋 Biodiversité<br>
+      🔬 Agronomie
+    </div>
   </div>
 
-  <!-- 2. Industrie -->
+  <!-- 2. INDUSTRIE -->
   <div class="card" data-url="https://chat.openai.com/g/example-industrie">
     <div class="icon">⚙️</div>
     <div class="label">Industrie & Fabrication</div>
-    <div class="tooltip">🏭 Production<br>🧰 Maintenance<br>🤖 Robotique<br>✔️ Qualité<br>🔧 Mécanique<br>🔩 Métallurgie<br>💡 Électrotechnique<br>🚛 Supply chain</div>
+    <div class="tooltip">
+      🏭 Production<br>
+      🧰 Maintenance<br>
+      🤖 Robotique<br>
+      ✔️ Qualité<br>
+      🔧 Mécanique<br>
+      🔩 Métallurgie<br>
+      💡 Électrotechnique<br>
+      🚛 Logistique
+    </div>
   </div>
 
-  <!-- 3. Construction -->
+  <!-- 3. CONSTRUCTION -->
   <div class="card" data-url="https://chat.openai.com/g/example-construction">
     <div class="icon">🏗️</div>
     <div class="label">Construction & Bâtiment</div>
-    <div class="tooltip">🧱 Gros œuvre<br>🎨 Second œuvre<br>⚡ Électricité<br>🚿 Plomberie<br>📐 Architecture<br>🛣️ Génie civil<br>🪚 Menuiserie<br>🏚️ Rénovation</div>
+    <div class="tooltip">
+      🧱 Gros œuvre<br>
+      🎨 Second œuvre<br>
+      ⚡ Électricité<br>
+      🚿 Plomberie<br>
+      📐 Architecture<br>
+      🛣️ Travaux publics<br>
+      🪚 Menuiserie<br>
+      🏚️ Rénovation
+    </div>
   </div>
 
-  <!-- 4. Environnement -->
+  <!-- 4. ENVIRONNEMENT -->
   <div class="card" data-url="https://chat.openai.com/g/example-environnement">
     <div class="icon">🌍</div>
     <div class="label">Environnement & Énergies</div>
-    <div class="tooltip">☀️ Renouvelables<br>🔌 Réseaux énergie<br>💧 Eau<br>♻️ Déchets<br>🌿 Protection<br>🧪 Dépollution<br>🦋 Écologie<br>🌦️ Climat</div>
+    <div class="tooltip">
+      ☀️ Renouvelables<br>
+      🔌 Réseaux énergie<br>
+      💧 Eau<br>
+      ♻️ Recyclage<br>
+      🌿 Protection<br>
+      🧪 Dépollution<br>
+      🦋 Écologie<br>
+      🌦️ Climat
+    </div>
   </div>
 
-  <!-- 5. Numérique -->
+  <!-- 5. NUMÉRIQUE -->
   <div class="card" data-url="https://chat.openai.com/g/example-numerique">
     <div class="icon">💻</div>
     <div class="label">Numérique & Informatique</div>
-    <div class="tooltip">👨‍💻 Dev logiciel<br>🌐 Web & mobile<br>🔐 Cybersécurité<br>📈 Data & IA<br>☁️ Cloud<br>🔌 Réseaux<br>⚙️ DevOps<br>🎨 UX/UI</div>
+    <div class="tooltip">
+      👨‍💻 Développement<br>
+      🌐 Web & mobile<br>
+      🔐 Cybersécurité<br>
+      📈 Data & IA<br>
+      ☁️ Cloud<br>
+      🔌 Réseaux<br>
+      ⚙️ DevOps<br>
+      🎨 UX/UI
+    </div>
   </div>
 
-  <!-- 6. Sciences -->
+  <!-- 6. SCIENCES -->
   <div class="card" data-url="https://chat.openai.com/g/example-sciences">
     <div class="icon">🔬</div>
     <div class="label">Sciences & Recherche</div>
-    <div class="tooltip">🧪 Recherche<br>💡 R&D<br>🧬 Biotech<br>⚗️ Chimie<br>🔭 Physique<br>⛰️ Géologie<br>🌌 Astronomie<br>🧠 Neurosciences</div>
+    <div class="tooltip">
+      🧪 Recherche<br>
+      💡 R&D<br>
+      🧬 Biotech<br>
+      ⚗️ Chimie<br>
+      🔭 Physique<br>
+      ⛰️ Géologie<br>
+      🌌 Astronomie<br>
+      🧠 Neurosciences
+    </div>
   </div>
 
-  <!-- 7. Commerce -->
+  <!-- 7. COMMERCE -->
   <div class="card" data-url="https://chat.openai.com/g/example-commerce">
     <div class="icon">🛒</div>
     <div class="label">Commerce & Vente</div>
-    <div class="tooltip">🏬 Détail<br>🤝 B2B<br>💳 E-commerce<br>🏠 Immobilier<br>📣 Marketing<br>📢 Com. commerciale<br>🧾 Achats<br>🗣️ Services</div>
+    <div class="tooltip">
+      🏬 Détail<br>
+      🤝 B2B<br>
+      💳 E-commerce<br>
+      🏠 Immobilier<br>
+      📣 Marketing<br>
+      📢 Publicité<br>
+      🧾 Achats<br>
+      🗣️ Services
+    </div>
   </div>
 
-  <!-- 8. Management -->
+  <!-- 8. MANAGEMENT -->
   <div class="card" data-url="https://chat.openai.com/g/example-management">
     <div class="icon">💼</div>
     <div class="label">Management & Entrepreneuriat</div>
-    <div class="tooltip">🎯 Direction<br>🚀 Entrepreneuriat<br>🗂️ Projets<br>🧠 Stratégie<br>👥 RH<br>🤝 Management équipe<br>📈 Performance<br>💡 Innovation</div>
+    <div class="tooltip">
+      🎯 Direction<br>
+      🚀 Entrepreneuriat<br>
+      🗂️ Projets<br>
+      🧠 Stratégie<br>
+      👥 RH<br>
+      🤝 Leadership<br>
+      📈 Performance<br>
+      💡 Innovation
+    </div>
   </div>
 
-  <!-- 9. Finance -->
+  <!-- 9. FINANCE -->
   <div class="card" data-url="https://chat.openai.com/g/example-finance">
     <div class="icon">💰</div>
     <div class="label">Finance & Gestion</div>
-    <div class="tooltip">🏦 Banque<br>📈 Marchés<br>🛡️ Assurance<br>🔍 Audit<br>💼 Patrimoine<br>📚 Comptabilité<br>📊 Contrôle gestion<br>💶 Crédit</div>
+    <div class="tooltip">
+      🏦 Banque<br>
+      📈 Marchés<br>
+      🛡️ Assurance<br>
+      🔍 Audit<br>
+      💼 Patrimoine<br>
+      📚 Comptabilité<br>
+      📊 Contrôle gestion<br>
+      💶 Crédit
+    </div>
   </div>
-
-  <!-- 10. Logistique -->
+    <!-- 10. LOGISTIQUE -->
   <div class="card" data-url="https://chat.openai.com/g/example-logistique">
     <div class="icon">🚚</div>
     <div class="label">Logistique & Transport</div>
-    <div class="tooltip">🚛 Routier<br>⚓ Maritime<br>✈️ Aérien<br>🚆 Ferroviaire<br>📦 Supply chain<br>🏬 Stockage<br>🚌 Mobilité urbaine<br>🧾 Douanes</div>
+    <div class="tooltip">
+      🚛 Routier<br>
+      ⚓ Maritime<br>
+      ✈️ Aérien<br>
+      🚆 Ferroviaire<br>
+      📦 Stockage<br>
+      🏭 Supply chain<br>
+      🚌 Mobilité<br>
+      🧾 Douanes
+    </div>
   </div>
 
-  <!-- 11. Santé -->
+  <!-- 11. SANTÉ -->
   <div class="card" data-url="https://chat.openai.com/g/example-sante">
     <div class="icon">⚕️</div>
     <div class="label">Santé & Médical</div>
-    <div class="tooltip">🩺 Médecine<br>👩‍⚕️ Soins infirmiers<br>🏥 Chirurgie<br>💊 Pharmacie<br>🏃‍♀️ Rééducation<br>🔬 Imagerie<br>🧠 Santé mentale<br>🚑 Urgences</div>
+    <div class="tooltip">
+      🩺 Médecine<br>
+      👩‍⚕️ Soins infirmiers<br>
+      🔪 Chirurgie<br>
+      💊 Pharmacie<br>
+      🏃‍♀️ Rééducation<br>
+      🔬 Imagerie<br>
+      🧠 Santé mentale<br>
+      🚑 Urgences
+    </div>
   </div>
 
-  <!-- 12. Éducation -->
+  <!-- 12. ÉDUCATION -->
   <div class="card" data-url="https://chat.openai.com/g/example-education">
     <div class="icon">🎓</div>
     <div class="label">Éducation & Formation</div>
-    <div class="tooltip">🏫 Primaire<br>🏫 Secondaire<br>🎓 Supérieur<br>📚 Formation pro<br>👩‍🏫 Spécialisé<br>💻 E-learning<br>🎯 Coaching<br>🔍 Recherche édu</div>
+    <div class="tooltip">
+      🏫 Primaire<br>
+      📚 Secondaire<br>
+      🎓 Supérieur<br>
+      🔁 Formation continue<br>
+      👩‍🏫 Spécialisée<br>
+      💻 E-learning<br>
+      🎯 Coaching<br>
+      🔍 Recherche éducative
+    </div>
   </div>
 
-  <!-- 13. Social -->
+  <!-- 13. SOCIAL -->
   <div class="card" data-url="https://chat.openai.com/g/example-social">
     <div class="icon">❤️</div>
     <div class="label">Social & Aide à la Personne</div>
-    <div class="tooltip">🤝 Travail social<br>🫶 Éduc. spécialisée<br>👶 Protection enfance<br>💼 Insertion<br>🏡 Aide à domicile<br>♿ Handicap<br>💬 Médiation<br>🧩 Inclusion</div>
+    <div class="tooltip">
+      🤝 Travail social<br>
+      👶 Enfance<br>
+      💼 Insertion<br>
+      🏡 Aide à domicile<br>
+      ♿ Handicap<br>
+      🗣️ Médiation<br>
+      🧩 Inclusion<br>
+      🫶 Solidarité
+    </div>
   </div>
 
-  <!-- 14. Hôtellerie / Tourisme -->
+  <!-- 14. TOURISME -->
   <div class="card" data-url="https://chat.openai.com/g/example-tourisme">
     <div class="icon">🍽️</div>
     <div class="label">Hôtellerie, Restauration & Tourisme</div>
-    <div class="tooltip">🏨 Hôtellerie<br>👨‍🍳 Cuisine<br>🍷 Gastronomie<br>🥗 Restauration coll.<br>🍽️ Service<br>✈️ Tourisme<br>🎉 Événementiel<br>🍇 Œnotourisme</div>
+    <div class="tooltip">
+      🏨 Hôtellerie<br>
+      👨‍🍳 Cuisine<br>
+      🍷 Gastronomie<br>
+      🥗 Collective<br>
+      🍽️ Service<br>
+      ✈️ Voyage<br>
+      🎉 Événementiel<br>
+      🍇 Œnotourisme
+    </div>
   </div>
 
-  <!-- 15. Sport -->
+  <!-- 15. SPORT -->
   <div class="card" data-url="https://chat.openai.com/g/example-sport">
     <div class="icon">🏋️</div>
     <div class="label">Sport, Loisirs & Bien-être</div>
-    <div class="tooltip">🏃 Animation<br>💪 Coaching<br>🧘 Fitness<br>🏆 Haut niveau<br>🌿 Bien-être<br>🥗 Nutrition<br>📣 Management sport<br>🏟️ Infrastructures</div>
+    <div class="tooltip">
+      🏃 Animation<br>
+      💪 Coaching<br>
+      🧘 Fitness<br>
+      🏆 Compétition<br>
+      🌿 Bien-être<br>
+      🥗 Nutrition<br>
+      🎽 Management sportif<br>
+      🏟️ Infrastructures
+    </div>
   </div>
 
-  <!-- 16. Arts -->
+  <!-- 16. ARTS -->
   <div class="card" data-url="https://chat.openai.com/g/example-arts">
     <div class="icon">🎨</div>
     <div class="label">Arts, Design & Création</div>
-    <div class="tooltip">🖌️ Arts visuels<br>🖍️ Graphisme<br>🪑 Design produit<br>👗 Mode<br>🪡 Artisanat<br>📸 Photo<br>🗿 Sculpture<br>💻 Arts numériques</div>
+    <div class="tooltip">
+      🖌️ Arts visuels<br>
+      🖍️ Graphisme<br>
+      🪑 Design produit<br>
+      👗 Mode<br>
+      🪡 Artisanat<br>
+      📸 Photo<br>
+      🗿 Sculpture<br>
+      💻 Arts numériques
+    </div>
   </div>
 
-  <!-- 17. Communication -->
+  <!-- 17. COMMUNICATION -->
   <div class="card" data-url="https://chat.openai.com/g/example-communication">
     <div class="icon">🎙️</div>
     <div class="label">Communication & Médias</div>
-    <div class="tooltip">🗞️ Journalisme<br>🎥 Audiovisuel<br>🎬 Cinéma<br>🎧 Radio & podcast<br>💬 Social media<br>📢 RP<br>🎯 Publicité<br>📰 Édition</div>
+    <div class="tooltip">
+      🗞️ Journalisme<br>
+      🎥 Audiovisuel<br>
+      🎬 Cinéma<br>
+      🎧 Radio / Podcast<br>
+      💬 Réseaux sociaux<br>
+      📢 Relations publiques<br>
+      🎯 Publicité<br>
+      📰 Édition
+    </div>
   </div>
 
-  <!-- 18. Sécurité / Droit -->
+  <!-- 18. SÉCURITÉ -->
   <div class="card" data-url="https://chat.openai.com/g/example-securite">
     <div class="icon">🛡️</div>
     <div class="label">Sécurité, Droit & Défense</div>
-    <div class="tooltip">🕵️ Sécurité privée<br>🪖 Armée<br>🚓 Police<br>🚒 Pompiers<br>🔐 Cybersécurité<br>⚖️ Droit<br>🏛️ Administration<br>🦺 Prévention</div>
+    <div class="tooltip">
+      🕵️ Sécurité privée<br>
+      🪖 Armée<br>
+      🚓 Police<br>
+      🚒 Pompiers<br>
+      🔐 Cybersécurité<br>
+      ⚖️ Droit<br>
+      🏛️ Administration<br>
+      🦺 Prévention
+    </div>
   </div>
 
 </div>
@@ -237,92 +398,57 @@
 <footer>© Synergie IA</footer>
 
 <script>
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  const cards = document.querySelectorAll('.card');
-  let lastOpenedCard = null;
+const cards = document.querySelectorAll('.card');
+let lastOpenedCard = null;
 
-  function hideAllTooltips() {
-    document.querySelectorAll('.tooltip').forEach(t => {
-      t.classList.remove('show', 'up', 'down');
-    });
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-    lastOpenedCard = null;
-  }
+function hideAll() {
+  document.querySelectorAll('.tooltip').forEach(t => t.classList.remove('show','up','down'));
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  lastOpenedCard = null;
+}
 
-  function positionTooltip(card, tooltip) {
-    // Choisir up/down en fonction de l'espace disponible
-    const rect = card.getBoundingClientRect();
-    // rendre visible temporairement pour mesurer la hauteur réelle
-    tooltip.style.visibility = 'hidden';
-    tooltip.style.opacity = 0;
-    tooltip.classList.add('up');
-    const needHeight = tooltip.offsetHeight + 16; // marge
-    tooltip.classList.remove('up');
+function positionTooltip(card, tooltip) {
+  const rect = card.getBoundingClientRect();
+  tooltip.classList.remove('up','down');
+  const spaceTop = rect.top;
+  const need = tooltip.offsetHeight + 20;
+  if (spaceTop > need) tooltip.classList.add('up'); else tooltip.classList.add('down');
+}
 
-    if (rect.top >= needHeight) {
-      tooltip.classList.add('up');
-    } else {
-      tooltip.classList.add('down');
-    }
-  }
+cards.forEach(card => {
+  const tooltip = card.querySelector('.tooltip');
+  const url = card.dataset.url;
 
-  function showTooltip(card) {
-    const tooltip = card.querySelector('.tooltip');
-    if (!tooltip) return;
-    hideAllTooltips();
+  // --- Desktop (hover) ---
+  card.addEventListener('mouseenter', () => {
+    if ('ontouchstart' in window) return;
+    hideAll();
     positionTooltip(card, tooltip);
     card.classList.add('active');
-    // petit timeout pour laisser appliquer up/down avant show
-    requestAnimationFrame(() => tooltip.classList.add('show'));
-  }
-
-  function hideTooltip(card) {
-    const tooltip = card.querySelector('.tooltip');
-    if (!tooltip) return;
-    tooltip.classList.remove('show', 'up', 'down');
-    card.classList.remove('active');
-  }
-
-  cards.forEach(card => {
-    const tooltip = card.querySelector('.tooltip');
-    const url = card.getAttribute('data-url');
-
-    // Desktop : survol
-    card.addEventListener('mouseenter', () => {
-      if (isMobile) return;
-      showTooltip(card);
-    });
-    card.addEventListener('mouseleave', () => {
-      if (isMobile) return;
-      hideTooltip(card);
-    });
-
-    // Mobile : 1er tap = affiche, 2e tap = ouvre
-    card.addEventListener('click', (e) => {
-      if (!isMobile) return; // évite d'interférer avec le desktop
-      e.stopPropagation();
-      const same = lastOpenedCard === card;
-      if (same) {
-        // 2e tap : ouvrir
-        if (url) window.open(url, '_blank');
-        hideAllTooltips();
-      } else {
-        showTooltip(card);
-        lastOpenedCard = card;
-      }
-    });
+    tooltip.classList.add('show');
   });
+  card.addEventListener('mouseleave', () => { if (!('ontouchstart' in window)) hideAll(); });
 
-  // Cliquer en dehors ferme tout (mobile + desktop si jamais visible)
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.card')) {
-      hideAllTooltips();
+  // --- Mobile (tap) ---
+  card.addEventListener('click', e => {
+    if (!('ontouchstart' in window)) return;
+    e.stopPropagation();
+    if (lastOpenedCard === card) {
+      if (url) window.open(url, '_blank');
+      hideAll();
+    } else {
+      hideAll();
+      positionTooltip(card, tooltip);
+      tooltip.classList.add('show');
+      card.classList.add('active');
+      lastOpenedCard = card;
     }
   });
+});
 
-  // Repositionne les bulles au redimensionnement
-  window.addEventListener('resize', () => hideAllTooltips());
-  window.addEventListener('scroll', () => hideAllTooltips());
+document.addEventListener('click', e => { if (!e.target.closest('.card')) hideAll(); });
+window.addEventListener('scroll', hideAll);
+window.addEventListener('resize', hideAll);
 </script>
 </body>
 </html>
