@@ -1,171 +1,397 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portail des Métiers – Synergie IA</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background-color: #f5f6fa;
-      margin: 0;
-      text-align: center;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portail IA360 – Univers et Sous-Univers</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #f5f6fa;
+    margin: 0;
+    text-align: center;
+  }
 
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 2rem 1rem 1rem;
-    }
+  header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem 1rem 1rem;
+  }
 
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 700;
-    }
+  header h1 { margin: 0; font-size: 2rem; font-weight: 700; }
+  header h2 { margin-top: 0.5rem; font-weight: 400; font-size: 1.1rem; color: #dfe6e9; }
 
-    header h2 {
-      margin-top: 0.5rem;
-      font-weight: 400;
-      font-size: 1.1rem;
-      color: #dfe6e9;
-    }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+  }
 
-    .quiz-container {
-      margin-top: 1.2rem;
-    }
+  .card {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    padding: 2rem 1rem;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .quiz-link {
-      display: inline-block;
-      background: #e67e22;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      padding: 0.8rem 1.5rem;
-      font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      transition: background 0.2s;
-    }
+  .card:hover { transform: scale(1.05); }
 
-    .quiz-link:hover {
-      background: #d35400;
-    }
+  .icon { font-size: 3rem; margin-bottom: 0.8rem; }
+  .label { font-size: 1.1rem; color: #2c3e50; font-weight: 500; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
+  /* INFOS-BULLES */
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 260px;
+    background-color: #2c3e50;
+    color: #fff;
+    text-align: left;
+    border-radius: 10px;
+    padding: 1rem;
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    transition: opacity 0.3s;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
 
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-      padding: 2rem 1rem;
-      transition: transform 0.2s ease;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+  .card:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
 
-    .card:hover {
-      transform: scale(1.05);
-    }
+  .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #2c3e50 transparent transparent transparent;
+  }
 
-    .icon {
-      font-size: 3rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .label {
-      font-size: 1.1rem;
-      color: #2c3e50;
-      font-weight: 500;
-    }
-
-    .about-container {
-      margin-bottom: 1rem;
-    }
-
-    .about-link {
-      display: inline-block;
-      background: #2c3e50;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      padding: 0.6rem 1.3rem;
-      font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      transition: background 0.2s;
-    }
-
-    .about-link:hover {
-      background: #34495e;
-    }
-
-    footer {
-      background-color: #2c3e50;
-      color: #dfe6e9;
-      padding: 1rem;
-      font-size: 0.9rem;
-      text-align: center;
-    }
-  </style>
+  footer {
+    background-color: #2c3e50;
+    color: #dfe6e9;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+</style>
 </head>
 
 <body>
-  <header>
-    <h1>Le Portail des Métiers</h1>
-    <h2>L’IA au service de l’orientation scolaire et professionnelle</h2>
-  </header>
+<header>
+  <h1>Portail IA360 – Les 18 univers professionnels</h1>
+  <h2>Survole un univers pour découvrir ses sous-domaines</h2>
+</header>
 
-  <!-- Bouton Quiz -->
-  <div class="quiz-container">
-    <a href="quiz.html" class="quiz-link">🧭 Découvrir les univers qui me correspondent</a>
+<div class="grid">
+
+  <!-- 1. Agriculture -->
+  <div class="card">
+    <div class="icon">🌾</div>
+    <div class="label">Agriculture, Nature & Animaux</div>
+    <div class="tooltip">
+      Production agricole & cultures<br>
+      Élevage & soins aux animaux<br>
+      Viticulture & œnologie<br>
+      Agroalimentaire & transformation<br>
+      Foresterie & gestion forestière<br>
+      Aménagement paysager & espaces verts<br>
+      Environnement naturel & biodiversité<br>
+      Agronomie & conseil agricole
+    </div>
   </div>
 
-  <!-- Grille des 18 univers IA360 -->
-  <div class="grid">
-    <div class="card" onclick="goTo('agriculture')"><div class="icon">🌾</div><div class="label">Agriculture, Nature & Animaux</div></div>
-    <div class="card" onclick="goTo('industrie')"><div class="icon">⚙️</div><div class="label">Industrie & Fabrication</div></div>
-    <div class="card" onclick="goTo('construction')"><div class="icon">🏗️</div><div class="label">Construction & Bâtiment</div></div>
-    <div class="card" onclick="goTo('environnement')"><div class="icon">🌍</div><div class="label">Environnement & Énergies</div></div>
-    <div class="card" onclick="goTo('numerique')"><div class="icon">💻</div><div class="label">Numérique & Informatique</div></div>
-    <div class="card" onclick="goTo('sciences')"><div class="icon">🔬</div><div class="label">Sciences & Recherche</div></div>
-    <div class="card" onclick="goTo('commerce')"><div class="icon">🛒</div><div class="label">Commerce & Vente</div></div>
-    <div class="card" onclick="goTo('management')"><div class="icon">💼</div><div class="label">Management & Entrepreneuriat</div></div>
-    <div class="card" onclick="goTo('finance')"><div class="icon">💰</div><div class="label">Finance & Gestion</div></div>
-    <div class="card" onclick="goTo('logistique')"><div class="icon">🚚</div><div class="label">Logistique & Transport</div></div>
-    <div class="card" onclick="goTo('sante')"><div class="icon">❤️</div><div class="label">Santé & Médical</div></div>
-    <div class="card" onclick="goTo('education')"><div class="icon">🎓</div><div class="label">Éducation & Formation</div></div>
-    <div class="card" onclick="goTo('social')"><div class="icon">🤝</div><div class="label">Social & Aide à la Personne</div></div>
-    <div class="card" onclick="goTo('tourisme')"><div class="icon">🍽️</div><div class="label">Hôtellerie, Restauration & Tourisme</div></div>
-    <div class="card" onclick="goTo('sport')"><div class="icon">🏋️</div><div class="label">Sport, Loisirs & Bien-être</div></div>
-    <div class="card" onclick="goTo('arts')"><div class="icon">🎨</div><div class="label">Arts, Design & Création</div></div>
-    <div class="card" onclick="goTo('communication')"><div class="icon">📱</div><div class="label">Communication & Médias</div></div>
-    <div class="card" onclick="goTo('securite')"><div class="icon">🛡️</div><div class="label">Sécurité, Droit & Défense</div></div>
+  <!-- 2. Industrie -->
+  <div class="card">
+    <div class="icon">⚙️</div>
+    <div class="label">Industrie & Fabrication</div>
+    <div class="tooltip">
+      Production industrielle<br>
+      Maintenance & entretien<br>
+      Automatisation & robotique<br>
+      Qualité & contrôle<br>
+      Mécanique & usinage<br>
+      Métallurgie & transformation<br>
+      Électrotechnique industrielle<br>
+      Logistique & supply chain
+    </div>
   </div>
 
-  <!-- Lien À propos -->
-  <div class="about-container">
-    <a href="a-propos.html" class="about-link">À propos</a>
+  <!-- 3. Construction -->
+  <div class="card">
+    <div class="icon">🏗️</div>
+    <div class="label">Construction & Bâtiment</div>
+    <div class="tooltip">
+      Gros œuvre & maçonnerie<br>
+      Second œuvre & finitions<br>
+      Électricité bâtiment & domotique<br>
+      Plomberie & climatisation<br>
+      Architecture & conception<br>
+      Génie civil & travaux publics<br>
+      Menuiserie & charpente<br>
+      Rénovation & réhabilitation
+    </div>
   </div>
 
-  <footer>
-    © Synergie IA
-  </footer>
+  <!-- 4. Environnement -->
+  <div class="card">
+    <div class="icon">🌍</div>
+    <div class="label">Environnement & Énergies</div>
+    <div class="tooltip">
+      Énergies renouvelables<br>
+      Production & distribution<br>
+      Gestion de l’eau<br>
+      Gestion des déchets<br>
+      Protection de l’environnement<br>
+      Dépollution & traitement<br>
+      Écologie & biodiversité<br>
+      Météorologie & climatologie
+    </div>
+  </div>
 
-  <script>
-    function goTo(univers) {
-      window.location.href = `menu.html?univers=${univers}`;
-    }
-  </script>
+  <!-- 5. Numérique -->
+  <div class="card">
+    <div class="icon">💻</div>
+    <div class="label">Numérique & Informatique</div>
+    <div class="tooltip">
+      Développement logiciel<br>
+      Développement web & mobile<br>
+      Cybersécurité<br>
+      Data Science & IA<br>
+      Cloud & infrastructure<br>
+      Systèmes & réseaux<br>
+      DevOps & automatisation<br>
+      UX/UI Design & ergonomie
+    </div>
+  </div>
+
+  <!-- 6. Sciences -->
+  <div class="card">
+    <div class="icon">🔬</div>
+    <div class="label">Sciences & Recherche</div>
+    <div class="tooltip">
+      Recherche fondamentale<br>
+      R&D<br>
+      Biologie & biotechnologie<br>
+      Chimie & pharmacie<br>
+      Physique & mathématiques<br>
+      Géologie & sciences de la Terre<br>
+      Astronomie & astrophysique<br>
+      Neurosciences & sciences cognitives
+    </div>
+  </div>
+
+  <!-- 7. Commerce -->
+  <div class="card">
+    <div class="icon">🛒</div>
+    <div class="label">Commerce & Vente</div>
+    <div class="tooltip">
+      Commerce de détail<br>
+      Commerce B2B<br>
+      E-commerce<br>
+      Immobilier<br>
+      Marketing<br>
+      Communication commerciale<br>
+      Achat & approvisionnement<br>
+      Vente de services
+    </div>
+  </div>
+
+  <!-- 8. Management -->
+  <div class="card">
+    <div class="icon">💼</div>
+    <div class="label">Management & Entrepreneuriat</div>
+    <div class="tooltip">
+      Direction générale<br>
+      Entrepreneuriat<br>
+      Gestion de projets<br>
+      Conseil & stratégie<br>
+      Ressources humaines<br>
+      Management d’équipe<br>
+      Qualité & performance<br>
+      Innovation & transformation
+    </div>
+  </div>
+
+  <!-- 9. Finance -->
+  <div class="card">
+    <div class="icon">💰</div>
+    <div class="label">Finance & Gestion</div>
+    <div class="tooltip">
+      Banque de détail<br>
+      Banque d’affaires<br>
+      Assurance de personnes<br>
+      Assurance de biens<br>
+      Gestion de patrimoine<br>
+      Comptabilité & audit<br>
+      Contrôle de gestion<br>
+      Crédit & financement
+    </div>
+  </div>
+
+  <!-- 10. Logistique -->
+  <div class="card">
+    <div class="icon">🚚</div>
+    <div class="label">Logistique & Transport</div>
+    <div class="tooltip">
+      Transport routier<br>
+      Maritime & portuaire<br>
+      Transport aérien<br>
+      Transport ferroviaire<br>
+      Supply chain<br>
+      Entreposage & stock<br>
+      Mobilité urbaine<br>
+      Logistique internationale
+    </div>
+  </div>
+
+  <!-- 11. Santé -->
+  <div class="card">
+    <div class="icon">⚕️</div>
+    <div class="label">Santé & Médical</div>
+    <div class="tooltip">
+      Médecine générale<br>
+      Soins infirmiers<br>
+      Chirurgie<br>
+      Pharmacie & dispositifs médicaux<br>
+      Rééducation & kinésithérapie<br>
+      Imagerie & laboratoires<br>
+      Santé mentale<br>
+      Urgences & secours
+    </div>
+  </div>
+
+  <!-- 12. Éducation -->
+  <div class="card">
+    <div class="icon">🎓</div>
+    <div class="label">Éducation & Formation</div>
+    <div class="tooltip">
+      Enseignement primaire<br>
+      Enseignement secondaire<br>
+      Enseignement supérieur<br>
+      Formation professionnelle<br>
+      Enseignement spécialisé<br>
+      E-learning<br>
+      Coaching & développement personnel<br>
+      Recherche en éducation
+    </div>
+  </div>
+
+  <!-- 13. Social -->
+  <div class="card">
+    <div class="icon">🤝</div>
+    <div class="label">Social & Aide à la Personne</div>
+    <div class="tooltip">
+      Travail social<br>
+      Éducation spécialisée<br>
+      Protection de l’enfance<br>
+      Insertion professionnelle<br>
+      Psychologie & thérapie<br>
+      Aide à domicile<br>
+      Handicap & inclusion<br>
+      Médiation & conflits
+    </div>
+  </div>
+
+  <!-- 14. Hôtellerie -->
+  <div class="card">
+    <div class="icon">🍽️</div>
+    <div class="label">Hôtellerie, Restauration & Tourisme</div>
+    <div class="tooltip">
+      Hôtellerie & hébergement<br>
+      Restauration traditionnelle<br>
+      Restauration collective<br>
+      Cuisine & arts culinaires<br>
+      Service en salle<br>
+      Tourisme & voyages<br>
+      Événementiel & réception<br>
+      Œnotourisme
+    </div>
+  </div>
+
+  <!-- 15. Sport -->
+  <div class="card">
+    <div class="icon">🏋️</div>
+    <div class="label">Sport, Loisirs & Bien-être</div>
+    <div class="tooltip">
+      Animation sportive<br>
+      Coaching sportif<br>
+      Fitness & remise en forme<br>
+      Sport de haut niveau<br>
+      Bien-être & relaxation<br>
+      Nutrition & diététique<br>
+      Management du sport<br>
+      Infrastructures sportives
+    </div>
+  </div>
+
+  <!-- 16. Arts -->
+  <div class="card">
+    <div class="icon">🎨</div>
+    <div class="label">Arts, Design & Création</div>
+    <div class="tooltip">
+      Arts visuels<br>
+      Design graphique<br>
+      Design industriel<br>
+      Mode & stylisme<br>
+      Artisanat d’art<br>
+      Photographie<br>
+      Sculpture & installation<br>
+      Arts numériques & 3D
+    </div>
+  </div>
+
+  <!-- 17. Communication -->
+  <div class="card">
+    <div class="icon">📱</div>
+    <div class="label">Communication & Médias</div>
+    <div class="tooltip">
+      Journalisme<br>
+      Audiovisuel & production TV<br>
+      Cinéma<br>
+      Radio & podcast<br>
+      Communication digitale<br>
+      Relations publiques<br>
+      Publicité<br>
+      Édition & presse écrite
+    </div>
+  </div>
+
+  <!-- 18. Sécurité -->
+  <div class="card">
+    <div class="icon">🛡️</div>
+    <div class="label">Sécurité, Droit & Défense</div>
+    <div class="tooltip">
+      Sécurité privée<br>
+      Défense nationale<br>
+      Police & gendarmerie<br>
+      Sécurité civile<br>
+      Cybersécurité<br>
+      Droit & justice<br>
+      Fonction publique<br>
+      Sécurité au travail
+    </div>
+  </div>
+
+</div>
+
+<footer>© Synergie IA – Orientation IA360</footer>
 </body>
 </html>
