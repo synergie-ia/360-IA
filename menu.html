@@ -1,168 +1,218 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menu Principal </title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background-color: #f5f6fa;
-      margin: 0;
-      text-align: center;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Menu - Portail de l’Orientation</title>
+<style>
+  :root {
+    --bg: #f5f6fa;
+    --ink: #2c3e50;
+    --muted: #dfe6e9;
+    --accent: #2c3e50;
+    --cta: #e67e22;
+    --cta-hover: #d35400;
+  }
 
-    /* --- Bandeau principal --- */
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 2rem 1rem 1.5rem;
-    }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--bg);
+    margin: 0;
+    text-align: center;
+  }
 
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 600;
-    }
+  header {
+    background-color: var(--accent);
+    color: white;
+    padding: 2rem 1rem 1.5rem;
+  }
 
-    header h2 {
-      margin-top: 0.5rem;
-      font-weight: 400;
-      font-size: 1.1rem;
-      color: #dfe6e9;
-    }
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
 
-    /* --- Bouton retour --- */
-    .back-container {
-      margin-top: 1rem;
-    }
+  header h2 {
+    margin-top: 0.5rem;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
 
-    .back-btn {
-      background: white;
-      color: #2c3e50;
-      border: none;
-      border-radius: 10px;
-      padding: 0.6rem 1.3rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      transition: background 0.2s;
-    }
+  .return {
+    margin-top: 1rem;
+  }
 
-    .back-btn:hover {
-      background: #ecf0f1;
-    }
+  .return a {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--cta);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
 
-    /* --- Grille principale --- */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
+  .return a:hover {
+    background-color: var(--cta-hover);
+  }
 
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-      padding: 2rem 1rem;
-      transition: transform 0.2s ease;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+  /* Bloc univers */
+  .univers {
+    margin-top: 2rem;
+  }
 
-    .card:hover {
-      transform: scale(1.05);
-    }
+  .univers .icon {
+    font-size: 4rem;
+  }
 
-    .icon {
-      font-size: 3rem;
-      margin-bottom: 0.8rem;
-    }
+  .univers .label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 0.5rem;
+  }
 
-    .label {
-      font-size: 1.1rem;
-      color: #2c3e50;
-      font-weight: 500;
-    }
+  /* Boutons principaux */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+  }
 
-    /* --- Footer --- */
-    footer {
-      background-color: #2c3e50;
-      color: #dfe6e9;
-      padding: 1rem;
-      font-size: 0.9rem;
-      text-align: center;
-      margin-top: 2rem;
-    }
-  </style>
+  .menu-item {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    padding: 2rem 1rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-item:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  .menu-item .icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .menu-item .label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  footer {
+    background-color: var(--accent);
+    color: var(--muted);
+    padding: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .help {
+    margin-top: 1.5rem;
+  }
+
+  .help a {
+    display: inline-block;
+    background: var(--cta);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.8rem 1.4rem;
+    border-radius: 10px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    transition: .2s;
+  }
+
+  .help a:hover {
+    background: var(--cta-hover);
+  }
+</style>
 </head>
-
 <body>
-  <header>
-    <h1>Choisir son parcours</h1>
-    <h2 id="rappel"></h2>
-  </header>
 
-  <!-- Bouton Retour juste sous le bandeau -->
-  <div class="back-container">
-    <button class="back-btn" onclick="history.back()">⬅️ Retour</button>
+<header>
+  <div class="return">
+    <a href="index.html">← Retour au Portail</a>
+  </div>
+  <h1 id="univers-icon"></h1>
+  <h2 id="univers-name"></h2>
+</header>
+
+<div class="help">
+  <a href="https://chatgpt.com/g/g-68f388e25a008191a09cdf3ab4882735-mes-univers-professionnels" target="_blank">
+    👉 Vous hésitez sur votre univers ?
+  </a>
+</div>
+
+<section class="menu-grid">
+  <div class="menu-item" onclick="alert('Module : Orientation IA360 🚀')">
+    <div class="icon">🎯</div>
+    <div class="label">S’orienter</div>
   </div>
 
-  <!-- Grille de cartes -->
-  <div class="grid">
-    <div class="card" id="orientation"><div class="icon">🧭</div><div class="label">S’orienter</div></div>
-    <div class="card" id="formations"><div class="icon">🎓</div><div class="label">Se former</div></div>
-    <div class="card" id="projet"><div class="icon">🎯</div><div class="label">Construire son projet</div></div>
-    <div class="card" id="candidature"><div class="icon">📄</div><div class="label">Candidater</div></div>
+  <div class="menu-item" onclick="alert('Module : Parcours de formation 🎓')">
+    <div class="icon">📘</div>
+    <div class="label">Se former</div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    © Synergie IA
-  </footer>
+  <div class="menu-item" onclick="alert('Module : Candidature (CV, Lettre, Pitch) 💼')">
+    <div class="icon">✉️</div>
+    <div class="label">Postuler</div>
+  </div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const univers = params.get("univers") || "general";
+  <div class="menu-item" onclick="alert('Module : Explorer les métiers 🔍')">
+    <div class="icon">🧭</div>
+    <div class="label">Explorer</div>
+  </div>
+</section>
 
-    const universLabels = {
-      batiment: "Construction & Habitat",
-      energie: "Énergie & Transition",
-      numerique: "Numérique & Technologies",
-      sante: "Santé & Social",
-      culture: "Culture & Création",
-      environnement: "Environnement & Écologie",
-      industrie: "Industrie & Production",
-      commerce: "Commerce & Vente",
-      agriculture: "Agriculture & Alimentation",
-      logistique: "Logistique & Transport",
-      tourisme: "Tourisme & Hôtellerie",
-      education: "Éducation & Formation",
-      securite: "Sécurité & Défense",
-      finance: "Gestion & Finance",
-      droit: "Droit & Administration",
-      communication: "Communication & Médias",
-      recherche: "Recherche & Innovation"
-    };
+<footer>© Synergie IA</footer>
 
-    document.getElementById("rappel").textContent =
-      "Univers : " + (universLabels[univers] || "Inconnu");
+<script>
+const params = new URLSearchParams(window.location.search);
+const univers = params.get("univers");
 
-    document.getElementById("orientation").onclick = () =>
-      location.href = `orientation.html?univers=${univers}`;
-    document.getElementById("formations").onclick = () =>
-      location.href = `formations.html?univers=${univers}`;
-    document.getElementById("projet").onclick = () =>
-      location.href = `projet.html?univers=${univers}`;
-    document.getElementById("candidature").onclick = () =>
-      location.href = `candidature.html?univers=${univers}`;
-  </script>
+const universData = {
+  agriculture: { icon: "🌾", name: "Agriculture, Nature & Animaux" },
+  industrie: { icon: "⚙️", name: "Industrie & Fabrication" },
+  construction: { icon: "🏗️", name: "Construction & Bâtiment" },
+  environnement: { icon: "🌍", name: "Environnement & Énergies" },
+  numerique: { icon: "💻", name: "Numérique & Informatique" },
+  sciences: { icon: "🔬", name: "Sciences & Recherche" },
+  commerce: { icon: "🛒", name: "Commerce & Vente" },
+  management: { icon: "💼", name: "Management & Entrepreneuriat" },
+  finance: { icon: "💰", name: "Finance & Gestion" },
+  logistique: { icon: "🚚", name: "Logistique & Transport" },
+  sante: { icon: "⚕️", name: "Santé & Médical" },
+  education: { icon: "🎓", name: "Éducation & Formation" },
+  social: { icon: "❤️", name: "Social & Aide à la Personne" },
+  tourisme: { icon: "🍽️", name: "Tourisme, Hôtellerie & Restauration" },
+  sport: { icon: "🏋️", name: "Sport, Loisirs & Bien-être" },
+  arts: { icon: "🎨", name: "Arts, Design & Création" },
+  communication: { icon: "🎙️", name: "Communication & Médias" },
+  securite: { icon: "🛡️", name: "Sécurité, Droit & Défense" },
+};
+
+if (universData[univers]) {
+  document.getElementById("univers-icon").textContent = universData[univers].icon;
+  document.getElementById("univers-name").textContent = universData[univers].name;
+} else {
+  document.getElementById("univers-icon").textContent = "❓";
+  document.getElementById("univers-name").textContent = "Univers inconnu";
+}
+</script>
 </body>
 </html>
