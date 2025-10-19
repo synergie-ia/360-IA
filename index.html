@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
@@ -30,10 +31,29 @@
   header h1 { margin: 0; font-size: 2rem; font-weight: 700; }
   header h2 { margin-top: 0.5rem; font-weight: 400; font-size: 1.1rem; color: #dfe6e9; }
 
-  /* --- ✅ Correction du comportement des infobulles --- */
+  /* --- Bouton d’aide IA --- */
+  .help-container { margin-top: 1.2rem; }
+  .help-link {
+    display: inline-block;
+    background: #e67e22;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .help-link:hover {
+    background: #d35400;
+    transform: scale(1.05);
+  }
+
+  /* --- Grille principale --- */
   .grid {
-    position: static;             /* autorise le débordement */
-    overflow: visible;            /* permet aux infobulles de sortir */
+    position: static;
+    overflow: visible;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
@@ -56,7 +76,6 @@
     justify-content: center;
     z-index: 0;
   }
-
   .card:hover { transform: scale(1.06); }
   .card.active { z-index: 999; box-shadow: 0 8px 24px var(--shadow); }
 
@@ -83,16 +102,10 @@
     z-index: 1000;
   }
 
-  /* 🧭 Position intelligente des infobulles */
   .tooltip.up { bottom: 110%; transform: translateX(-50%) translateY(-4px); }
   .tooltip.down { top: 110%; transform: translateX(-50%) translateY(4px); }
 
-  /* ✅ Les 4 dernières cartes affichent automatiquement la bulle vers le haut */
-  .card:nth-last-child(-n+4) .tooltip {
-    bottom: 110%;
-    top: auto;
-  }
-
+  .card:nth-last-child(-n+4) .tooltip { bottom: 110%; top: auto; }
   .tooltip.show { visibility: visible; opacity: 1; }
 
   footer {
@@ -112,8 +125,16 @@
 
 <header>
   <h1>Le Portail de l’Orientation</h1>
-  <h2>L’intelligence artificielle au service de l’orientation</h2>
+  <h2>L’intelligence artificielle au service de l’orientation scolaire et professionnelle</h2>
 </header>
+
+<!-- 🧭 Bouton d’aide IA -->
+<div class="help-container">
+  <a href="https://chatgpt.com/g/g-68f388e25a008191a09cdf3ab4882735-mes-univers-professionnels"
+     class="help-link" target="_blank">
+    👉 Vous avez besoin d’aide pour choisir votre univers
+  </a>
+</div>
 
 <div class="grid">
 
@@ -122,14 +143,8 @@
     <div class="icon">🌾</div>
     <div class="label">Agriculture, Nature & Animaux</div>
     <div class="tooltip">
-      🌱 Cultures<br>
-      🐄 Élevage<br>
-      🍇 Viticulture<br>
-      🧀 Agroalimentaire<br>
-      🌲 Forêts<br>
-      🌼 Paysage<br>
-      🦋 Biodiversité<br>
-      🔬 Agronomie
+      🌱 Cultures<br>🐄 Élevage<br>🍇 Viticulture<br>🧀 Agroalimentaire<br>
+      🌲 Forêts<br>🌼 Paysage<br>🦋 Biodiversité<br>🔬 Agronomie
     </div>
   </div>
 
@@ -138,14 +153,8 @@
     <div class="icon">⚙️</div>
     <div class="label">Industrie & Fabrication</div>
     <div class="tooltip">
-      🏭 Production<br>
-      🧰 Maintenance<br>
-      🤖 Robotique<br>
-      ✔️ Qualité<br>
-      🔧 Mécanique<br>
-      🔩 Métallurgie<br>
-      💡 Électrotechnique<br>
-      🚛 Logistique
+      🏭 Production<br>🧰 Maintenance<br>🤖 Robotique<br>✔️ Qualité<br>
+      🔧 Mécanique<br>🔩 Métallurgie<br>💡 Électrotechnique<br>🚛 Logistique
     </div>
   </div>
 
@@ -154,14 +163,8 @@
     <div class="icon">🏗️</div>
     <div class="label">Construction & Bâtiment</div>
     <div class="tooltip">
-      🧱 Gros œuvre<br>
-      🎨 Second œuvre<br>
-      ⚡ Électricité<br>
-      🚿 Plomberie<br>
-      📐 Architecture<br>
-      🛣️ Travaux publics<br>
-      🪚 Menuiserie<br>
-      🏚️ Rénovation
+      🧱 Gros œuvre<br>🎨 Second œuvre<br>⚡ Électricité<br>🚿 Plomberie<br>
+      📐 Architecture<br>🛣️ Travaux publics<br>🪚 Menuiserie<br>🏚️ Rénovation
     </div>
   </div>
 
@@ -170,14 +173,8 @@
     <div class="icon">🌍</div>
     <div class="label">Environnement & Énergies</div>
     <div class="tooltip">
-      ☀️ Renouvelables<br>
-      🔌 Réseaux énergie<br>
-      💧 Eau<br>
-      ♻️ Recyclage<br>
-      🌿 Protection<br>
-      🧪 Dépollution<br>
-      🦋 Écologie<br>
-      🌦️ Climat
+      ☀️ Renouvelables<br>🔌 Réseaux énergie<br>💧 Eau<br>♻️ Recyclage<br>
+      🌿 Protection<br>🧪 Dépollution<br>🦋 Écologie<br>🌦️ Climat
     </div>
   </div>
 
@@ -186,14 +183,8 @@
     <div class="icon">💻</div>
     <div class="label">Numérique & Informatique</div>
     <div class="tooltip">
-      👨‍💻 Développement<br>
-      🌐 Web & mobile<br>
-      🔐 Cybersécurité<br>
-      📈 Data & IA<br>
-      ☁️ Cloud<br>
-      🔌 Réseaux<br>
-      ⚙️ DevOps<br>
-      🎨 UX/UI
+      👨‍💻 Développement<br>🌐 Web & mobile<br>🔐 Cybersécurité<br>📈 Data & IA<br>
+      ☁️ Cloud<br>🔌 Réseaux<br>⚙️ DevOps<br>🎨 UX/UI
     </div>
   </div>
 
@@ -202,14 +193,8 @@
     <div class="icon">🔬</div>
     <div class="label">Sciences & Recherche</div>
     <div class="tooltip">
-      🧪 Recherche<br>
-      💡 R&D<br>
-      🧬 Biotech<br>
-      ⚗️ Chimie<br>
-      🔭 Physique<br>
-      ⛰️ Géologie<br>
-      🌌 Astronomie<br>
-      🧠 Neurosciences
+      🧪 Recherche<br>💡 R&D<br>🧬 Biotech<br>⚗️ Chimie<br>
+      🔭 Physique<br>⛰️ Géologie<br>🌌 Astronomie<br>🧠 Neurosciences
     </div>
   </div>
 
@@ -218,14 +203,8 @@
     <div class="icon">🛒</div>
     <div class="label">Commerce & Vente</div>
     <div class="tooltip">
-      🏬 Détail<br>
-      🤝 B2B<br>
-      💳 E-commerce<br>
-      🏠 Immobilier<br>
-      📣 Marketing<br>
-      📢 Publicité<br>
-      🧾 Achats<br>
-      🗣️ Services
+      🏬 Détail<br>🤝 B2B<br>💳 E-commerce<br>🏠 Immobilier<br>
+      📣 Marketing<br>📢 Publicité<br>🧾 Achats<br>🗣️ Services
     </div>
   </div>
 
@@ -234,14 +213,8 @@
     <div class="icon">💼</div>
     <div class="label">Management & Entrepreneuriat</div>
     <div class="tooltip">
-      🎯 Direction<br>
-      🚀 Entrepreneuriat<br>
-      🗂️ Projets<br>
-      🧠 Stratégie<br>
-      👥 RH<br>
-      🤝 Leadership<br>
-      📈 Performance<br>
-      💡 Innovation
+      🎯 Direction<br>🚀 Entrepreneuriat<br>🗂️ Projets<br>🧠 Stratégie<br>
+      👥 RH<br>🤝 Leadership<br>📈 Performance<br>💡 Innovation
     </div>
   </div>
 
@@ -250,14 +223,8 @@
     <div class="icon">💰</div>
     <div class="label">Finance & Gestion</div>
     <div class="tooltip">
-      🏦 Banque<br>
-      📈 Marchés<br>
-      🛡️ Assurance<br>
-      🔍 Audit<br>
-      💼 Patrimoine<br>
-      📚 Comptabilité<br>
-      📊 Contrôle gestion<br>
-      💶 Crédit
+      🏦 Banque<br>📈 Marchés<br>🛡️ Assurance<br>🔍 Audit<br>
+      💼 Patrimoine<br>📚 Comptabilité<br>📊 Contrôle gestion<br>💶 Crédit
     </div>
   </div>
     <!-- 10. LOGISTIQUE -->
@@ -266,13 +233,13 @@
     <div class="label">Logistique & Transport</div>
     <div class="tooltip">
       🚛 Routier<br>
-      ⚓ Maritime<br>
-      ✈️ Aérien<br>
+      ⚓ Maritime & portuaire<br>
+      ✈️ Aérien & aéroportuaire<br>
       🚆 Ferroviaire<br>
-      📦 Stockage<br>
+      📦 Stockage & entreposage<br>
       🏭 Supply chain<br>
-      🚌 Mobilité<br>
-      🧾 Douanes
+      🚌 Mobilité urbaine<br>
+      🧾 Douanes & international
     </div>
   </div>
 
@@ -281,14 +248,14 @@
     <div class="icon">⚕️</div>
     <div class="label">Santé & Médical</div>
     <div class="tooltip">
-      🩺 Médecine<br>
+      🩺 Médecine & spécialités<br>
       👩‍⚕️ Soins infirmiers<br>
       🔪 Chirurgie<br>
-      💊 Pharmacie<br>
+      💊 Pharmacie & dispositifs<br>
       🏃‍♀️ Rééducation<br>
-      🔬 Imagerie<br>
+      🔬 Imagerie & labo<br>
       🧠 Santé mentale<br>
-      🚑 Urgences
+      🚑 Urgences & secours
     </div>
   </div>
 
@@ -297,14 +264,14 @@
     <div class="icon">🎓</div>
     <div class="label">Éducation & Formation</div>
     <div class="tooltip">
-      🏫 Primaire<br>
-      📚 Secondaire<br>
-      🎓 Supérieur<br>
-      🔁 Formation continue<br>
-      👩‍🏫 Spécialisée<br>
+      🧒 Maternelle & primaire<br>
+      🏫 Collège & lycée<br>
+      🎓 Enseignement supérieur<br>
+      💼 Formation pro & continue<br>
+      🧩 Enseignement spécialisé<br>
       💻 E-learning<br>
-      🎯 Coaching<br>
-      🔍 Recherche éducative
+      🎯 Coaching & développement perso<br>
+      🔎 Recherche en éducation
     </div>
   </div>
 
@@ -314,29 +281,29 @@
     <div class="label">Social & Aide à la Personne</div>
     <div class="tooltip">
       🤝 Travail social<br>
-      👶 Enfance<br>
-      💼 Insertion<br>
-      🏡 Aide à domicile<br>
-      ♿ Handicap<br>
-      🗣️ Médiation<br>
-      🧩 Inclusion<br>
-      🫶 Solidarité
+      👶 Protection de l’enfance<br>
+      💼 Insertion & emploi<br>
+      🧠 Psychologie & thérapie<br>
+      🏠 Aide à domicile<br>
+      ♿ Handicap & inclusion<br>
+      🗣️ Médiation sociale<br>
+      👩‍🏫 Éducation spécialisée
     </div>
   </div>
 
-  <!-- 14. TOURISME -->
+  <!-- 14. HÔTELLERIE / TOURISME -->
   <div class="card" data-url="https://chat.openai.com/g/example-tourisme">
     <div class="icon">🍽️</div>
     <div class="label">Hôtellerie, Restauration & Tourisme</div>
     <div class="tooltip">
-      🏨 Hôtellerie<br>
-      👨‍🍳 Cuisine<br>
-      🍷 Gastronomie<br>
-      🥗 Collective<br>
-      🍽️ Service<br>
-      ✈️ Voyage<br>
+      🏨 Hôtellerie & hébergement<br>
+      👨‍🍳 Cuisine & gastronomie<br>
+      🥗 Restauration collective<br>
+      🍷 Bar & sommellerie<br>
+      ✈️ Tourisme & voyages<br>
       🎉 Événementiel<br>
-      🍇 Œnotourisme
+      🍇 Œnotourisme<br>
+      🎭 Tourisme culturel
     </div>
   </div>
 
@@ -345,14 +312,14 @@
     <div class="icon">🏋️</div>
     <div class="label">Sport, Loisirs & Bien-être</div>
     <div class="tooltip">
-      🏃 Animation<br>
-      💪 Coaching<br>
-      🧘 Fitness<br>
-      🏆 Compétition<br>
-      🌿 Bien-être<br>
+      ⚽ Animation sportive<br>
+      🏃 Coaching & entraînement<br>
+      💪 Remise en forme<br>
+      🥇 Compétition<br>
+      🌿 Bien-être & relaxation<br>
       🥗 Nutrition<br>
-      🎽 Management sportif<br>
-      🏟️ Infrastructures
+      🎯 Management du sport<br>
+      🏟️ Équipements & infrastructures
     </div>
   </div>
 
@@ -361,14 +328,14 @@
     <div class="icon">🎨</div>
     <div class="label">Arts, Design & Création</div>
     <div class="tooltip">
-      🖌️ Arts visuels<br>
-      🖍️ Graphisme<br>
+      🖼️ Arts visuels<br>
+      ✏️ Graphisme & illustration<br>
       🪑 Design produit<br>
-      👗 Mode<br>
-      🪡 Artisanat<br>
-      📸 Photo<br>
-      🗿 Sculpture<br>
-      💻 Arts numériques
+      👗 Mode & stylisme<br>
+      🧱 Artisanat d’art<br>
+      📸 Photographie<br>
+      🗿 Sculpture & installation<br>
+      💻 Arts numériques & 3D
     </div>
   </div>
 
@@ -377,14 +344,14 @@
     <div class="icon">🎙️</div>
     <div class="label">Communication & Médias</div>
     <div class="tooltip">
-      🗞️ Journalisme<br>
-      🎥 Audiovisuel<br>
-      🎬 Cinéma<br>
-      🎧 Radio / Podcast<br>
-      💬 Réseaux sociaux<br>
-      📢 Relations publiques<br>
-      🎯 Publicité<br>
-      📰 Édition
+      🗞️ Journalisme & presse<br>
+      🎬 Audiovisuel & cinéma<br>
+      📻 Radio & podcast<br>
+      🌐 Communication digitale & RS<br>
+      🤝 Relations publiques<br>
+      📢 Publicité<br>
+      📚 Édition & presse écrite<br>
+      🎨 Création de contenu
     </div>
   </div>
 
@@ -393,22 +360,23 @@
     <div class="icon">🛡️</div>
     <div class="label">Sécurité, Droit & Défense</div>
     <div class="tooltip">
-      🕵️ Sécurité privée<br>
-      🪖 Armée<br>
-      🚓 Police<br>
-      🚒 Pompiers<br>
-      🔐 Cybersécurité<br>
-      ⚖️ Droit<br>
-      🏛️ Administration<br>
-      🦺 Prévention
+      👮 Police & gendarmerie<br>
+      🪖 Défense nationale<br>
+      🚒 Sécurité civile & pompiers<br>
+      🔒 Sécurité privée<br>
+      ⚖️ Droit & justice<br>
+      🏛️ Administration publique<br>
+      💻 Cybersécurité<br>
+      🦺 Prévention & sécurité au travail
     </div>
   </div>
 
-</div>
+</div> <!-- /grid -->
 
 <footer>© Synergie IA</footer>
 
 <script>
+/* === Infobulles : hover (PC) + tap (mobile) === */
 const cards = document.querySelectorAll('.card');
 let lastOpenedCard = null;
 
@@ -421,16 +389,15 @@ function hideAll() {
 function positionTooltip(card, tooltip) {
   const rect = card.getBoundingClientRect();
   tooltip.classList.remove('up','down');
-  const spaceTop = rect.top;
   const need = tooltip.offsetHeight + 20;
-  if (spaceTop > need) tooltip.classList.add('up'); else tooltip.classList.add('down');
+  if (rect.top > need) tooltip.classList.add('up'); else tooltip.classList.add('down');
 }
 
 cards.forEach(card => {
   const tooltip = card.querySelector('.tooltip');
   const url = card.dataset.url;
 
-  // --- Desktop (hover) ---
+  // Desktop (hover)
   card.addEventListener('mouseenter', () => {
     if ('ontouchstart' in window) return;
     hideAll();
@@ -438,14 +405,16 @@ cards.forEach(card => {
     card.classList.add('active');
     tooltip.classList.add('show');
   });
-  card.addEventListener('mouseleave', () => { if (!('ontouchstart' in window)) hideAll(); });
+  card.addEventListener('mouseleave', () => {
+    if (!('ontouchstart' in window)) hideAll();
+  });
 
-  // --- Mobile (tap) ---
+  // Mobile (tap)
   card.addEventListener('click', e => {
-    if (!('ontouchstart' in window)) return;
+    if (!('ontouchstart' in window)) return;     // évite conflits desktop
     e.stopPropagation();
     if (lastOpenedCard === card) {
-      if (url) window.open(url, '_blank');
+      if (url) window.open(url, '_blank');       // 2e tap => ouvre le lien
       hideAll();
     } else {
       hideAll();
@@ -461,5 +430,3 @@ document.addEventListener('click', e => { if (!e.target.closest('.card')) hideAl
 window.addEventListener('scroll', hideAll);
 window.addEventListener('resize', hideAll);
 </script>
-</body>
-</html>
