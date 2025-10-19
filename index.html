@@ -1,11 +1,3 @@
-Parfait 👌 voici la Partie 1/2 du fichier complet index.html
-➡️ elle contient tout jusqu’à l’univers n°9 (Finance & Gestion).
-Tu peux déjà la coller telle quelle dans ton GitHub.
-(Je t’enverrai la partie 2 juste après pour compléter les univers 10 → 18 + le script final.)
-
-⸻
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,117 +6,42 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
 <title>Le Portail de l’Orientation</title>
 
 <style>
-  :root {
-    --bg: #f5f6fa;
-    --ink: #2c3e50;
-    --muted: #dfe6e9;
-    --accent: #2c3e50;
-    --tooltip: #2c3e50;
-    --shadow: rgba(0,0,0,0.18);
+  :root{
+    --bg:#f5f6fa; --ink:#2c3e50; --muted:#dfe6e9; --accent:#2c3e50; --tooltip:#2c3e50; --shadow:rgba(0,0,0,.18);
+    --cta:#e67e22; --cta-hover:#d35400;
   }
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);margin:0;text-align:center}
+  header{background:var(--accent);color:#fff;padding:2rem 1rem 1rem}
+  header h1{margin:0;font-size:2.1rem;font-weight:700}
+  header h2{margin:.5rem 0 0;font-weight:400;font-size:1.1rem;color:var(--muted)}
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    background-color: var(--bg);
-    margin: 0;
-    text-align: center;
-  }
+  /* Bouton aide */
+  .help{padding:1.2rem 0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+  .help a{display:inline-block;background:var(--cta);color:#fff;text-decoration:none;border-radius:10px;
+    padding:.8rem 1.4rem;font-weight:600;font-size:1rem;box-shadow:0 2px 6px rgba(0,0,0,.15);transition:.2s}
+  .help a:hover{background:var(--cta-hover);transform:scale(1.04)}
 
-  header {
-    background-color: var(--accent);
-    color: white;
-    padding: 2rem 1rem 1rem;
-  }
-  header h1 { margin: 0; font-size: 2.2rem; font-weight: 700; }
-  header h2 { margin-top: 0.5rem; font-weight: 400; font-size: 1.1rem; color: #dfe6e9; }
+  /* Grille */
+  .grid{position:static;overflow:visible;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1.5rem;padding:2rem;max-width:1200px;margin:auto}
+  .card{position:relative;background:#fff;border-radius:16px;box-shadow:0 3px 8px rgba(0,0,0,.08);padding:2rem 1rem;
+    transition:transform .25s ease,box-shadow .25s ease;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .card:hover{transform:scale(1.06)}
+  .icon{font-size:4rem;margin-bottom:.8rem}
+  .label{font-size:1.1rem;color:var(--ink);font-weight:600}
 
-  /* 🔹 Bouton d’aide IA */
-  .help-container {
-    background: #fff;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  }
-  .help-link {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    padding: 0.7rem 1.4rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: background 0.2s ease;
-  }
-  .help-link:hover { background: #34495e; }
+  /* Infobulle */
+  .tooltip{position:absolute;left:50%;transform:translateX(-50%);width:min(320px,88vw);background:var(--tooltip);color:#fff;
+    text-align:left;border-radius:12px;padding:1rem 1.2rem;box-shadow:0 12px 28px rgba(0,0,0,.25);line-height:1.5;font-size:.95rem;
+    visibility:hidden;opacity:0;transition:opacity .22s ease,transform .22s ease;pointer-events:none;z-index:1000}
+  .tooltip.up{bottom:110%;transform:translateX(-50%) translateY(-4px)}
+  .tooltip.down{top:110%;transform:translateX(-50%) translateY(4px)}
+  .tooltip.show{visibility:visible;opacity:1}
+  /* Les 4 dernières cartes forceront l’affichage vers le haut (sécurité) */
+  .card:nth-last-child(-n+4) .tooltip{bottom:110%;top:auto}
 
-  /* 🧭 Grille des univers */
-  .grid {
-    position: static;
-    overflow: visible;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
-  }
-
-  .card {
-    position: relative;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-    padding: 2rem 1rem;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 0;
-  }
-  .card:hover { transform: scale(1.06); }
-  .card.active { z-index: 999; box-shadow: 0 8px 24px var(--shadow); }
-
-  .icon { font-size: 4rem; margin-bottom: 0.8rem; }
-  .label { font-size: 1.1rem; color: var(--ink); font-weight: 500; }
-
-  .tooltip {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(320px, 88vw);
-    background-color: var(--tooltip);
-    color: #fff;
-    text-align: left;
-    border-radius: 12px;
-    padding: 1rem 1.2rem;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-    line-height: 1.5;
-    font-size: 0.95rem;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.22s ease, transform 0.22s ease;
-    pointer-events: none;
-    z-index: 1000;
-  }
-  .tooltip.up { bottom: 110%; transform: translateX(-50%) translateY(-4px); }
-  .tooltip.down { top: 110%; transform: translateX(-50%) translateY(4px); }
-  .card:nth-last-child(-n+4) .tooltip { bottom: 110%; top: auto; }
-  .tooltip.show { visibility: visible; opacity: 1; }
-
-  footer {
-    background-color: var(--accent);
-    color: var(--muted);
-    padding: 1rem;
-    font-size: 0.9rem;
-    text-align: center;
-  }
-
-  @media (hover: none) and (pointer: coarse) {
-    .card:hover { transform: none; }
-  }
+  footer{background:var(--accent);color:var(--muted);padding:1rem;font-size:.9rem}
+  @media(hover:none) and (pointer:coarse){.card:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -134,14 +51,14 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
   <h2>L’intelligence artificielle au service de l’orientation scolaire et professionnelle</h2>
 </header>
 
-<!-- 🧭 Bouton d’aide IA -->
-<div class="help-container">
-  <a href="https://chatgpt.com/g/g-68f388e25a008191a09cdf3ab4882735-mes-univers-professionnels"
-     class="help-link" target="_blank">
-     👉 Vous avez besoin d’aide pour choisir votre univers
+<!-- Bouton orange d’aide -->
+<div class="help">
+  <a href="https://chatgpt.com/g/g-68f388e25a008191a09cdf3ab4882735-mes-univers-professionnels" target="_blank">
+    👉 Vous hésitez sur votre univers ? Découvrez votre profil ici
   </a>
 </div>
 
+<!-- Grille des univers -->
 <div class="grid">
 
   <!-- 1. AGRICULTURE -->
@@ -149,7 +66,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🌾</div>
     <div class="label">Agriculture, Nature & Animaux</div>
     <div class="tooltip">
-      🌱 Cultures<br>🐄 Élevage<br>🍇 Viticulture<br>🧀 Agroalimentaire<br>🌲 Forêts<br>🌼 Paysage<br>🦋 Biodiversité<br>🔬 Agronomie
+      🌱 Cultures<br>🐄 Élevage<br>🍇 Viticulture<br>🧀 Agroalimentaire<br>
+      🌲 Forêts<br>🌼 Paysage<br>🦋 Biodiversité<br>🔬 Agronomie
     </div>
   </div>
 
@@ -158,7 +76,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">⚙️</div>
     <div class="label">Industrie & Fabrication</div>
     <div class="tooltip">
-      🏭 Production<br>🧰 Maintenance<br>🤖 Robotique<br>✔️ Qualité<br>🔧 Mécanique<br>🔩 Métallurgie<br>💡 Électrotechnique<br>🚛 Logistique
+      🏭 Production<br>🧰 Maintenance<br>🤖 Robotique<br>✔️ Qualité<br>
+      🔧 Mécanique<br>🔩 Métallurgie<br>💡 Électrotechnique<br>🚛 Logistique
     </div>
   </div>
 
@@ -167,7 +86,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🏗️</div>
     <div class="label">Construction & Bâtiment</div>
     <div class="tooltip">
-      🧱 Gros œuvre<br>🎨 Second œuvre<br>⚡ Électricité<br>🚿 Plomberie<br>📐 Architecture<br>🛣️ Travaux publics<br>🪚 Menuiserie<br>🏚️ Rénovation
+      🧱 Gros œuvre<br>🎨 Second œuvre<br>⚡ Électricité<br>🚿 Plomberie<br>
+      📐 Architecture<br>🛣️ Travaux publics<br>🪚 Menuiserie<br>🏚️ Rénovation
     </div>
   </div>
 
@@ -176,7 +96,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🌍</div>
     <div class="label">Environnement & Énergies</div>
     <div class="tooltip">
-      ☀️ Renouvelables<br>🔌 Réseaux énergie<br>💧 Eau<br>♻️ Recyclage<br>🌿 Protection<br>🧪 Dépollution<br>🦋 Écologie<br>🌦️ Climat
+      ☀️ Renouvelables<br>🔌 Réseaux d’énergie<br>💧 Eau & assainissement<br>♻️ Recyclage<br>
+      🌿 Protection<br>🧪 Dépollution<br>🦋 Écologie<br>🌦️ Climat
     </div>
   </div>
 
@@ -185,7 +106,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">💻</div>
     <div class="label">Numérique & Informatique</div>
     <div class="tooltip">
-      👨‍💻 Développement<br>🌐 Web & mobile<br>🔐 Cybersécurité<br>📈 Data & IA<br>☁️ Cloud<br>🔌 Réseaux<br>⚙️ DevOps<br>🎨 UX/UI
+      👨‍💻 Développement<br>🌐 Web & mobile<br>🔐 Cybersécurité<br>🤖 Data & IA<br>
+      ☁️ Cloud<br>🔌 Réseaux<br>⚙️ DevOps<br>🎨 UX/UI
     </div>
   </div>
 
@@ -194,7 +116,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🔬</div>
     <div class="label">Sciences & Recherche</div>
     <div class="tooltip">
-      🧪 Recherche<br>💡 R&D<br>🧬 Biotech<br>⚗️ Chimie<br>🔭 Physique<br>⛰️ Géologie<br>🌌 Astronomie<br>🧠 Neurosciences
+      🧪 Recherche fondamentale<br>💡 R&D<br>🧬 Biotechnologies<br>⚗️ Chimie / Pharma<br>
+      🔭 Physique / Maths<br>⛰️ Géosciences<br>🌌 Astrophysique<br>🧠 Neurosciences
     </div>
   </div>
 
@@ -203,7 +126,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🛒</div>
     <div class="label">Commerce & Vente</div>
     <div class="tooltip">
-      🏬 Détail<br>🤝 B2B<br>💳 E-commerce<br>🏠 Immobilier<br>📣 Marketing<br>📢 Publicité<br>🧾 Achats<br>🗣️ Services
+      🏬 Détail / Retail<br>🤝 B2B<br>🛍️ E-commerce<br>🏠 Immobilier<br>
+      📣 Marketing<br>📢 Communication commerciale<br>🧾 Achats<br>🗣️ Conseil & services
     </div>
   </div>
 
@@ -212,7 +136,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">💼</div>
     <div class="label">Management & Entrepreneuriat</div>
     <div class="tooltip">
-      🎯 Direction<br>🚀 Entrepreneuriat<br>🗂️ Projets<br>🧠 Stratégie<br>👥 RH<br>🤝 Leadership<br>📈 Performance<br>💡 Innovation
+      🎯 Direction générale<br>🚀 Création d’entreprise<br>🗂️ Gestion de projets<br>🧠 Stratégie & orga<br>
+      👥 RH & Recrutement<br>🤝 Leadership & équipes<br>📈 Performance / Qualité<br>💡 Innovation & transformation
     </div>
   </div>
 
@@ -221,16 +146,17 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">💰</div>
     <div class="label">Finance & Gestion</div>
     <div class="tooltip">
-      🏦 Banque<br>📈 Marchés<br>🛡️ Assurance<br>🔍 Audit<br>💼 Patrimoine<br>📚 Comptabilité<br>📊 Contrôle gestion<br>💶 Crédit
+      🏦 Banque de détail<br>📈 Finance de marché<br>🛡️ Assurances<br>🔍 Audit & contrôle<br>
+      💼 Patrimoine<br>📚 Comptabilité<br>📊 Contrôle de gestion<br>💶 Crédit & financement
     </div>
   </div>
-   <!-- 10. LOGISTIQUE -->
+    <!-- 10. LOGISTIQUE -->
   <div class="card" data-univers="logistique">
     <div class="icon">🚚</div>
     <div class="label">Logistique & Transport</div>
     <div class="tooltip">
-      🚛 Routier<br>⚓ Maritime<br>✈️ Aérien<br>🚆 Ferroviaire<br>
-      📦 Stockage<br>🏭 Supply chain<br>🚌 Mobilité<br>🧾 Douanes
+      🚛 Transport routier<br>⚓ Maritime & portuaire<br>✈️ Aérien / aéroportuaire<br>🚆 Ferroviaire<br>
+      🏭 Supply chain<br>📦 Entrepôts & stocks<br>🚌 Mobilité urbaine<br>🧾 Douanes internationales
     </div>
   </div>
 
@@ -239,8 +165,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">⚕️</div>
     <div class="label">Santé & Médical</div>
     <div class="tooltip">
-      🩺 Médecine<br>👩‍⚕️ Soins infirmiers<br>🔪 Chirurgie<br>💊 Pharmacie<br>
-      🏃‍♀️ Rééducation<br>🔬 Imagerie<br>🧠 Santé mentale<br>🚑 Urgences
+      🩺 Médecine & spécialités<br>👩‍⚕️ Soins infirmiers<br>🔪 Chirurgie / bloc<br>💊 Pharmacie & dispositifs<br>
+      🏃‍♀️ Rééducation & kiné<br>🔬 Imagerie & analyses<br>🧠 Santé mentale<br>🚑 Urgences & secours
     </div>
   </div>
 
@@ -249,8 +175,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🎓</div>
     <div class="label">Éducation & Formation</div>
     <div class="tooltip">
-      🏫 Primaire<br>📚 Secondaire<br>🎓 Supérieur<br>🔁 Formation continue<br>
-      👩‍🏫 Spécialisée<br>💻 E-learning<br>🎯 Coaching<br>🔍 Recherche éducative
+      🏫 Maternelle / primaire<br>📚 Collège & lycée<br>🎓 Supérieur / université<br>🔁 Formation continue<br>
+      👩‍🏫 Enseignement adapté<br>💻 E-learning<br>🎯 Coaching personnel<br>🔍 Recherche en pédagogie
     </div>
   </div>
 
@@ -259,18 +185,18 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">❤️</div>
     <div class="label">Social & Aide à la Personne</div>
     <div class="tooltip">
-      🤝 Travail social<br>👶 Enfance<br>💼 Insertion<br>🏡 Aide à domicile<br>
-      ♿ Handicap<br>🗣️ Médiation<br>🧩 Inclusion<br>🫶 Solidarité
+      🤝 Travail social<br>👶 Enfance & protection<br>💼 Insertion pro<br>🏡 Aide à domicile<br>
+      ♿ Handicap & inclusion<br>🗣️ Médiation<br>🧩 Accompagnement<br>🫶 Solidarité & entraide
     </div>
   </div>
 
-  <!-- 14. HÔTELLERIE / TOURISME -->
+  <!-- 14. TOURISME -->
   <div class="card" data-univers="tourisme">
     <div class="icon">🍽️</div>
     <div class="label">Hôtellerie, Restauration & Tourisme</div>
     <div class="tooltip">
-      🏨 Hôtellerie<br>👨‍🍳 Cuisine<br>🍷 Gastronomie<br>🥗 Collective<br>
-      🍽️ Service<br>✈️ Voyage<br>🎉 Événementiel<br>🍇 Œnotourisme
+      🏨 Hôtellerie<br>👨‍🍳 Cuisine & gastronomie<br>🥗 Restauration collective<br>🍷 Sommellerie<br>
+      ✈️ Agence de voyage<br>🎉 Événementiel<br>🏖️ Tourisme culturel<br>🍇 Œnotourisme
     </div>
   </div>
 
@@ -279,8 +205,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🏋️</div>
     <div class="label">Sport, Loisirs & Bien-être</div>
     <div class="tooltip">
-      🏃 Animation<br>💪 Coaching<br>🧘 Fitness<br>🏆 Compétition<br>
-      🌿 Bien-être<br>🥗 Nutrition<br>🎽 Management sportif<br>🏟️ Infrastructures
+      🏃 Animation sportive<br>💪 Coaching individuel<br>🧘 Fitness & détente<br>🏆 Compétition<br>
+      🌿 Bien-être / spa<br>🥗 Nutrition / diététique<br>🎽 Management du sport<br>🏟️ Infrastructures & équipements
     </div>
   </div>
 
@@ -289,8 +215,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🎨</div>
     <div class="label">Arts, Design & Création</div>
     <div class="tooltip">
-      🖌️ Arts visuels<br>🖍️ Graphisme<br>🪑 Design produit<br>👗 Mode<br>
-      🪡 Artisanat<br>📸 Photo<br>🗿 Sculpture<br>💻 Arts numériques
+      🖌️ Arts visuels<br>🖍️ Graphisme / illustration<br>🪑 Design produit<br>👗 Mode & stylisme<br>
+      🪡 Artisanat d’art<br>📸 Photographie<br>🗿 Sculpture<br>💻 Arts numériques / 3D
     </div>
   </div>
 
@@ -299,8 +225,8 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🎙️</div>
     <div class="label">Communication & Médias</div>
     <div class="tooltip">
-      🗞️ Journalisme<br>🎥 Audiovisuel<br>🎬 Cinéma<br>🎧 Radio / Podcast<br>
-      💬 Réseaux sociaux<br>📢 Relations publiques<br>🎯 Publicité<br>📰 Édition
+      🗞️ Journalisme & presse<br>🎥 Audiovisuel / TV<br>🎬 Cinéma / production<br>🎧 Radio / podcast<br>
+      💬 Réseaux sociaux<br>📢 Relations publiques<br>🎯 Publicité & création<br>📰 Édition / rédaction
     </div>
   </div>
 
@@ -309,92 +235,67 @@ Tu peux déjà la coller telle quelle dans ton GitHub.
     <div class="icon">🛡️</div>
     <div class="label">Sécurité, Droit & Défense</div>
     <div class="tooltip">
-      🕵️ Sécurité privée<br>🪖 Armée<br>🚓 Police<br>🚒 Pompiers<br>
-      🔐 Cybersécurité<br>⚖️ Droit<br>🏛️ Administration<br>🦺 Prévention
+      🕵️ Sécurité privée<br>🪖 Armée & défense<br>🚓 Police / gendarmerie<br>🚒 Pompiers / secours<br>
+      🔐 Cybersécurité<br>⚖️ Droit & justice<br>🏛️ Administration publique<br>🦺 Prévention & sécurité au travail
     </div>
   </div>
 
-</div> <!-- /grid -->
+</div>
 
 <footer>© Synergie IA</footer>
 
 <script>
-/* ====== Comportement PC & Mobile ======
- PC : survol = bulle, clic = menu
- Mobile : 1er tap = bulle, 2e tap (même carte) = menu
-======================================= */
+const cards=document.querySelectorAll('.card');
+let lastOpened=null;
 
-const cards = document.querySelectorAll('.card');
-let lastTappedCard = null;
-
-function hideAllTooltips() {
-  document.querySelectorAll('.tooltip').forEach(t => t.classList.remove('show'));
-  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-  lastTappedCard = null;
+function hideAll(){
+  document.querySelectorAll('.tooltip').forEach(t=>t.classList.remove('show','up','down'));
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+  lastOpened=null;
+}
+function positionTooltip(card,tooltip){
+  const rect=card.getBoundingClientRect();
+  tooltip.classList.remove('up','down');
+  const spaceTop=rect.top;
+  const need=tooltip.offsetHeight+20;
+  if(spaceTop>need) tooltip.classList.add('up'); else tooltip.classList.add('down');
 }
 
-function positionTooltip(card, tooltip) {
-  // Choisit automatiquement up/down selon la place disponible
-  const rect = card.getBoundingClientRect();
-  const need = tooltip.offsetHeight + 20;
-  tooltip.classList.remove('up', 'down');
-  if (rect.top > need) tooltip.classList.add('up'); else tooltip.classList.add('down');
-}
+cards.forEach(card=>{
+  const tooltip=card.querySelector('.tooltip');
+  const univers=card.dataset.univers;
 
-cards.forEach(card => {
-  const tooltip = card.querySelector('.tooltip');
-  const univers = card.dataset.univers;
-
-  // ----- PC : survol / sortie -----
-  card.addEventListener('mouseenter', () => {
-    if ('ontouchstart' in window) return; // ignore sur mobile
-    hideAllTooltips();
-    positionTooltip(card, tooltip);
-    card.classList.add('active');
-    tooltip.classList.add('show');
+  // 🖱️ Survol (PC)
+  card.addEventListener('mouseenter',()=>{
+    if('ontouchstart' in window) return;
+    hideAll(); positionTooltip(card,tooltip);
+    card.classList.add('active'); tooltip.classList.add('show');
   });
-  card.addEventListener('mouseleave', () => {
-    if ('ontouchstart' in window) return;
-    tooltip.classList.remove('show');
-    card.classList.remove('active');
-  });
+  card.addEventListener('mouseleave',()=>{if(!('ontouchstart' in window)) hideAll();});
 
-  // ----- PC : clic = ouvre le menu -----
-  card.addEventListener('click', () => {
-    if (!('ontouchstart' in window)) {
-      window.location.href = `menu.html?univers=${univers}`;
-    }
-  });
-
-  // ----- Mobile : 1er tap = bulle, 2e tap = menu -----
-  card.addEventListener('touchstart', e => {
-    // Empêche la fermeture globale avant gestion locale
+  // 📱 Mobile (double tap)
+  card.addEventListener('click',e=>{
+    if(!('ontouchstart' in window)) return;
     e.stopPropagation();
-    if (lastTappedCard === card) {
-      // 2e tap → ouvre le menu
-      window.location.href = `menu.html?univers=${univers}`;
-      hideAllTooltips();
-    } else {
-      // 1er tap → affiche la bulle
-      hideAllTooltips();
-      positionTooltip(card, tooltip);
-      card.classList.add('active');
-      tooltip.classList.add('show');
-      lastTappedCard = card;
+    if(lastOpened===card){
+      window.location.href=`menu.html?univers=${univers}`;
+      hideAll();
+    }else{
+      hideAll(); positionTooltip(card,tooltip);
+      tooltip.classList.add('show'); card.classList.add('active'); lastOpened=card;
     }
-  }, { passive: true });
+  });
+
+  // 🖱️ Clic direct sur PC => menu
+  card.addEventListener('click',e=>{
+    if('ontouchstart' in window) return;
+    window.location.href=`menu.html?univers=${univers}`;
+  });
 });
 
-// Ferme si on tape ailleurs (mobile)
-document.addEventListener('touchstart', e => {
-  if (!e.target.closest('.card')) hideAllTooltips();
-}, { passive: true });
-
-// Ferme au scroll/resize pour éviter les bulles “bloquées”
-window.addEventListener('scroll', hideAllTooltips, { passive: true });
-window.addEventListener('resize', hideAllTooltips);
+document.addEventListener('click',e=>{if(!e.target.closest('.card')) hideAll();});
+window.addEventListener('scroll',hideAll);
+window.addEventListener('resize',hideAll);
 </script>
 </body>
 </html>
-
-
