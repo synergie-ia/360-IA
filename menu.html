@@ -9,10 +9,8 @@
   :root {
     --bg: #f5f6fa;
     --ink: #2c3e50;
-    --muted: #dfe6e9;
+    --muted: #7f8c8d;
     --accent: #2c3e50;
-    --cta: #e67e22;
-    --cta-hover: #d35400;
     --shadow: rgba(0, 0, 0, 0.18);
   }
 
@@ -23,11 +21,11 @@
     text-align: center;
   }
 
-  /* --- Bandeau principal (identique au portail) --- */
+  /* --- Bandeau principal --- */
   header {
     background-color: var(--accent);
     color: white;
-    padding: 2rem 1rem 1.2rem;
+    padding: 2rem 1rem 1.5rem;
   }
 
   header h1 {
@@ -40,52 +38,50 @@
     margin-top: 0.5rem;
     font-weight: 400;
     font-size: 1.1rem;
-    color: var(--muted);
+    color: #dfe6e9;
   }
 
-  /* --- Bouton retour --- */
+  /* --- Lien retour --- */
   .return {
-    margin-top: 1rem;
+    margin-top: 0.8rem;
   }
 
   .return a {
-    color: #fff;
+    color: var(--muted);
     text-decoration: none;
-    background-color: var(--cta);
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: background 0.2s;
+    font-size: 0.95rem;
+    transition: color 0.2s;
   }
 
   .return a:hover {
-    background-color: var(--cta-hover);
+    color: var(--ink);
   }
 
-  /* --- Bandeau orange univers --- */
-  .univers-banner {
+  /* --- Bloc univers --- */
+  .univers {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.8rem;
-    background-color: var(--cta);
-    color: white;
-    font-weight: 700;
-    font-size: 1.4rem;
-    padding: 1rem 1.2rem;
-    border-radius: 0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
-  .univers-banner .icon {
-    font-size: 4rem; /* même taille que sur le portail */
+  .univers .icon {
+    font-size: 4rem;
+  }
+
+  .univers .name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--ink);
   }
 
   /* --- Menu principal --- */
   .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    gap: 1.8rem;
     padding: 2rem;
     max-width: 900px;
     margin: auto;
@@ -109,7 +105,7 @@
   }
 
   .menu-item .icon {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
   }
 
@@ -121,7 +117,7 @@
 
   footer {
     background-color: var(--accent);
-    color: var(--muted);
+    color: #dfe6e9;
     padding: 1rem;
     font-size: 0.9rem;
     text-align: center;
@@ -136,13 +132,15 @@
 <header>
   <h1>Le Portail de l’Orientation</h1>
   <h2>L’intelligence artificielle au service de l’orientation scolaire et professionnelle</h2>
-  <div class="return">
-    <a href="index.html">← Retour au Portail</a>
-  </div>
 </header>
 
-<!-- Bandeau orange dynamique -->
-<div class="univers-banner">
+<!-- Lien retour -->
+<div class="return">
+  <a href="index.html">← Retour au Portail</a>
+</div>
+
+<!-- Univers (emoji + nom) -->
+<div class="univers">
   <div class="icon" id="univers-icon">❓</div>
   <div class="name" id="univers-name">Univers inconnu</div>
 </div>
