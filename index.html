@@ -1,5 +1,12 @@
+Parfait 👌 voici la Partie 1/2 du fichier complet index.html
+➡️ elle contient tout jusqu’à l’univers n°9 (Finance & Gestion).
+Tu peux déjà la coller telle quelle dans ton GitHub.
+(Je t’enverrai la partie 2 juste après pour compléter les univers 10 → 18 + le script final.)
 
- <!DOCTYPE html>
+⸻
+
+
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
@@ -28,29 +35,30 @@
     color: white;
     padding: 2rem 1rem 1rem;
   }
-  header h1 { margin: 0; font-size: 2rem; font-weight: 700; }
+  header h1 { margin: 0; font-size: 2.2rem; font-weight: 700; }
   header h2 { margin-top: 0.5rem; font-weight: 400; font-size: 1.1rem; color: #dfe6e9; }
 
-  /* --- Bouton d’aide IA --- */
-  .help-container { margin-top: 1.2rem; }
+  /* 🔹 Bouton d’aide IA */
+  .help-container {
+    background: #fff;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
   .help-link {
     display: inline-block;
-    background: #e67e22;
-    color: white;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
     text-decoration: none;
-    border-radius: 10px;
-    padding: 0.8rem 1.5rem;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    transition: background 0.2s, transform 0.2s;
+    transition: background 0.2s ease;
   }
-  .help-link:hover {
-    background: #d35400;
-    transform: scale(1.05);
-  }
+  .help-link:hover { background: #34495e; }
 
-  /* --- Grille principale --- */
+  /* 🧭 Grille des univers */
   .grid {
     position: static;
     overflow: visible;
@@ -101,10 +109,8 @@
     pointer-events: none;
     z-index: 1000;
   }
-
   .tooltip.up { bottom: 110%; transform: translateX(-50%) translateY(-4px); }
   .tooltip.down { top: 110%; transform: translateX(-50%) translateY(4px); }
-
   .card:nth-last-child(-n+4) .tooltip { bottom: 110%; top: auto; }
   .tooltip.show { visibility: visible; opacity: 1; }
 
@@ -132,104 +138,94 @@
 <div class="help-container">
   <a href="https://chatgpt.com/g/g-68f388e25a008191a09cdf3ab4882735-mes-univers-professionnels"
      class="help-link" target="_blank">
-    👉 Vous avez besoin d’aide pour choisir votre univers
+     👉 Vous avez besoin d’aide pour choisir votre univers
   </a>
 </div>
 
 <div class="grid">
 
-  <!-- 🌾 AGRICULTURE -->
-  <div class="card" onclick="goTo('agriculture')">
+  <!-- 1. AGRICULTURE -->
+  <div class="card" data-univers="agriculture">
     <div class="icon">🌾</div>
     <div class="label">Agriculture, Nature & Animaux</div>
     <div class="tooltip">
-      🌱 Cultures<br>🐄 Élevage<br>🍇 Viticulture<br>🧀 Agroalimentaire<br>
-      🌲 Forêts<br>🌼 Paysage<br>🦋 Biodiversité<br>🔬 Agronomie
+      🌱 Cultures<br>🐄 Élevage<br>🍇 Viticulture<br>🧀 Agroalimentaire<br>🌲 Forêts<br>🌼 Paysage<br>🦋 Biodiversité<br>🔬 Agronomie
     </div>
   </div>
 
-  <!-- ⚙️ INDUSTRIE -->
-  <div class="card" onclick="goTo('industrie')">
+  <!-- 2. INDUSTRIE -->
+  <div class="card" data-univers="industrie">
     <div class="icon">⚙️</div>
     <div class="label">Industrie & Fabrication</div>
     <div class="tooltip">
-      🏭 Production<br>🧰 Maintenance<br>🤖 Robotique<br>✔️ Qualité<br>
-      🔧 Mécanique<br>🔩 Métallurgie<br>💡 Électrotechnique<br>🚛 Logistique
+      🏭 Production<br>🧰 Maintenance<br>🤖 Robotique<br>✔️ Qualité<br>🔧 Mécanique<br>🔩 Métallurgie<br>💡 Électrotechnique<br>🚛 Logistique
     </div>
   </div>
 
-  <!-- 🏗️ CONSTRUCTION -->
-  <div class="card" onclick="goTo('construction')">
+  <!-- 3. CONSTRUCTION -->
+  <div class="card" data-univers="construction">
     <div class="icon">🏗️</div>
     <div class="label">Construction & Bâtiment</div>
     <div class="tooltip">
-      🧱 Gros œuvre<br>🎨 Second œuvre<br>⚡ Électricité<br>🚿 Plomberie<br>
-      📐 Architecture<br>🛣️ Travaux publics<br>🪚 Menuiserie<br>🏚️ Rénovation
+      🧱 Gros œuvre<br>🎨 Second œuvre<br>⚡ Électricité<br>🚿 Plomberie<br>📐 Architecture<br>🛣️ Travaux publics<br>🪚 Menuiserie<br>🏚️ Rénovation
     </div>
   </div>
 
-  <!-- 🌍 ENVIRONNEMENT -->
-  <div class="card" onclick="goTo('environnement')">
+  <!-- 4. ENVIRONNEMENT -->
+  <div class="card" data-univers="environnement">
     <div class="icon">🌍</div>
     <div class="label">Environnement & Énergies</div>
     <div class="tooltip">
-      ☀️ Renouvelables<br>🔌 Réseaux énergie<br>💧 Eau<br>♻️ Recyclage<br>
-      🌿 Protection<br>🧪 Dépollution<br>🦋 Écologie<br>🌦️ Climat
+      ☀️ Renouvelables<br>🔌 Réseaux énergie<br>💧 Eau<br>♻️ Recyclage<br>🌿 Protection<br>🧪 Dépollution<br>🦋 Écologie<br>🌦️ Climat
     </div>
   </div>
 
-  <!-- 💻 NUMÉRIQUE -->
-  <div class="card" onclick="goTo('numerique')">
+  <!-- 5. NUMÉRIQUE -->
+  <div class="card" data-univers="numerique">
     <div class="icon">💻</div>
     <div class="label">Numérique & Informatique</div>
     <div class="tooltip">
-      👨‍💻 Développement<br>🌐 Web & mobile<br>🔐 Cybersécurité<br>📈 Data & IA<br>
-      ☁️ Cloud<br>🔌 Réseaux<br>⚙️ DevOps<br>🎨 UX/UI
+      👨‍💻 Développement<br>🌐 Web & mobile<br>🔐 Cybersécurité<br>📈 Data & IA<br>☁️ Cloud<br>🔌 Réseaux<br>⚙️ DevOps<br>🎨 UX/UI
     </div>
   </div>
 
-  <!-- 🔬 SCIENCES -->
-  <div class="card" onclick="goTo('sciences')">
+  <!-- 6. SCIENCES -->
+  <div class="card" data-univers="sciences">
     <div class="icon">🔬</div>
     <div class="label">Sciences & Recherche</div>
     <div class="tooltip">
-      🧪 Recherche<br>💡 R&D<br>🧬 Biotech<br>⚗️ Chimie<br>
-      🔭 Physique<br>⛰️ Géologie<br>🌌 Astronomie<br>🧠 Neurosciences
+      🧪 Recherche<br>💡 R&D<br>🧬 Biotech<br>⚗️ Chimie<br>🔭 Physique<br>⛰️ Géologie<br>🌌 Astronomie<br>🧠 Neurosciences
     </div>
   </div>
 
-  <!-- 🛒 COMMERCE -->
-  <div class="card" onclick="goTo('commerce')">
+  <!-- 7. COMMERCE -->
+  <div class="card" data-univers="commerce">
     <div class="icon">🛒</div>
     <div class="label">Commerce & Vente</div>
     <div class="tooltip">
-      🏬 Détail<br>🤝 B2B<br>💳 E-commerce<br>🏠 Immobilier<br>
-      📣 Marketing<br>📢 Publicité<br>🧾 Achats<br>🗣️ Services
+      🏬 Détail<br>🤝 B2B<br>💳 E-commerce<br>🏠 Immobilier<br>📣 Marketing<br>📢 Publicité<br>🧾 Achats<br>🗣️ Services
     </div>
   </div>
 
-  <!-- 💼 MANAGEMENT -->
-  <div class="card" onclick="goTo('management')">
+  <!-- 8. MANAGEMENT -->
+  <div class="card" data-univers="management">
     <div class="icon">💼</div>
     <div class="label">Management & Entrepreneuriat</div>
     <div class="tooltip">
-      🎯 Direction<br>🚀 Entrepreneuriat<br>🗂️ Projets<br>🧠 Stratégie<br>
-      👥 RH<br>🤝 Leadership<br>📈 Performance<br>💡 Innovation
+      🎯 Direction<br>🚀 Entrepreneuriat<br>🗂️ Projets<br>🧠 Stratégie<br>👥 RH<br>🤝 Leadership<br>📈 Performance<br>💡 Innovation
     </div>
   </div>
 
-  <!-- 💰 FINANCE -->
-  <div class="card" onclick="goTo('finance')">
+  <!-- 9. FINANCE -->
+  <div class="card" data-univers="finance">
     <div class="icon">💰</div>
     <div class="label">Finance & Gestion</div>
     <div class="tooltip">
-      🏦 Banque<br>📈 Marchés<br>🛡️ Assurance<br>🔍 Audit<br>
-      💼 Patrimoine<br>📚 Comptabilité<br>📊 Contrôle gestion<br>💶 Crédit
+      🏦 Banque<br>📈 Marchés<br>🛡️ Assurance<br>🔍 Audit<br>💼 Patrimoine<br>📚 Comptabilité<br>📊 Contrôle gestion<br>💶 Crédit
     </div>
   </div>
-
-  <!-- 🚚 LOGISTIQUE -->
-  <div class="card" onclick="goTo('logistique')">
+   <!-- 10. LOGISTIQUE -->
+  <div class="card" data-univers="logistique">
     <div class="icon">🚚</div>
     <div class="label">Logistique & Transport</div>
     <div class="tooltip">
@@ -238,8 +234,8 @@
     </div>
   </div>
 
-  <!-- ⚕️ SANTÉ -->
-  <div class="card" onclick="goTo('sante')">
+  <!-- 11. SANTÉ -->
+  <div class="card" data-univers="sante">
     <div class="icon">⚕️</div>
     <div class="label">Santé & Médical</div>
     <div class="tooltip">
@@ -248,8 +244,8 @@
     </div>
   </div>
 
-  <!-- 🎓 ÉDUCATION -->
-  <div class="card" onclick="goTo('education')">
+  <!-- 12. ÉDUCATION -->
+  <div class="card" data-univers="education">
     <div class="icon">🎓</div>
     <div class="label">Éducation & Formation</div>
     <div class="tooltip">
@@ -258,8 +254,8 @@
     </div>
   </div>
 
-  <!-- ❤️ SOCIAL -->
-  <div class="card" onclick="goTo('social')">
+  <!-- 13. SOCIAL -->
+  <div class="card" data-univers="social">
     <div class="icon">❤️</div>
     <div class="label">Social & Aide à la Personne</div>
     <div class="tooltip">
@@ -268,8 +264,8 @@
     </div>
   </div>
 
-  <!-- 🍽️ TOURISME -->
-  <div class="card" onclick="goTo('tourisme')">
+  <!-- 14. HÔTELLERIE / TOURISME -->
+  <div class="card" data-univers="tourisme">
     <div class="icon">🍽️</div>
     <div class="label">Hôtellerie, Restauration & Tourisme</div>
     <div class="tooltip">
@@ -278,8 +274,8 @@
     </div>
   </div>
 
-  <!-- 🏋️ SPORT -->
-  <div class="card" onclick="goTo('sport')">
+  <!-- 15. SPORT -->
+  <div class="card" data-univers="sport">
     <div class="icon">🏋️</div>
     <div class="label">Sport, Loisirs & Bien-être</div>
     <div class="tooltip">
@@ -288,8 +284,8 @@
     </div>
   </div>
 
-  <!-- 🎨 ARTS -->
-  <div class="card" onclick="goTo('arts')">
+  <!-- 16. ARTS -->
+  <div class="card" data-univers="arts">
     <div class="icon">🎨</div>
     <div class="label">Arts, Design & Création</div>
     <div class="tooltip">
@@ -298,8 +294,8 @@
     </div>
   </div>
 
-  <!-- 🎙️ COMMUNICATION -->
-  <div class="card" onclick="goTo('communication')">
+  <!-- 17. COMMUNICATION -->
+  <div class="card" data-univers="communication">
     <div class="icon">🎙️</div>
     <div class="label">Communication & Médias</div>
     <div class="tooltip">
@@ -308,8 +304,8 @@
     </div>
   </div>
 
-  <!-- 🛡️ SÉCURITÉ -->
-  <div class="card" onclick="goTo('securite')">
+  <!-- 18. SÉCURITÉ -->
+  <div class="card" data-univers="securite">
     <div class="icon">🛡️</div>
     <div class="label">Sécurité, Droit & Défense</div>
     <div class="tooltip">
@@ -318,15 +314,87 @@
     </div>
   </div>
 
-</div>
+</div> <!-- /grid -->
 
 <footer>© Synergie IA</footer>
 
 <script>
-function goTo(univers) {
-  window.location.href = `menu.html?univers=${univers}`;
-}
-</script>
+/* ====== Comportement PC & Mobile ======
+ PC : survol = bulle, clic = menu
+ Mobile : 1er tap = bulle, 2e tap (même carte) = menu
+======================================= */
 
+const cards = document.querySelectorAll('.card');
+let lastTappedCard = null;
+
+function hideAllTooltips() {
+  document.querySelectorAll('.tooltip').forEach(t => t.classList.remove('show'));
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  lastTappedCard = null;
+}
+
+function positionTooltip(card, tooltip) {
+  // Choisit automatiquement up/down selon la place disponible
+  const rect = card.getBoundingClientRect();
+  const need = tooltip.offsetHeight + 20;
+  tooltip.classList.remove('up', 'down');
+  if (rect.top > need) tooltip.classList.add('up'); else tooltip.classList.add('down');
+}
+
+cards.forEach(card => {
+  const tooltip = card.querySelector('.tooltip');
+  const univers = card.dataset.univers;
+
+  // ----- PC : survol / sortie -----
+  card.addEventListener('mouseenter', () => {
+    if ('ontouchstart' in window) return; // ignore sur mobile
+    hideAllTooltips();
+    positionTooltip(card, tooltip);
+    card.classList.add('active');
+    tooltip.classList.add('show');
+  });
+  card.addEventListener('mouseleave', () => {
+    if ('ontouchstart' in window) return;
+    tooltip.classList.remove('show');
+    card.classList.remove('active');
+  });
+
+  // ----- PC : clic = ouvre le menu -----
+  card.addEventListener('click', () => {
+    if (!('ontouchstart' in window)) {
+      window.location.href = `menu.html?univers=${univers}`;
+    }
+  });
+
+  // ----- Mobile : 1er tap = bulle, 2e tap = menu -----
+  card.addEventListener('touchstart', e => {
+    // Empêche la fermeture globale avant gestion locale
+    e.stopPropagation();
+    if (lastTappedCard === card) {
+      // 2e tap → ouvre le menu
+      window.location.href = `menu.html?univers=${univers}`;
+      hideAllTooltips();
+    } else {
+      // 1er tap → affiche la bulle
+      hideAllTooltips();
+      positionTooltip(card, tooltip);
+      card.classList.add('active');
+      tooltip.classList.add('show');
+      lastTappedCard = card;
+    }
+  }, { passive: true });
+});
+
+// Ferme si on tape ailleurs (mobile)
+document.addEventListener('touchstart', e => {
+  if (!e.target.closest('.card')) hideAllTooltips();
+}, { passive: true });
+
+// Ferme au scroll/resize pour éviter les bulles “bloquées”
+window.addEventListener('scroll', hideAllTooltips, { passive: true });
+window.addEventListener('resize', hideAllTooltips);
+</script>
 </body>
 </html>
+
+
