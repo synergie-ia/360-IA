@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Portail IA360 – Univers et Sous-Univers</title>
+<title>Le Portail des Métiers</title>
 <style>
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -18,8 +18,11 @@
     padding: 2rem 1rem 1rem;
   }
 
-  header h1 { margin: 0; font-size: 2rem; font-weight: 700; }
-  header h2 { margin-top: 0.5rem; font-weight: 400; font-size: 1.1rem; color: #dfe6e9; }
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
 
   .grid {
     display: grid;
@@ -36,7 +39,7 @@
     border-radius: 16px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
     padding: 2rem 1rem;
-    transition: transform 0.2s ease;
+    transition: transform 0.25s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -44,7 +47,7 @@
     justify-content: center;
   }
 
-  .card:hover { transform: scale(1.05); }
+  .card:hover { transform: scale(1.06); }
 
   .icon { font-size: 3rem; margin-bottom: 0.8rem; }
   .label { font-size: 1.1rem; color: #2c3e50; font-weight: 500; }
@@ -58,20 +61,21 @@
     color: #fff;
     text-align: left;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 1rem 1.2rem;
     position: absolute;
     bottom: 120%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
     font-size: 0.9rem;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 
   .card:hover .tooltip {
     visibility: visible;
     opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
   }
 
   .tooltip::after {
@@ -85,6 +89,23 @@
     border-color: #2c3e50 transparent transparent transparent;
   }
 
+  /* Variante vers le bas */
+  .tooltip-down {
+    bottom: auto;
+    top: 120%;
+  }
+
+  .tooltip-down::after {
+    top: auto;
+    bottom: 100%;
+    border-color: transparent transparent #2c3e50 transparent;
+  }
+
+  .tooltip span {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
   footer {
     background-color: #2c3e50;
     color: #dfe6e9;
@@ -96,8 +117,7 @@
 
 <body>
 <header>
-  <h1>Portail IA360 – Les 18 univers professionnels</h1>
-  <h2>Survole un univers pour découvrir ses sous-domaines</h2>
+  <h1>Le Portail des Métiers</h1>
 </header>
 
 <div class="grid">
@@ -106,15 +126,15 @@
   <div class="card">
     <div class="icon">🌾</div>
     <div class="label">Agriculture, Nature & Animaux</div>
-    <div class="tooltip">
-      Production agricole & cultures<br>
-      Élevage & soins aux animaux<br>
-      Viticulture & œnologie<br>
-      Agroalimentaire & transformation<br>
-      Foresterie & gestion forestière<br>
-      Aménagement paysager & espaces verts<br>
-      Environnement naturel & biodiversité<br>
-      Agronomie & conseil agricole
+    <div class="tooltip tooltip-down">
+      <span>🌱 Production agricole & cultures</span>
+      <span>🐄 Élevage & soins aux animaux</span>
+      <span>🍇 Viticulture & œnologie</span>
+      <span>🥫 Agroalimentaire & transformation</span>
+      <span>🌲 Foresterie & gestion forestière</span>
+      <span>🌼 Espaces verts & paysagisme</span>
+      <span>🦋 Environnement & biodiversité</span>
+      <span>🔬 Agronomie & conseil agricole</span>
     </div>
   </div>
 
@@ -122,15 +142,15 @@
   <div class="card">
     <div class="icon">⚙️</div>
     <div class="label">Industrie & Fabrication</div>
-    <div class="tooltip">
-      Production industrielle<br>
-      Maintenance & entretien<br>
-      Automatisation & robotique<br>
-      Qualité & contrôle<br>
-      Mécanique & usinage<br>
-      Métallurgie & transformation<br>
-      Électrotechnique industrielle<br>
-      Logistique & supply chain
+    <div class="tooltip tooltip-down">
+      <span>🏭 Production industrielle</span>
+      <span>🧰 Maintenance & entretien</span>
+      <span>🤖 Automatisation & robotique</span>
+      <span>📊 Contrôle & qualité</span>
+      <span>🔧 Mécanique & usinage</span>
+      <span>⚒️ Métallurgie & transformation</span>
+      <span>💡 Électrotechnique industrielle</span>
+      <span>🚛 Logistique industrielle</span>
     </div>
   </div>
 
@@ -138,15 +158,15 @@
   <div class="card">
     <div class="icon">🏗️</div>
     <div class="label">Construction & Bâtiment</div>
-    <div class="tooltip">
-      Gros œuvre & maçonnerie<br>
-      Second œuvre & finitions<br>
-      Électricité bâtiment & domotique<br>
-      Plomberie & climatisation<br>
-      Architecture & conception<br>
-      Génie civil & travaux publics<br>
-      Menuiserie & charpente<br>
-      Rénovation & réhabilitation
+    <div class="tooltip tooltip-down">
+      <span>🧱 Gros œuvre & maçonnerie</span>
+      <span>🎨 Second œuvre & finitions</span>
+      <span>💡 Électricité bâtiment</span>
+      <span>🚿 Plomberie & climatisation</span>
+      <span>📐 Architecture & conception</span>
+      <span>🛠️ Génie civil & travaux publics</span>
+      <span>🪵 Menuiserie & charpente</span>
+      <span>🏚️ Rénovation & réhabilitation</span>
     </div>
   </div>
 
@@ -154,15 +174,15 @@
   <div class="card">
     <div class="icon">🌍</div>
     <div class="label">Environnement & Énergies</div>
-    <div class="tooltip">
-      Énergies renouvelables<br>
-      Production & distribution<br>
-      Gestion de l’eau<br>
-      Gestion des déchets<br>
-      Protection de l’environnement<br>
-      Dépollution & traitement<br>
-      Écologie & biodiversité<br>
-      Météorologie & climatologie
+    <div class="tooltip tooltip-down">
+      <span>⚡ Énergies renouvelables</span>
+      <span>🏭 Production & distribution</span>
+      <span>💧 Gestion de l’eau</span>
+      <span>♻️ Recyclage & déchets</span>
+      <span>🌿 Protection de l’environnement</span>
+      <span>🧪 Dépollution & traitement</span>
+      <span>🦋 Écologie & biodiversité</span>
+      <span>🌦️ Climatologie & météo</span>
     </div>
   </div>
 
@@ -170,15 +190,15 @@
   <div class="card">
     <div class="icon">💻</div>
     <div class="label">Numérique & Informatique</div>
-    <div class="tooltip">
-      Développement logiciel<br>
-      Développement web & mobile<br>
-      Cybersécurité<br>
-      Data Science & IA<br>
-      Cloud & infrastructure<br>
-      Systèmes & réseaux<br>
-      DevOps & automatisation<br>
-      UX/UI Design & ergonomie
+    <div class="tooltip tooltip-down">
+      <span>🧠 Développement logiciel</span>
+      <span>🌐 Web & mobile</span>
+      <span>🛡️ Cybersécurité</span>
+      <span>📈 Data & intelligence artificielle</span>
+      <span>☁️ Cloud & infrastructure</span>
+      <span>🔌 Réseaux & systèmes</span>
+      <span>⚙️ DevOps & automatisation</span>
+      <span>🎨 UX/UI Design</span>
     </div>
   </div>
 
@@ -186,15 +206,15 @@
   <div class="card">
     <div class="icon">🔬</div>
     <div class="label">Sciences & Recherche</div>
-    <div class="tooltip">
-      Recherche fondamentale<br>
-      R&D<br>
-      Biologie & biotechnologie<br>
-      Chimie & pharmacie<br>
-      Physique & mathématiques<br>
-      Géologie & sciences de la Terre<br>
-      Astronomie & astrophysique<br>
-      Neurosciences & sciences cognitives
+    <div class="tooltip tooltip-down">
+      <span>🧫 Recherche fondamentale</span>
+      <span>💡 R&D</span>
+      <span>🧬 Biologie & biotechnologie</span>
+      <span>⚗️ Chimie & pharmacie</span>
+      <span>📊 Physique & mathématiques</span>
+      <span>🌋 Géologie & sciences de la Terre</span>
+      <span>🌌 Astronomie & astrophysique</span>
+      <span>🧠 Neurosciences</span>
     </div>
   </div>
 
@@ -203,14 +223,14 @@
     <div class="icon">🛒</div>
     <div class="label">Commerce & Vente</div>
     <div class="tooltip">
-      Commerce de détail<br>
-      Commerce B2B<br>
-      E-commerce<br>
-      Immobilier<br>
-      Marketing<br>
-      Communication commerciale<br>
-      Achat & approvisionnement<br>
-      Vente de services
+      <span>🏪 Commerce de détail</span>
+      <span>🤝 B2B & vente aux entreprises</span>
+      <span>💻 E-commerce</span>
+      <span>🏠 Immobilier</span>
+      <span>📈 Marketing</span>
+      <span>📣 Publicité commerciale</span>
+      <span>📦 Achat & approvisionnement</span>
+      <span>🗣️ Vente de services</span>
     </div>
   </div>
 
@@ -219,14 +239,14 @@
     <div class="icon">💼</div>
     <div class="label">Management & Entrepreneuriat</div>
     <div class="tooltip">
-      Direction générale<br>
-      Entrepreneuriat<br>
-      Gestion de projets<br>
-      Conseil & stratégie<br>
-      Ressources humaines<br>
-      Management d’équipe<br>
-      Qualité & performance<br>
-      Innovation & transformation
+      <span>🧭 Direction générale</span>
+      <span>🚀 Création d’entreprise</span>
+      <span>📅 Gestion de projets</span>
+      <span>📊 Conseil & stratégie</span>
+      <span>👥 Ressources humaines</span>
+      <span>🤝 Management d’équipe</span>
+      <span>🧮 Performance & qualité</span>
+      <span>💡 Innovation</span>
     </div>
   </div>
 
@@ -235,14 +255,14 @@
     <div class="icon">💰</div>
     <div class="label">Finance & Gestion</div>
     <div class="tooltip">
-      Banque de détail<br>
-      Banque d’affaires<br>
-      Assurance de personnes<br>
-      Assurance de biens<br>
-      Gestion de patrimoine<br>
-      Comptabilité & audit<br>
-      Contrôle de gestion<br>
-      Crédit & financement
+      <span>🏦 Banque de détail</span>
+      <span>📈 Banque d’affaires</span>
+      <span>🛡️ Assurance</span>
+      <span>📊 Comptabilité & audit</span>
+      <span>💸 Contrôle de gestion</span>
+      <span>💼 Gestion de patrimoine</span>
+      <span>💶 Financement</span>
+      <span>🔢 Analyse financière</span>
     </div>
   </div>
 
@@ -251,14 +271,14 @@
     <div class="icon">🚚</div>
     <div class="label">Logistique & Transport</div>
     <div class="tooltip">
-      Transport routier<br>
-      Maritime & portuaire<br>
-      Transport aérien<br>
-      Transport ferroviaire<br>
-      Supply chain<br>
-      Entreposage & stock<br>
-      Mobilité urbaine<br>
-      Logistique internationale
+      <span>🚛 Transport routier</span>
+      <span>🛳️ Transport maritime</span>
+      <span>✈️ Transport aérien</span>
+      <span>🚆 Transport ferroviaire</span>
+      <span>📦 Supply chain</span>
+      <span>🏬 Entreposage & stocks</span>
+      <span>🚲 Mobilité urbaine</span>
+      <span>🌍 Logistique internationale</span>
     </div>
   </div>
 
@@ -267,14 +287,14 @@
     <div class="icon">⚕️</div>
     <div class="label">Santé & Médical</div>
     <div class="tooltip">
-      Médecine générale<br>
-      Soins infirmiers<br>
-      Chirurgie<br>
-      Pharmacie & dispositifs médicaux<br>
-      Rééducation & kinésithérapie<br>
-      Imagerie & laboratoires<br>
-      Santé mentale<br>
-      Urgences & secours
+      <span>🩺 Médecine générale</span>
+      <span>👩‍⚕️ Soins infirmiers</span>
+      <span>🔬 Laboratoires</span>
+      <span>💊 Pharmacie</span>
+      <span>🦾 Rééducation</span>
+      <span>🧠 Santé mentale</span>
+      <span>🚑 Urgences</span>
+      <span>🏥 Chirurgie</span>
     </div>
   </div>
 
@@ -283,30 +303,30 @@
     <div class="icon">🎓</div>
     <div class="label">Éducation & Formation</div>
     <div class="tooltip">
-      Enseignement primaire<br>
-      Enseignement secondaire<br>
-      Enseignement supérieur<br>
-      Formation professionnelle<br>
-      Enseignement spécialisé<br>
-      E-learning<br>
-      Coaching & développement personnel<br>
-      Recherche en éducation
+      <span>🏫 Enseignement primaire</span>
+      <span>🏫 Secondaire</span>
+      <span>🎓 Supérieur</span>
+      <span>📚 Formation professionnelle</span>
+      <span>👩‍🏫 Enseignement spécialisé</span>
+      <span>💻 E-learning</span>
+      <span>🧭 Coaching & développement</span>
+      <span>🔍 Recherche en éducation</span>
     </div>
   </div>
 
   <!-- 13. Social -->
   <div class="card">
-    <div class="icon">🤝</div>
+    <div class="icon">❤️</div>
     <div class="label">Social & Aide à la Personne</div>
     <div class="tooltip">
-      Travail social<br>
-      Éducation spécialisée<br>
-      Protection de l’enfance<br>
-      Insertion professionnelle<br>
-      Psychologie & thérapie<br>
-      Aide à domicile<br>
-      Handicap & inclusion<br>
-      Médiation & conflits
+      <span>🤲 Travail social</span>
+      <span>🧒 Protection de l’enfance</span>
+      <span>👩‍🦽 Handicap & inclusion</span>
+      <span>🏠 Aide à domicile</span>
+      <span>🫶 Éducation spécialisée</span>
+      <span>💬 Médiation & conflits</span>
+      <span>👥 Insertion professionnelle</span>
+      <span>🧘 Soutien & accompagnement</span>
     </div>
   </div>
 
@@ -315,14 +335,14 @@
     <div class="icon">🍽️</div>
     <div class="label">Hôtellerie, Restauration & Tourisme</div>
     <div class="tooltip">
-      Hôtellerie & hébergement<br>
-      Restauration traditionnelle<br>
-      Restauration collective<br>
-      Cuisine & arts culinaires<br>
-      Service en salle<br>
-      Tourisme & voyages<br>
-      Événementiel & réception<br>
-      Œnotourisme
+      <span>🏨 Hôtellerie & hébergement</span>
+      <span>🍷 Gastronomie</span>
+      <span>🥗 Restauration collective</span>
+      <span>🍳 Cuisine & arts culinaires</span>
+      <span>🍹 Service & bar</span>
+      <span>🌍 Tourisme</span>
+      <span>🎉 Événementiel</span>
+      <span>🍇 Œnotourisme</span>
     </div>
   </div>
 
@@ -331,14 +351,14 @@
     <div class="icon">🏋️</div>
     <div class="label">Sport, Loisirs & Bien-être</div>
     <div class="tooltip">
-      Animation sportive<br>
-      Coaching sportif<br>
-      Fitness & remise en forme<br>
-      Sport de haut niveau<br>
-      Bien-être & relaxation<br>
-      Nutrition & diététique<br>
-      Management du sport<br>
-      Infrastructures sportives
+      <span>🏃 Animation sportive</span>
+      <span>💪 Coaching sportif</span>
+      <span>🧘 Bien-être</span>
+      <span>🥇 Compétition</span>
+      <span>🍎 Nutrition</span>
+      <span>🏟️ Infrastructures sportives</span>
+      <span>📣 Événementiel sportif</span>
+      <span>🤸 Fitness & remise en forme</span>
     </div>
   </div>
 
@@ -347,30 +367,30 @@
     <div class="icon">🎨</div>
     <div class="label">Arts, Design & Création</div>
     <div class="tooltip">
-      Arts visuels<br>
-      Design graphique<br>
-      Design industriel<br>
-      Mode & stylisme<br>
-      Artisanat d’art<br>
-      Photographie<br>
-      Sculpture & installation<br>
-      Arts numériques & 3D
+      <span>🖌️ Arts visuels</span>
+      <span>🧵 Mode & stylisme</span>
+      <span>🪑 Design produit</span>
+      <span>📸 Photographie</span>
+      <span>🎭 Arts numériques</span>
+      <span>🪆 Artisanat d’art</span>
+      <span>🧩 Sculpture & installation</span>
+      <span>💡 Design graphique</span>
     </div>
   </div>
 
   <!-- 17. Communication -->
   <div class="card">
-    <div class="icon">📱</div>
+    <div class="icon">🎙️</div>
     <div class="label">Communication & Médias</div>
     <div class="tooltip">
-      Journalisme<br>
-      Audiovisuel & production TV<br>
-      Cinéma<br>
-      Radio & podcast<br>
-      Communication digitale<br>
-      Relations publiques<br>
-      Publicité<br>
-      Édition & presse écrite
+      <span>🗞️ Journalisme & presse</span>
+      <span>🎥 Audiovisuel & TV</span>
+      <span>🎬 Cinéma</span>
+      <span>🎧 Radio & podcast</span>
+      <span>💬 Réseaux sociaux</span>
+      <span>📢 Relations publiques</span>
+      <span>🎯 Publicité</span>
+      <span>📰 Édition</span>
     </div>
   </div>
 
@@ -379,19 +399,19 @@
     <div class="icon">🛡️</div>
     <div class="label">Sécurité, Droit & Défense</div>
     <div class="tooltip">
-      Sécurité privée<br>
-      Défense nationale<br>
-      Police & gendarmerie<br>
-      Sécurité civile<br>
-      Cybersécurité<br>
-      Droit & justice<br>
-      Fonction publique<br>
-      Sécurité au travail
+      <span>🚓 Police & gendarmerie</span>
+      <span>🪖 Armée & défense</span>
+      <span>🔥 Pompiers & secours</span>
+      <span>⚖️ Droit & justice</span>
+      <span>💻 Cybersécurité</span>
+      <span>🏛️ Fonction publique</span>
+      <span>🦺 Sécurité au travail</span>
+      <span>🔍 Enquête & inspection</span>
     </div>
   </div>
 
 </div>
 
-<footer>© Synergie IA – Orientation IA360</footer>
+<footer>© Synergie IA</footer>
 </body>
 </html>
