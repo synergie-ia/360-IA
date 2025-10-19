@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Menu - Portail de l’Orientation</title>
+
 <style>
   :root {
     --bg: #f5f6fa;
@@ -12,6 +13,7 @@
     --accent: #2c3e50;
     --cta: #e67e22;
     --cta-hover: #d35400;
+    --shadow: rgba(0, 0, 0, 0.18);
   }
 
   body {
@@ -21,10 +23,11 @@
     text-align: center;
   }
 
+  /* --- Bandeau principal (identique au portail) --- */
   header {
     background-color: var(--accent);
     color: white;
-    padding: 2rem 1rem 1.5rem;
+    padding: 2rem 1rem 1.2rem;
   }
 
   header h1 {
@@ -40,6 +43,7 @@
     color: var(--muted);
   }
 
+  /* --- Bouton retour --- */
   .return {
     margin-top: 1rem;
   }
@@ -58,23 +62,26 @@
     background-color: var(--cta-hover);
   }
 
-  /* Bloc univers */
-  .univers {
-    margin-top: 2rem;
+  /* --- Bandeau orange univers --- */
+  .univers-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: var(--cta);
+    color: white;
+    font-weight: 700;
+    font-size: 1.4rem;
+    padding: 1rem 1.2rem;
+    border-radius: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   }
 
-  .univers .icon {
-    font-size: 4rem;
+  .univers-banner .icon {
+    font-size: 4rem; /* même taille que sur le portail */
   }
 
-  .univers .label {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin-top: 0.5rem;
-  }
-
-  /* Boutons principaux */
+  /* --- Menu principal --- */
   .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -98,7 +105,7 @@
 
   .menu-item:hover {
     transform: scale(1.06);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 24px var(--shadow);
   }
 
   .menu-item .icon {
@@ -120,43 +127,27 @@
     text-align: center;
   }
 
-  .help {
-    margin-top: 1.5rem;
-  }
-
-  .help a {
-    display: inline-block;
-    background: var(--cta);
-    color: #fff;
-    text-decoration: none;
-    padding: 0.8rem 1.4rem;
-    border-radius: 10px;
-    font-weight: 600;
-    box-shadow: 0 2px 6px rgba(0,0,0,.15);
-    transition: .2s;
-  }
-
-  .help a:hover {
-    background: var(--cta-hover);
-  }
 </style>
 </head>
+
 <body>
 
+<!-- Bandeau principal -->
 <header>
+  <h1>Le Portail de l’Orientation</h1>
+  <h2>L’intelligence artificielle au service de l’orientation scolaire et professionnelle</h2>
   <div class="return">
     <a href="index.html">← Retour au Portail</a>
   </div>
-  <h1 id="univers-icon"></h1>
-  <h2 id="univers-name"></h2>
 </header>
 
-<div class="help">
-  <a href="https://chatgpt.com/g/g-68f388e25a008191a09cdf3ab4882735-mes-univers-professionnels" target="_blank">
-    👉 Vous hésitez sur votre univers ?
-  </a>
+<!-- Bandeau orange dynamique -->
+<div class="univers-banner">
+  <div class="icon" id="univers-icon">❓</div>
+  <div class="name" id="univers-name">Univers inconnu</div>
 </div>
 
+<!-- Menu principal -->
 <section class="menu-grid">
   <div class="menu-item" onclick="alert('Module : Orientation IA360 🚀')">
     <div class="icon">🎯</div>
@@ -214,5 +205,6 @@ if (universData[univers]) {
   document.getElementById("univers-name").textContent = "Univers inconnu";
 }
 </script>
+
 </body>
 </html>
