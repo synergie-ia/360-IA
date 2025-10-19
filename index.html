@@ -30,9 +30,10 @@
   header h1 { margin: 0; font-size: 2rem; font-weight: 700; }
   header h2 { margin-top: 0.5rem; font-weight: 400; font-size: 1.1rem; color: #dfe6e9; }
 
+  /* --- ✅ Correction du comportement des infobulles --- */
   .grid {
-    position: relative;
-    overflow: visible;
+    position: static;             /* autorise le débordement */
+    overflow: visible;            /* permet aux infobulles de sortir */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
@@ -55,6 +56,7 @@
     justify-content: center;
     z-index: 0;
   }
+
   .card:hover { transform: scale(1.06); }
   .card.active { z-index: 999; box-shadow: 0 8px 24px var(--shadow); }
 
@@ -80,8 +82,17 @@
     pointer-events: none;
     z-index: 1000;
   }
+
+  /* 🧭 Position intelligente des infobulles */
   .tooltip.up { bottom: 110%; transform: translateX(-50%) translateY(-4px); }
   .tooltip.down { top: 110%; transform: translateX(-50%) translateY(4px); }
+
+  /* ✅ Les 4 dernières cartes affichent automatiquement la bulle vers le haut */
+  .card:nth-last-child(-n+4) .tooltip {
+    bottom: 110%;
+    top: auto;
+  }
+
   .tooltip.show { visibility: visible; opacity: 1; }
 
   footer {
