@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Découvrez votre profil professionnel - Reconversion 360 IA</title>
+  <link rel="stylesheet" href="test-style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Bouton retour accueil en haut -->
+    <div class="top-nav">
+      <button id="btnAccueilTop" class="btn-retour-top">
+        <span class="arrow">←</span> Retour à l'accueil
+      </button>
+    </div>
+    
+    <h1 class="page-title">Découvrez votre profil professionnel et les univers-métiers compatibles</h1>
+    
+    <div class="info-box">
+      <p><strong>ℹ️ À propos de ce questionnaire</strong></p>
+      <p>Ce questionnaire met en lumière ce qui vous attire spontanément, afin de vous aider à identifier des univers métiers dans lesquels vous pourriez vous sentir motivé(e) et à l'aise. Il ne s'agit pas d'un test psychologique : il n'y a aucun bon ou mauvais résultat.</p>
+      <p><strong>12 affirmations à évaluer</strong> - Pour chaque affirmation, indiquez votre niveau d'intérêt de 0 à 4.</p>
+    </div>
+    
+    <!-- LÉGENDE SANS ÉCHELLE DE NOTES -->
+    <div class="legend-box">
+      <div class="legend-intro">Évaluez votre intérêt pour chaque type de métier en choisissant une note de 0 à 4</div>
+    <div class="legend-warning">⚠️ Nombre maximum de notes : 2 notes à 0   ---     3 notes à 1   ---     3 notes à 2   ---     4 notes à 3   ---     3 notes à 4</div>
+    
+    <!-- Conteneur des questions -->
+    <div id="questionsContainer"></div>
+    
+    <!-- Message d'erreur -->
+    <div id="errorMessage" class="error-message hidden">
+      ⚠️ Veuillez répondre à toutes les questions avant de valider.
+    </div>
+    
+    <!-- Bouton validation -->
+    <div style="text-align:center;margin-top:24px;">
+      <button id="validateBtn" class="main-btn">✅ Voir mon profil d'intérêts</button>
+    </div>
+    
+    <!-- Section résultat profil -->
+    <div id="profileSection" class="hidden">
+      <h2 style="margin:32px 0 16px;font-size:24px;color:#000000;">📊 Votre profil d'intérêts professionnels</h2>
+      <div id="profileResults"></div>
+      <div style="text-align:center;margin-top:24px;">
+        <button id="goUniversesBtn" class="main-btn">🌍 Voir mes univers compatibles</button>
+      </div>
+    </div>
+    
+    <!-- Section univers métiers -->
+    <div id="univers-section" class="hidden">
+      <h2 style="margin:32px 0 16px;font-size:24px;color:#000000;">🌍 Vos univers-métiers compatibles</h2>
+      
+      <div id="selectedUniversCounter" class="counter-univers">0 univers-métiers sélectionné</div>
+      
+      <p class="notice">Sélectionnez au moins 3 univers-métiers qui vous intéressent et cliquez sur 🔎 pour explorer leurs sous-domaines</p>
+      
+      <div id="univers-results"></div>
+      
+      <button id="btn-show-all" class="alt-btn hidden">Voir tous les univers (21)</button>
+      
+      <!-- BOUTON VALIDATION SÉLECTION -->
+      <div style="text-align:center;margin:32px 0 24px;">
+        <button id="btnValidateSelection" class="main-btn">✅ Valider ma sélection d'univers-métiers</button>
+      </div>
+      
+      <div class="section-footer">
+        <button id="btnAccueilBottom" class="btn-retour">🏠 Retour à l'accueil</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- CHARGEMENT DES FICHIERS JAVASCRIPT -->
+  <script src="universes-data.js"></script>
+  <script src="test-script.js"></script>
+</body>
+</html>
