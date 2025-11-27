@@ -82,13 +82,17 @@
         <span>Copier mes résultats (si pas Atlas)</span>
       </button>
       
-      <!-- ===== BOUTON DEBUG PROVISOIRE ===== -->
-      <button id="btnDebugAtlas" class="action-btn-small" style="border-color: #ff6b6b; color: #ff6b6b;">
-        🔍 DEBUG: Voir données Atlas
+      <button id="btnDownloadPDF" class="action-btn-small download-btn">
+        <svg class="btn-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Télécharger mes résultats</span>
       </button>
     </div>
     
-    <p class="action-notice">Copiez vos résultats pour les transmettre à l'IA (si vous n'utilisez pas Atlas)</p>
+    <p class="action-notice">Copiez ou téléchargez vos résultats pour les transmettre à l'IA (si vous n'utilisez pas Atlas)</p>
     
     <!-- ===== SECTION CACHÉE POUR ATLAS ===== -->
     <div id="atlasData" style="display: none;" aria-hidden="true">
@@ -127,6 +131,6 @@
     </footer>
   </div>
   
-  <script src="index-script.js?v=36"></script>
+  <script src="index-script.js?v=37"></script>
 </body>
 </html>
