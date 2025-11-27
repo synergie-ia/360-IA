@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Univers Professionnels - Reconversion 360 IA</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f5f6fa;
+  --ink: #2c3e50;
+  --primary: #667eea;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Bouton retour */
+.btn-retour {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid #e5e7eb;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  margin-bottom: 2rem;
+}
+
+.btn-retour:hover {
+  background: #f3f4f6;
+  border-color: #cbd5e1;
+  transform: translateX(-3px);
+}
+
+.arrow {
+  font-size: 18px;
+}
+
+h1 {
+  color: var(--ink);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Grille */
+.univers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+  padding: 1rem;
+}
+
+/* Carte univers */
+.univers-card {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem 1rem;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.univers-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.univers-icon {
+  font-size: 3rem;
+  margin-bottom: 0.8rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.univers-name {
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  user-select: none;
+}
+
+/* Loupe */
+.loupe-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.loupe-icon:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* MODAL OVERLAY */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* MODAL CONTENT */
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header modal */
+.modal-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.modal-header-icon {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+}
+
+.modal-header-title {
+  flex: 1;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Bouton fermer (croix rouge) */
+.close-btn {
+  width: 36px;
+  height: 36px;
+  background: #ef4444;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.close-btn:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+}
+
+.close-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+  stroke-width: 3;
+}
+
+/* Corps modal */
+.modal-body {
+  padding: 2rem;
+  max-height: calc(80vh - 100px);
+  overflow-y: auto;
+}
+
+.sous-univers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sous-univers-item {
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: var(--ink);
+  transition: all 0.2s ease;
+  background: #f9fafb;
+}
+
+.sous-univers-item:hover {
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.sous-univers-item:last-child {
+  margin-bottom: 0;
+}
+
+.sous-univers-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sous-univers-name::before {
+  content: "→";
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.sous-univers-desc {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin-left: 1.2rem;
+}
+
+/* Scrollbar */
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+@media (max-width: 768px) {
+  .univers-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .univers-card {
+    padding: 1.2rem 0.8rem;
+    min-height: 120px;
+  }
+  
+  .univers-icon {
+    font-size: 2.5rem;
+  }
+  
+  .univers-name {
+    font-size: 0.85rem;
+  }
+  
+  .modal-content {
+    width: 95%;
+    max-height: 85vh;
+  }
+  
+  .modal-header {
+    padding: 1rem;
+  }
+  
+  .modal-header-icon {
+    font-size: 2rem;
+  }
+  
+  .modal-header-title {
+    font-size: 1.1rem;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .sous-univers-item {
+    padding: 0.8rem;
+  }
+  
+  .sous-univers-name {
+    font-size: 0.9rem;
+  }
+  
+  .sous-univers-desc {
+    font-size: 0.85rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <button class="btn-retour" onclick="window.location.href='index.html'">
+    <span class="arrow">←</span>
+    <span>Retour à l'accueil</span>
+  </button>
+
+  <h1>Les 21 Univers Professionnels</h1>
+
+  <div class="univers-grid" id="universGrid"></div>
+</div>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-header-icon" id="modalIcon">🌾</span>
+      <h2 class="modal-header-title" id="modalTitle">Univers</h2>
+      <button class="close-btn" id="closeBtn">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ul class="sous-univers-list" id="sousUniversList"></ul>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  
+  // Données des univers avec descriptions des sous-univers
+  const UNIVERS_DATA = [
+    {
+      id: 1,
+      name: "Agriculture, nature & animaux",
+      icon: "🌾",
+      sousUniverses: [
+        { name: "Agroalimentaire industriel", description: "Transformation et production à grande échelle des produits agricoles." },
+        { name: "Production biologique & circuits courts", description: "Cultures et élevages respectueux de l'environnement, vente locale." },
+        { name: "Agronomie & recherche appliquée", description: "Études scientifiques pour améliorer les rendements et la durabilité." },
+        { name: "Cultures céréalières & grandes exploitations", description: "Gestion de grandes surfaces agricoles mécanisées." },
+        { name: "Viticulture & œnologie", description: "Culture de la vigne et production du vin." },
+        { name: "Maraîchage & production maraîchère", description: "Culture de légumes et fruits de saison." },
+        { name: "Horticulture & pépinière", description: "Production de plantes ornementales et d'arbustes." },
+        { name: "Paysagisme & aménagement végétal", description: "Création et entretien d'espaces verts." },
+        { name: "Forêt & sylviculture durable", description: "Gestion et exploitation raisonnée des forêts." },
+        { name: "Élevage bovin / ovin / porcin / avicole", description: "Production animale pour la viande, le lait ou les œufs." },
+        { name: "Aquaculture & pêche durable", description: "Élevage de poissons et gestion responsable des ressources marines." },
+        { name: "Apiculture & insectes utiles", description: "Élevage d'abeilles et valorisation des insectes pollinisateurs." },
+        { name: "Gestion de l'eau, irrigation & bassins versants", description: "Maîtrise des ressources hydriques pour l'agriculture." },
+        { name: "Valorisation & transformation des produits agricoles", description: "Fabrication de produits finis à partir des matières premières." },
+        { name: "Soins & services aux animaux domestiques", description: "Cheval, chien, chat et toilettage." }
+      ]
+    },
+    {
+      id: 2,
+      name: "Arts, design & création",
+      icon: "🎨",
+      sousUniverses: [
+        { name: "Arts visuels & peinture", description: "Création artistique sur support visuel." },
+        { name: "Sculpture & installations", description: "Conception d'œuvres tridimensionnelles." },
+        { name: "Design graphique & communication visuelle", description: "Création d'images et supports de communication." },
+        { name: "Design produit & industriel", description: "Conception d'objets et produits manufacturés." },
+        { name: "Architecture intérieure & décoration", description: "Aménagement esthétique et fonctionnel des espaces." },
+        { name: "Photographie & image numérique", description: "Prise de vue, retouche et diffusion d'images." },
+        { name: "Cinéma, audiovisuel & animation", description: "Production de films et contenus visuels." },
+        { name: "Mode, stylisme & textile", description: "Conception de vêtements et accessoires." },
+        { name: "Artisanat d'art traditionnel", description: "Création manuelle de pièces uniques." },
+        { name: "Scénographie & design d'espace", description: "Mise en scène d'expositions ou de spectacles." },
+        { name: "Illustration & bande dessinée", description: "Narration visuelle et création d'univers graphiques." },
+        { name: "Patrimoine, muséographie & restauration d'art", description: "Conservation et mise en valeur d'œuvres anciennes." },
+        { name: "Spectacle vivant & arts de la scène", description: "Interprétation et production théâtrale ou musicale." },
+        { name: "Métiers du luxe & savoir-faire d'exception", description: "Création haut de gamme mêlant tradition et innovation." },
+        { name: "Régie & technique du spectacle", description: "Gestion des aspects techniques d'événements artistiques." }
+      ]
+    },
+    {
+      id: 3,
+      name: "Commerce, marketing & vente",
+      icon: "🛒",
+      sousUniverses: [
+        { name: "Commerce de détail & retail", description: "Vente directe aux consommateurs." },
+        { name: "E-commerce & marketplaces", description: "Vente en ligne et gestion de plateformes numériques." },
+        { name: "Vente B2B & négociation commerciale", description: "Relations commerciales entre entreprises." },
+        { name: "Représentation & prospection", description: "Développement de clientèle sur le terrain." },
+        { name: "Merchandising & mise en valeur produits", description: "Optimisation de la présentation des produits." },
+        { name: "Marketing stratégique", description: "Étude de marché et positionnement des offres." },
+        { name: "Marketing digital & réseaux sociaux", description: "Promotion via les outils numériques." },
+        { name: "Communication commerciale & influence", description: "Stratégies de persuasion et fidélisation." },
+        { name: "Achats & approvisionnement", description: "Sélection et négociation avec les fournisseurs." },
+        { name: "Gestion de rayon & management de point de vente", description: "Pilotage opérationnel des équipes et stocks." },
+        { name: "Immobilier commercial", description: "Vente et location d'espaces professionnels." },
+        { name: "Banque & assurance commerciale", description: "Vente de produits financiers et d'assurance." },
+        { name: "Service client & relation après-vente", description: "Suivi et satisfaction des clients." },
+        { name: "Commerce du luxe & clientèle premium", description: "Vente haut de gamme et expérience exclusive." },
+        { name: "Vente en ligne & marketplaces spécialisées", description: "Plateformes ciblées sur des niches de produits." }
+      ]
+    },
+    {
+      id: 4,
+      name: "Communication, médias & culture",
+      icon: "📺",
+      sousUniverses: [
+        { name: "Journalisme & presse écrite", description: "Recherche, rédaction et diffusion d'informations vérifiées." },
+        { name: "Audiovisuel & production radio/TV", description: "Réalisation et diffusion d'émissions ou reportages." },
+        { name: "Relations publiques & événementiel", description: "Gestion de l'image d'une organisation et organisation d'événements." },
+        { name: "Communication d'entreprise", description: "Promotion interne et externe d'une marque ou institution." },
+        { name: "Communication publique & politique", description: "Information et influence dans le secteur public." },
+        { name: "Édition & correction", description: "Relecture, mise en page et diffusion d'ouvrages." },
+        { name: "Création de contenus numériques", description: "Production de vidéos, posts, podcasts ou blogs." },
+        { name: "Publicité & stratégie de marque", description: "Création de campagnes pour valoriser des produits ou services." },
+        { name: "Influence, réseaux & storytelling", description: "Construction d'une image de marque par la narration et les médias sociaux." },
+        { name: "Traduction & interprétation", description: "Passage fidèle d'un message d'une langue à une autre." },
+        { name: "Médiation culturelle & animation de projets", description: "Transmission de la culture au grand public." },
+        { name: "Podcasting & création audio", description: "Production de formats audio indépendants." }
+      ]
+    },
+    {
+      id: 5,
+      name: "Construction, BTP & habitat",
+      icon: "🏗️",
+      sousUniverses: [
+        { name: "Architecture & conception", description: "Création de bâtiments et espaces de vie." },
+        { name: "Gros œuvre & maçonnerie", description: "Construction des structures principales." },
+        { name: "Second œuvre & finitions", description: "Travaux de finition intérieure et extérieure." },
+        { name: "Menuiserie & charpente bois", description: "Fabrication et pose d'éléments en bois." },
+        { name: "Plomberie, chauffage & climatisation", description: "Installation et entretien des réseaux techniques." },
+        { name: "Électricité & domotique", description: "Réseaux électriques et automatismes du bâtiment." },
+        { name: "Travaux publics & voirie", description: "Infrastructures routières, ponts, réseaux." },
+        { name: "Génie civil & infrastructures", description: "Conception et réalisation d'ouvrages complexes." },
+        { name: "Rénovation énergétique & éco-bâtiment", description: "Travaux visant la performance énergétique." },
+        { name: "Études techniques & dessin bâtiment", description: "Plans, modélisation et conception technique." },
+        { name: "Coordination & conduite de chantier", description: "Organisation et suivi des travaux." },
+        { name: "Gestion immobilière & copropriétés", description: "Suivi administratif et technique des biens." },
+        { name: "Aménagement urbain & espaces publics", description: "Planification et mise en valeur des villes." }
+      ]
+    },
+    {
+      id: 6,
+      name: "Droit, administration & politique publique",
+      icon: "⚖️",
+      sousUniverses: [
+        { name: "Droit privé & judiciaire", description: "Défense des droits des particuliers." },
+        { name: "Droit des affaires & fiscalité", description: "Conseil juridique aux entreprises." },
+        { name: "Droit social & du travail", description: "Relations employeurs-salariés et protection sociale." },
+        { name: "Droit public & institutions", description: "Encadrement des collectivités et politiques publiques." },
+        { name: "Administration publique", description: "Gestion courante des services de l'État." },
+        { name: "Ressources humaines & médiation", description: "Recrutement, dialogue social et accompagnement." },
+        { name: "Gouvernance territoriale & collectivités locales", description: "Gestion des politiques locales." },
+        { name: "Diplomatie & relations internationales", description: "Représentation et négociation entre États." },
+        { name: "Gestion des marchés publics", description: "Commandes et appels d'offres publics." },
+        { name: "Intelligence juridique & conformité", description: "Veille réglementaire et prévention des risques." },
+        { name: "Notariat & professions réglementées", description: "Sécurisation des actes et transactions." }
+      ]
+    },
+    {
+      id: 7,
+      name: "Éducation, formation & apprentissage",
+      icon: "🎓",
+      sousUniverses: [
+        { name: "Enseignement primaire", description: "Transmission des savoirs fondamentaux." },
+        { name: "Enseignement secondaire", description: "Encadrement des adolescents et préparation aux examens." },
+        { name: "Enseignement supérieur", description: "Formation et recherche à l'université ou en école." },
+        { name: "Formation professionnelle & continue", description: "Apprentissage pour adultes et salariés." },
+        { name: "Orientation & accompagnement", description: "Aide à la construction de parcours individuels." },
+        { name: "Coaching & développement personnel", description: "Accompagnement du changement et de la motivation." },
+        { name: "Ingénierie pédagogique", description: "Conception de programmes et supports de formation." },
+        { name: "Éducation spécialisée & médiation éducative", description: "Soutien aux publics fragiles." },
+        { name: "Recherche en sciences de l'éducation", description: "Études sur les méthodes d'apprentissage." },
+        { name: "Animation socioculturelle", description: "Activités éducatives et sociales collectives." }
+      ]
+    },
+    {
+      id: 8,
+      name: "Environnement, climat & énergies",
+      icon: "🌍",
+      sousUniverses: [
+        { name: "Gestion des déchets & recyclage", description: "Valorisation des matières usées." },
+        { name: "Traitement de l'eau & dépollution", description: "Purification et gestion des eaux usées." },
+        { name: "Énergies renouvelables", description: "Production d'énergie verte (solaire, éolien...)." },
+        { name: "Hydrogène & stockage d'énergie", description: "Développement des nouvelles filières énergétiques." },
+        { name: "Énergie nucléaire & sûreté", description: "Production d'électricité et sécurité des installations." },
+        { name: "Génie climatique & efficacité énergétique", description: "Optimisation de la consommation d'énergie." },
+        { name: "Adaptation au changement climatique", description: "Stratégies pour limiter les impacts climatiques." },
+        { name: "Bilan carbone & comptabilité environnementale", description: "Mesure et réduction des émissions." },
+        { name: "Écoconception & économie circulaire", description: "Conception durable des produits." },
+        { name: "Aménagement durable des territoires", description: "Urbanisme écoresponsable." },
+        { name: "Ingénierie environnementale", description: "Études techniques et solutions écologiques." },
+        { name: "Protection de la biodiversité & conservation", description: "Sauvegarde des écosystèmes." },
+        { name: "Restauration écologique & gestion des milieux naturels", description: "Réhabilitation d'espaces dégradés." },
+        { name: "Mobilité durable & transports propres", description: "Solutions de déplacement bas carbone." },
+        { name: "Agriculture régénératrice & sols vivants", description: "Pratiques agricoles restauratrices." },
+        { name: "Gestion des risques naturels & résilience", description: "Prévention et préparation face aux aléas." }
+      ]
+    },
+    {
+      id: 9,
+      name: "Gestion, finance & comptabilité",
+      icon: "💰",
+      sousUniverses: [
+        { name: "Comptabilité & fiscalité", description: "Suivi des comptes et déclarations fiscales." },
+        { name: "Audit & contrôle de gestion", description: "Vérification de la performance financière." },
+        { name: "Trésorerie & financement", description: "Gestion des flux et besoins de liquidités." },
+        { name: "Banque & assurance", description: "Services financiers aux particuliers et entreprises." },
+        { name: "Conseil en gestion de patrimoine", description: "Optimisation de l'épargne et des placements." },
+        { name: "Gestion d'entreprise & administration", description: "Pilotage global d'une organisation." },
+        { name: "Finance durable & investissement responsable", description: "Financement éthique et vert." },
+        { name: "Gestion de projets financiers", description: "Conception et suivi d'opérations budgétaires." },
+        { name: "Fintech & services financiers numériques", description: "Innovation dans les paiements et crédits." },
+        { name: "Gestion budgétaire publique", description: "Comptabilité et contrôle des finances de l'État." },
+        { name: "Contrôle interne & conformité", description: "Sécurité et fiabilité des procédures financières." }
+      ]
+    },
+    {
+      id: 10,
+      name: "Hôtellerie, restauration & tourisme",
+      icon: "🏨",
+      sousUniverses: [
+        { name: "Cuisine gastronomique", description: "Création culinaire haut de gamme." },
+        { name: "Restauration collective", description: "Préparation de repas pour groupes." },
+        { name: "Service & sommellerie", description: "Accueil et conseil en salle." },
+        { name: "Hôtellerie & hébergement", description: "Gestion de séjours et services associés." },
+        { name: "Accueil & réception", description: "Premier contact et assistance clients." },
+        { name: "Tourisme local & culturel", description: "Valorisation du patrimoine et des territoires." },
+        { name: "Tourisme international", description: "Accueil et accompagnement de visiteurs étrangers." },
+        { name: "Événementiel & congrès", description: "Organisation d'événements professionnels." },
+        { name: "Management hôtelier", description: "Pilotage d'établissements touristiques." },
+        { name: "Œnotourisme & terroir", description: "Découverte du vin et de la gastronomie locale." },
+        { name: "Gestion durable du tourisme", description: "Tourisme responsable et respectueux des ressources." }
+      ]
+    },
+    {
+      id: 11,
+      name: "Immobilier & patrimoine",
+      icon: "🏠",
+      sousUniverses: [
+        { name: "Transaction immobilière résidentielle", description: "Achat et vente de logements." },
+        { name: "Transaction immobilière d'entreprise & commerces", description: "Négociation de biens professionnels." },
+        { name: "Promotion & développement immobilier", description: "Construction et valorisation de projets." },
+        { name: "Gestion locative & syndic de copropriété", description: "Administration de biens et copropriétés." },
+        { name: "Expertise & évaluation immobilière", description: "Analyse de la valeur d'un bien." },
+        { name: "Investissement & conseil patrimonial immobilier", description: "Stratégies d'achat et de placement." },
+        { name: "Aménagement foncier & urbanisme opérationnel", description: "Planification et gestion du sol." },
+        { name: "Immobilier social & logement accompagné", description: "Gestion de l'habitat pour publics fragiles." },
+        { name: "Facility management & gestion technique", description: "Maintenance et services aux bâtiments." },
+        { name: "Immobilier de luxe & biens d'exception", description: "Gestion d'actifs haut de gamme." }
+      ]
+    },
+    {
+      id: 12,
+      name: "Industrie, fabrication & production",
+      icon: "⚙️",
+      sousUniverses: [
+        { name: "Production industrielle", description: "Fabrication en série de biens et produits finis." },
+        { name: "Maintenance & SAV", description: "Entretien et réparation des équipements." },
+        { name: "Mécanique & usinage", description: "Conception et transformation de pièces métalliques." },
+        { name: "Électrotechnique & automatisme", description: "Commande et automatisation des systèmes électriques." },
+        { name: "Robotique & cobotique", description: "Collaboration homme-machine dans la production." },
+        { name: "Chimie & matériaux", description: "Transformation de la matière et création de composés." },
+        { name: "Aéronautique & spatial", description: "Conception et maintenance d'aéronefs et satellites." },
+        { name: "Métallurgie & sidérurgie", description: "Transformation des métaux et alliages." },
+        { name: "Industrie pharmaceutique", description: "Fabrication de médicaments et vaccins." },
+        { name: "Plasturgie & composites", description: "Conception d'objets en polymères et matériaux innovants." },
+        { name: "Qualité, sécurité & environnement industriel", description: "Contrôle des normes et prévention des risques." },
+        { name: "Supply chain industrielle", description: "Coordination logistique de la production." },
+        { name: "Fabrication additive & impression 3D", description: "Production par couches successives." },
+        { name: "Industrie textile & habillement", description: "Confection et transformation des tissus." },
+        { name: "Micro-électronique & semi-conducteurs", description: "Production de circuits et composants électroniques." },
+        { name: "Industries extractives & carrières", description: "Exploitation des ressources naturelles." },
+        { name: "Construction & maintenance navale", description: "Bâtiment et entretien de navires." }
+      ]
+    },
+    {
+      id: 13,
+      name: "Logistique, transport & mobilité",
+      icon: "🚚",
+      sousUniverses: [
+        { name: "Logistique & entreposage", description: "Gestion des flux et stockage des marchandises." },
+        { name: "Supply chain management", description: "Pilotage global des chaînes d'approvisionnement." },
+        { name: "Douanes & commerce international", description: "Gestion des échanges transfrontaliers." },
+        { name: "Transport routier & livraison", description: "Acheminement terrestre de marchandises." },
+        { name: "Transport ferroviaire", description: "Exploitation et maintenance des réseaux de trains." },
+        { name: "Transport aérien", description: "Exploitation et organisation du trafic aérien." },
+        { name: "Transport maritime & fluvial", description: "Navigation commerciale et logistique portuaire." },
+        { name: "Mobilité urbaine & transports publics", description: "Déplacements collectifs en ville." },
+        { name: "Gestion de flotte & maintenance", description: "Suivi et entretien de véhicules." },
+        { name: "Logistique urbaine & dernier kilomètre", description: "Livraison locale et circuits courts." },
+        { name: "Activités portuaires & maritimes", description: "Gestion et exploitation des infrastructures portuaires." },
+        { name: "Mobilité autonome & véhicules intelligents", description: "Conception et exploitation de transports automatisés." }
+      ]
+    },
+    {
+      id: 14,
+      name: "Management, entrepreneuriat & stratégie",
+      icon: "📊",
+      sousUniverses: [
+        { name: "Création d'entreprise & start-up", description: "Lancement et développement d'activités innovantes." },
+        { name: "Gestion de projets", description: "Organisation et suivi d'objectifs collectifs." },
+        { name: "Innovation & transformation digitale", description: "Intégration de nouvelles technologies." },
+        { name: "Management d'équipe", description: "Encadrement et motivation des collaborateurs." },
+        { name: "RSE & développement durable", description: "Intégration des enjeux sociaux et environnementaux." },
+        { name: "Stratégie d'entreprise", description: "Planification des orientations à long terme." },
+        { name: "Pilotage de structures publiques ou privées", description: "Gouvernance et performance organisationnelle." },
+        { name: "Management interculturel", description: "Coordination d'équipes internationales." },
+        { name: "Conseil & accompagnement stratégique", description: "Analyse et recommandation pour les dirigeants." },
+        { name: "Gouvernance & leadership éthique", description: "Prise de décision responsable et inspirante." }
+      ]
+    },
+    {
+      id: 15,
+      name: "Numérique, informatique & data",
+      icon: "💻",
+      sousUniverses: [
+        { name: "Développement web & mobile", description: "Création d'applications et de sites internet." },
+        { name: "DevOps & cloud computing", description: "Automatisation et hébergement de systèmes informatiques." },
+        { name: "Cybersécurité", description: "Protection des réseaux et données." },
+        { name: "Réseaux & systèmes", description: "Installation et maintenance des infrastructures informatiques." },
+        { name: "Intelligence artificielle & machine learning", description: "Conception d'algorithmes d'apprentissage." },
+        { name: "Data science & big data", description: "Analyse et valorisation de grandes bases de données." },
+        { name: "Réalité augmentée & métavers", description: "Expériences numériques immersives." },
+        { name: "UX/UI design", description: "Conception d'interfaces centrées sur l'utilisateur." },
+        { name: "Informatique industrielle & IoT", description: "Objets connectés et automatisation des processus." },
+        { name: "Logiciels métiers & ERP", description: "Outils de gestion pour entreprises." },
+        { name: "No-code & automation", description: "Création d'applications sans programmation." },
+        { name: "Design numérique & multimédia", description: "Graphisme et création d'environnements digitaux." },
+        { name: "Blockchain & web3", description: "Technologies décentralisées et sécurisées." },
+        { name: "Informatique durable & sobriété numérique", description: "Réduction de l'empreinte écologique du numérique." },
+        { name: "Gaming, jeux vidéo & développement ludique", description: "Conception de jeux interactifs." },
+        { name: "E-sport, streaming & création de contenu gaming", description: "Compétition et diffusion de jeux vidéo." }
+      ]
+    },
+    {
+      id: 16,
+      name: "Santé, bien-être & médical",
+      icon: "⚕️",
+      sousUniverses: [
+        { name: "Médecine générale", description: "Soins courants et prévention." },
+        { name: "Chirurgie & spécialités hospitalières", description: "Interventions et soins techniques." },
+        { name: "Radiologie & imagerie médicale", description: "Diagnostic par l'image." },
+        { name: "Biologie & analyses médicales", description: "Études de prélèvements biologiques." },
+        { name: "Pharmacie & biotechnologies", description: "Développement et distribution de traitements." },
+        { name: "Infirmier & soins paramédicaux", description: "Accompagnement des patients au quotidien." },
+        { name: "Rééducation & kinésithérapie", description: "Restauration des capacités physiques." },
+        { name: "Santé mentale & psychologie", description: "Prise en charge des troubles psychiques." },
+        { name: "Nutrition & diététique", description: "Équilibre alimentaire et santé." },
+        { name: "Santé publique & prévention", description: "Promotion du bien-être collectif." },
+        { name: "Accompagnement des personnes âgées", description: "Soins et assistance en gérontologie." },
+        { name: "Médecine du sport", description: "Prévention et suivi des sportifs." },
+        { name: "Médecine connectée & télésanté", description: "Soins à distance et outils numériques." }
+      ]
+    },
+    {
+      id: 17,
+      name: "Sciences, recherche & innovation",
+      icon: "🔬",
+      sousUniverses: [
+        { name: "Physique & astrophysique", description: "Étude des lois de l'univers et de la matière." },
+        { name: "Mathématiques & statistiques", description: "Modélisation et analyse quantitative." },
+        { name: "Chimie & matériaux", description: "Recherche sur les réactions et nouveaux matériaux." },
+        { name: "Biotechnologies", description: "Innovation à partir du vivant." },
+        { name: "Géosciences & climatologie", description: "Étude de la Terre et des phénomènes climatiques." },
+        { name: "Neurosciences & cognition", description: "Exploration du cerveau et du comportement." },
+        { name: "Sciences humaines & sociales", description: "Analyse des sociétés et comportements humains." },
+        { name: "Recherche en éducation", description: "Étude des processus d'apprentissage." },
+        { name: "Recherche appliquée & transfert technologique", description: "Passage de la science au produit." },
+        { name: "R&D en entreprise", description: "Innovation intégrée à la production." },
+        { name: "Études et consulting scientifique", description: "Expertise et accompagnement de projets techniques." }
+      ]
+    },
+    {
+      id: 18,
+      name: "Sécurité, défense & urgence",
+      icon: "🚨",
+      sousUniverses: [
+        { name: "Police & gendarmerie", description: "Maintien de l'ordre et protection des citoyens." },
+        { name: "Pompiers & secours", description: "Interventions d'urgence et sauvetage." },
+        { name: "Sécurité privée & surveillance", description: "Protection des biens et des personnes." },
+        { name: "Protection civile", description: "Organisation des secours en cas de catastrophe." },
+        { name: "Défense & armée", description: "Sécurité nationale et opérations extérieures." },
+        { name: "Renseignement & sécurité stratégique", description: "Collecte d'informations sensibles et analyse de menaces." }
+      ]
+    },
+    {
+      id: 19,
+      name: "Social, aide & solidarité",
+      icon: "❤️",
+      sousUniverses: [
+        { name: "Travail social & action sociale", description: "Accompagnement social et insertion." },
+        { name: "Hébergement & logement d'urgence", description: "Accueil de personnes en précarité." },
+        { name: "Aide alimentaire & distributions", description: "Lutte contre la faim et l'insécurité alimentaire." },
+        { name: "Médiation sociale & résolution de conflits", description: "Facilitation du dialogue et prévention." },
+        { name: "Action humanitaire & ONG", description: "Interventions solidaires en France ou à l'étranger." },
+        { name: "Petite enfance & crèches", description: "Accueil et éveil des jeunes enfants." },
+        { name: "Protection de l'enfance", description: "Accompagnement et sécurisation des mineurs en danger." },
+        { name: "Accompagnement du handicap", description: "Soutien aux personnes en situation de handicap." },
+        { name: "Insertion professionnelle & formation", description: "Retour à l'emploi pour publics éloignés." },
+        { name: "Prévention & éducation populaire", description: "Sensibilisation et citoyenneté." },
+        { name: "Services à la personne", description: "Aide à domicile et accompagnement du quotidien." },
+        { name: "Bénévolat & engagement citoyen", description: "Actions solidaires et vie associative." },
+        { name: "Accès aux droits & lutte contre les discriminations", description: "Défense et promotion de l'égalité." }
+      ]
+    },
+    {
+      id: 20,
+      name: "Sport, loisirs & vie active",
+      icon: "⚽",
+      sousUniverses: [
+        { name: "Éducation sportive & encadrement", description: "Enseignement et animation sportive." },
+        { name: "Entraînement & préparation physique", description: "Optimisation des performances." },
+        { name: "Sport de haut niveau & compétition", description: "Pratique professionnelle et excellence." },
+        { name: "Management d'équipements sportifs", description: "Gestion de salles, stades, piscines." },
+        { name: "Événementiel sportif", description: "Organisation de compétitions et manifestations." },
+        { name: "Loisirs & animation socioculturelle", description: "Activités récréatives et vie associative." },
+        { name: "Tourisme sportif & plein air", description: "Activités nature et découverte." },
+        { name: "E-sport & gaming professionnel", description: "Compétition et coaching sur jeux vidéo." },
+        { name: "Bien-être & activités douces", description: "Yoga, pilates, relaxation." },
+        { name: "Industrie & commerce du sport", description: "Vente et distribution d'articles sportifs." },
+        { name: "Création de contenus sportifs & médias", description: "Journalisme et production autour du sport." }
+      ]
+    },
+    {
+      id: 21,
+      name: "Technologies émergentes & futur du travail",
+      icon: "🚀",
+      sousUniverses: [
+        { name: "Intelligence artificielle générative", description: "Création de contenus par l'IA (texte, image, code)." },
+        { name: "IA éthique & gouvernance algorithmique", description: "Encadrement responsable des systèmes intelligents." },
+        { name: "Robotique humanoïde & collaborative", description: "Robots pour assistance et interaction." },
+        { name: "Biotechnologies avancées & biohacking", description: "Ingénierie du vivant et optimisation humaine." },
+        { name: "Exploration spatiale & NewSpace", description: "Satellites, lanceurs, tourisme spatial." },
+        { name: "Technologies quantiques", description: "Calcul et communication quantiques." },
+        { name: "Travail hybride & télétravail", description: "Nouvelles organisations du travail." },
+        { name: "Économie collaborative & plateformes", description: "Partage, freelance, gig economy." }
+      ]
+    }
+  ];
+
+  // Éléments DOM
+  const grid = document.getElementById('universGrid');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalIcon = document.getElementById('modalIcon');
+  const modalTitle = document.getElementById('modalTitle');
+  const sousUniversList = document.getElementById('sousUniversList');
+  const closeBtn = document.getElementById('closeBtn');
+
+  // Générer les cartes
+  UNIVERS_DATA.forEach(function(univers) {
+    const card = document.createElement('div');
+    card.className = 'univers-card';
+    
+    card.innerHTML = `
+      <svg class="loupe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <div class="univers-icon">${univers.icon}</div>
+      <div class="univers-name">${univers.name}</div>
+    `;
+    
+    // Clic sur la carte ou la loupe = ouvrir modal
+    card.addEventListener('click', function(e) {
+      e.stopPropagation();
+      ouvrirModal(univers);
+    });
+    
+    grid.appendChild(card);
+  });
+
+  // Fonction ouvrir modal
+  function ouvrirModal(univers) {
+    modalIcon.textContent = univers.icon;
+    modalTitle.textContent = univers.name;
+    
+    // Vider et remplir la liste avec nom ET description
+    sousUniversList.innerHTML = '';
+    univers.sousUniverses.forEach(function(su) {
+      const li = document.createElement('li');
+      li.className = 'sous-univers-item';
+      
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'sous-univers-name';
+      nameDiv.textContent = su.name;
+      
+      const descDiv = document.createElement('div');
+      descDiv.className = 'sous-univers-desc';
+      descDiv.textContent = su.description;
+      
+      li.appendChild(nameDiv);
+      li.appendChild(descDiv);
+      sousUniversList.appendChild(li);
+    });
+    
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Fonction fermer modal
+  function fermerModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Événements fermeture
+  closeBtn.addEventListener('click', fermerModal);
+  
+  modalOverlay.addEventListener('click', function(e) {
+    if (e.target === modalOverlay) {
+      fermerModal();
+    }
+  });
+
+  // Échap pour fermer
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+      fermerModal();
+    }
+  });
+
+  console.log('✅ 21 univers professionnels chargés avec descriptions');
+})();
+</script>
+</body>
+</html>
