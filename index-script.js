@@ -1,6 +1,6 @@
 /* 
   ============================================
-  RECONVERSION 360 IA - PAGE D'ACCUEIL
+  ORIENTATION 360 IA - PAGE D'ACCUEIL
   ============================================
   Gestion des badges de complétion et actions
   VERSION COMPLÈTE - Copie profil + univers + bilan
@@ -492,7 +492,7 @@ function copyResultsToClipboard() {
     const situationData = localStorage.getItem('situation_data');
     
     let textToCopy = "═══════════════════════════════════════\n";
-    textToCopy += "   RECONVERSION 360 IA - MES RÉSULTATS\n";
+    textToCopy += "   ORIENTATION 360 IA - MES RÉSULTATS\n";
     textToCopy += "═══════════════════════════════════════\n\n";
     
     // PROFIL PERSONNEL
@@ -616,7 +616,7 @@ function copyResultsToClipboard() {
     }
     
     textToCopy += "═══════════════════════════════════════\n";
-    textToCopy += "Généré par Reconversion 360 IA\n";
+    textToCopy += "Généré par Orientation 360 IA\n";
     textToCopy += new Date().toLocaleDateString('fr-FR', { 
       year: 'numeric', 
       month: 'long', 
