@@ -674,7 +674,7 @@ function downloadPDF() {
     let pdfContent = "";
     
     pdfContent += "═══════════════════════════════════════════════════════\n";
-    pdfContent += "        RECONVERSION 360 IA - MES RÉSULTATS\n";
+    pdfContent += "        Orientation 360 IA - MES RÉSULTATS\n";
     pdfContent += "═══════════════════════════════════════════════════════\n\n";
     pdfContent += "Date de génération: " + new Date().toLocaleDateString('fr-FR', { 
       weekday: 'long',
