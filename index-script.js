@@ -815,7 +815,7 @@ function downloadPDF() {
     a.href = url;
     
     const dateStr = new Date().toISOString().split('T')[0];
-    a.download = `Reconversion_360_IA_${dateStr}.txt`;
+    a.download = `Orientation_360_IA_${dateStr}.txt`;
     
     document.body.appendChild(a);
     a.click();
