@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reconversion 360 IA</title>
+  <link rel="stylesheet" href="index-style.css?v=34" />
+</head>
+<body>
+  <div class="container">
+    <!-- ===== TITRE PRINCIPAL ===== -->
+    <header class="hero">
+      <h1 class="hero-title">
+        <span class="title-line1">
+          L'intelligence artificielle au service de la transition professionnelle
+        </span>
+        <span class="title-line2">
+        </span>
+      </h1>
+      
+      <!-- ===== BOUTON UNIVERS-MÉTIERS ===== -->
+      <div class="univers-button-container">
+        <button id="btnUniversMetiers" class="univers-btn">
+          <svg class="univers-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span>Voir les univers-métiers</span>
+        </button>
+      </div>
+    </header>
+    
+    <!-- ===== CARTES ===== -->
+    <div class="cards-grid">
+      <!-- CARTE 1 -->
+      <div class="action-card">
+        <div class="card-icon">🎯</div>
+        <h2 class="card-title">Découvrez votre profil professionnel</h2>
+        <p class="card-desc">Identifiez vos centres d'intérêt et explorez les univers-métiers qui vous correspondent.</p>
+        <button class="card-btn" onclick="window.location.href='test.html'">
+          Démarrer le questionnaire
+        </button>
+      </div>
+      
+      <!-- CARTE 2 -->
+      <div class="action-card">
+        <div class="card-icon">📋</div>
+        <h2 class="card-title">Réalisez votre bilan personnel</h2>
+        <p class="card-desc">Faites le point sur votre situation, vos compétences, votre parcours et vos aspirations.</p>
+        <button class="card-btn" onclick="window.location.href='situation.html'">
+          Compléter mon bilan
+        </button>
+      </div>
+      
+      <!-- CARTE 3 -->
+      <div class="action-card">
+        <div class="card-icon">🧭</div>
+        <h2 class="card-title">Construisez votre projet professionnel</h2>
+        <p class="card-desc">Bénéficiez d'un accompagnement intelligent pour structurer un projet réaliste et réalisable.</p>
+        <button id="btnConstructProject" class="card-btn">
+          Construire mon projet
+        </button>
+      </div>
+    </div>
+    
+    <!-- ===== BOUTONS BAS ===== -->
+    <div class="action-buttons-section">
+      <button id="btnResetData" class="action-btn-small reset-btn">
+        <svg class="btn-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="1 4 1 10 7 10"></polyline>
+          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+        </svg>
+        <span>Réinitialiser mes données</span>
+      </button>
+      
+      <button id="btnCopyResults" class="action-btn-small copy-btn">
+        <svg class="btn-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span>Copier mes résultats (si pas Atlas)</span>
+      </button>
+      
+      <!-- ===== BOUTON DEBUG PROVISOIRE ===== -->
+      <button id="btnDebugAtlas" class="action-btn-small" style="border-color: #ff6b6b; color: #ff6b6b;">
+        🔍 DEBUG: Voir données Atlas
+      </button>
+    </div>
+    
+    <p class="action-notice">Copiez vos résultats pour les transmettre à l'IA (si vous n'utilisez pas Atlas)</p>
+    
+    <!-- ===== SECTION CACHÉE POUR ATLAS ===== -->
+    <div id="atlasData" style="display: none;" aria-hidden="true">
+      <article id="atlasContent" data-type="reconversion-360-results">
+        <header>
+          <h1>Reconversion 360 IA - Résultats</h1>
+          <time id="atlasDate"></time>
+        </header>
+        
+        <section id="atlasProfile" data-section="profil-personnel">
+          <h2>Profil Personnel</h2>
+          <div id="atlasProfileData"></div>
+        </section>
+        
+        <section id="atlasUnivers" data-section="univers-selectionnes">
+          <h2>Univers Sélectionnés</h2>
+          <div id="atlasUniversData"></div>
+        </section>
+        
+        <section id="atlasBilan" data-section="bilan-personnel">
+          <h2>Bilan Personnel</h2>
+          <div id="atlasIdentite" data-subsection="identite"></div>
+          <div id="atlasSituation" data-subsection="situation"></div>
+          <div id="atlasRessources" data-subsection="ressources"></div>
+          <div id="atlasValeurs" data-subsection="valeurs"></div>
+          <div id="atlasContraintes" data-subsection="contraintes"></div>
+          <div id="atlasFormation" data-subsection="formation"></div>
+          <div id="atlasTests" data-subsection="tests"></div>
+          <div id="atlasOuverture" data-subsection="ouverture"></div>
+        </section>
+      </article>
+    </div>
+    
+    <footer class="page-footer">
+      © 2025 Synergie IA - Reconversion 360 IA
+    </footer>
+  </div>
+  
+  <script src="index-script.js?v=36"></script>
+</body>
+</html>
