@@ -6,6 +6,7 @@
   VERSION COMPLÈTE - Copie profil + univers + bilan
   VERSION ATLAS - Section HTML cachée pour ChatGPT
   VERSION FINALE - Messages améliorés + gestion blocage
+  VERSION 37 - Bouton PDF restauré + Debug retiré + Détection blocage corrigée
   ============================================
 */
 
@@ -27,6 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
     btnCopy.addEventListener('click', copyResultsToClipboard);
   }
   
+  const btnDownload = document.getElementById('btnDownloadPDF');
+  if(btnDownload){
+    btnDownload.addEventListener('click', downloadPDF);
+  }
+  
   const btnProject = document.getElementById('btnConstructProject');
   if(btnProject){
     btnProject.addEventListener('click', checkProjectAccess);
@@ -37,12 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
     btnUniversMetiers.addEventListener('click', function() {
       window.location.href = 'univers-metiers.html';
     });
-  }
-  
-  // NOUVEAU : Bouton DEBUG provisoire
-  const btnDebugAtlas = document.getElementById('btnDebugAtlas');
-  if(btnDebugAtlas){
-    btnDebugAtlas.addEventListener('click', showAtlasData);
   }
 });
 
@@ -234,7 +234,7 @@ function updateAtlasData() {
   console.log("✅ Atlas - Mise à jour terminée");
 }
 
-/* ===== NOUVELLE FONCTION : AFFICHER DONNÉES ATLAS (DEBUG) ===== */
+/* ===== FONCTION DEBUG : AFFICHER DONNÉES ATLAS (CONSERVÉE POUR USAGE FUTUR) ===== */
 
 function showAtlasData() {
   const atlasData = document.getElementById('atlasData');
@@ -397,7 +397,7 @@ function resetAllData() {
   }
 }
 
-/* ===== NOUVELLE FONCTION : VIDER SECTION ATLAS ===== */
+/* ===== FONCTION : VIDER SECTION ATLAS ===== */
 
 function clearAtlasData() {
   console.log("🌐 Atlas - Suppression des données...");
@@ -645,7 +645,7 @@ function copyResultsToClipboard() {
   }
 }
 
-/* ===== TÉLÉCHARGEMENT PDF (CONSERVÉ MAIS NON UTILISÉ) ===== */
+/* ===== TÉLÉCHARGEMENT PDF ===== */
 
 function downloadPDF() {
   try {
@@ -833,7 +833,7 @@ function downloadPDF() {
   }
 }
 
-/* ===== VÉRIFICATION ACCÈS PROJET (VERSION FINALE AVEC GESTION BLOCAGE) ===== */
+/* ===== VÉRIFICATION ACCÈS PROJET (VERSION AMÉLIORÉE DÉTECTION BLOCAGE) ===== */
 
 function checkProjectAccess() {
   const { hasUnivers, hasSituation } = checkRequiredData();
@@ -869,25 +869,65 @@ function checkProjectAccess() {
   );
   
   if(userConfirm){
-    const chatURL = 'https://chatgpt.com/g/g-6914f232fb048191b5df9a123ac6af82-reconversion-360-ia';
-    const newWindow = window.open(chatURL, '_blank');
+    const chatURL = 'https://chatgpt.com/g/g-69286ee4397881919a0f0d8517d86c4a-orientation-360-ia';
     
-    // ✅ VÉRIFIER SI BLOQUÉ (Windows / ChatGPT non chargé / Bloqueur pop-up)
-    setTimeout(() => {
-      if(!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined'){
-        // Message avec le lien à copier manuellement
-        alert(
-          "⚠️ OUVERTURE BLOQUÉE PAR VOTRE NAVIGATEUR\n\n" +
-          "Pas de problème ! Voici le lien à copier :\n\n" +
-          chatURL + "\n\n" +
-          "📋 ÉTAPES :\n" +
-          "1️⃣ Sélectionnez et copiez le lien ci-dessus\n" +
-          "2️⃣ Ouvrez un nouvel onglet dans votre navigateur\n" +
-          "3️⃣ Collez le lien (Ctrl+V sur PC ou Cmd+V sur Mac)\n" +
-          "4️⃣ Appuyez sur Entrée"
-        );
-      }
-    }, 100);
+    try {
+      const newWindow = window.open(chatURL, '_blank');
+      
+      // ✅ DÉTECTION AMÉLIORÉE DU BLOCAGE (délai augmenté + meilleure logique)
+      setTimeout(() => {
+        try {
+          // Vérifier si la fenêtre existe et n'est pas fermée
+          if(!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined'){
+            // Fenêtre bloquée
+            showBlockedPopupMessage(chatURL);
+          } else {
+            // Tenter d'accéder à location pour vérifier si réellement ouvert
+            try {
+              // Si on peut accéder, c'est bon
+              const test = newWindow.location.href;
+              console.log("✅ Fenêtre ouverte avec succès");
+            } catch(e) {
+              // Si erreur, c'est probablement bloqué (erreur cross-origin)
+              // Mais on ne fait rien car c'est normal avec ChatGPT
+              console.log("✅ Fenêtre probablement ouverte (erreur cross-origin normale)");
+            }
+          }
+        } catch(e) {
+          console.error("Erreur vérification fenêtre:", e);
+        }
+      }, 800); // Délai augmenté à 800ms pour laisser le temps au navigateur
+      
+    } catch(error) {
+      console.error("Erreur ouverture fenêtre:", error);
+      showBlockedPopupMessage(chatURL);
+    }
+  }
+}
+
+/* ===== MESSAGE POUR POP-UP BLOQUÉ ===== */
+
+function showBlockedPopupMessage(chatURL) {
+  alert(
+    "⚠️ OUVERTURE BLOQUÉE PAR VOTRE NAVIGATEUR\n\n" +
+    "Votre navigateur bloque les pop-ups.\n\n" +
+    "📋 SOLUTION SIMPLE :\n\n" +
+    "1️⃣ Appuyez sur Ctrl+C (PC) ou Cmd+C (Mac) maintenant\n" +
+    "   pour copier le lien\n\n" +
+    "2️⃣ Ouvrez un nouvel onglet\n\n" +
+    "3️⃣ Collez le lien (Ctrl+V ou Cmd+V)\n\n" +
+    "4️⃣ Appuyez sur Entrée\n\n" +
+    "Le lien a été copié dans votre presse-papiers."
+  );
+  
+  // Tenter de copier le lien dans le presse-papiers
+  try {
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(chatURL);
+      console.log("✅ Lien copié dans le presse-papiers");
+    }
+  } catch(e) {
+    console.log("❌ Impossible de copier automatiquement le lien");
   }
 }
 
