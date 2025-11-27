@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Univers métiers – sélection</title>
+  <link rel="stylesheet" href="universes-style.css"/>
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>🌍 Univers métiers</h1>
+    <p class="subtitle">
+      Sélectionne librement les univers qui t’attirent.
+      Appuie sur <span class="pill">🔎</span> pour voir les sous-univers.
+    </p>
+    <div id="selectedCounter" class="counter">0 univers sélectionné</div>
+  </header>
+
+  <main id="universList" class="univers-list" aria-live="polite"></main>
+
+  <footer class="page-footer">
+    <button id="btnClear" class="alt-btn" type="button">↩️ Réinitialiser la sélection</button>
+  </footer>
+
+  <script src="universes-data.js"></script>
+  <script src="universes-script.js"></script>
+</body>
+</html>
