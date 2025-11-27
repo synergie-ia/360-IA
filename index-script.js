@@ -805,7 +805,7 @@ function downloadPDF() {
     }
     
     pdfContent += "═══════════════════════════════════════════════════════\n";
-    pdfContent += "Document généré par Reconversion 360 IA\n";
+    pdfContent += "Document généré par Orientation 360 IA\n";
     pdfContent += "© 2025 Synergie IA\n";
     pdfContent += "═══════════════════════════════════════════════════════";
     
