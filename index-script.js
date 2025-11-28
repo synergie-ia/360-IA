@@ -1,12 +1,12 @@
 /* 
   ============================================
-  ORIENTATION 360 IA - PAGE D'ACCUEIL
+ Passerelle-Orientation - PAGE D'ACCUEIL
   ============================================
   Gestion des badges de complétion et actions
   VERSION COMPLÈTE - Copie profil + univers + bilan
   VERSION ATLAS - Section HTML cachée pour ChatGPT
   VERSION FINALE - Messages améliorés + gestion blocage
-  VERSION 37 - Bouton PDF restauré + Debug retiré + Détection blocage corrigée
+  VERSION 38 - Suppression message confirmation + détection blocage
   ============================================
 */
 
@@ -492,7 +492,7 @@ function copyResultsToClipboard() {
     const situationData = localStorage.getItem('situation_data');
     
     let textToCopy = "═══════════════════════════════════════\n";
-    textToCopy += "   ORIENTATION 360 IA - MES RÉSULTATS\n";
+    textToCopy += "   Passerelle-Orientation - MES RÉSULTATS\n";
     textToCopy += "═══════════════════════════════════════\n\n";
     
     // PROFIL PERSONNEL
@@ -616,7 +616,7 @@ function copyResultsToClipboard() {
     }
     
     textToCopy += "═══════════════════════════════════════\n";
-    textToCopy += "Généré par Orientation 360 IA\n";
+    textToCopy += "Généré par Passerelle-Orientation  \n";
     textToCopy += new Date().toLocaleDateString('fr-FR', { 
       year: 'numeric', 
       month: 'long', 
@@ -674,7 +674,7 @@ function downloadPDF() {
     let pdfContent = "";
     
     pdfContent += "═══════════════════════════════════════════════════════\n";
-    pdfContent += "        Orientation 360 IA - MES RÉSULTATS\n";
+    pdfContent += "        Transition 360 IA - MES RÉSULTATS\n";
     pdfContent += "═══════════════════════════════════════════════════════\n\n";
     pdfContent += "Date de génération: " + new Date().toLocaleDateString('fr-FR', { 
       weekday: 'long',
@@ -815,7 +815,7 @@ function downloadPDF() {
     a.href = url;
     
     const dateStr = new Date().toISOString().split('T')[0];
-    a.download = `Orientation_360_IA_${dateStr}.txt`;
+    a.download = `Passerelle-Orientation_${dateStr}.txt`;
     
     document.body.appendChild(a);
     a.click();
@@ -856,225 +856,10 @@ function checkProjectAccess() {
     }
   }
   
-  // ✅ MESSAGE AVEC CONFIRMATION
-  const userConfirm = confirm(
-    "✅ Données complètes !\n\n" +
-    "📋 AVANT DE CONTINUER - IMPORTANT :\n\n" +
-    "🌐 Vous utilisez ATLAS (navigateur ChatGPT) ?\n" +
-    "   → Cliquez OK (vos données seront lues automatiquement)\n\n" +
-    "📋 Vous N'utilisez PAS Atlas ?\n" +
-    "   → Cliquez ANNULER\n" +
-    "   → Copiez d'abord vos résultats avec le bouton ci-dessous\n" +
-    "   → Puis revenez cliquer sur \"Construire mon projet\""
-  );
-  
-  if(userConfirm){
-    const chatURL = 'https://chatgpt.com/g/g-69286ee4397881919a0f0d8517d86c4a-orientation-360-ia';
-    const newWindow = window.open(chatURL, '_blank');
-    
-    // ✅ DÉTECTION SIMPLE : On vérifie juste si window.open a retourné null
-    if(!newWindow){
-      // Pop-up bloqué immédiatement
-      showBlockedPopupMessage(chatURL);
-    } else {
-      // Pop-up autorisé, vérification après 1 seconde pour être sûr
-      setTimeout(() => {
-        if(newWindow.closed){
-          // L'utilisateur a fermé la fenêtre rapidement
-          console.log("ℹ️ Fenêtre fermée par l'utilisateur");
-        } else {
-          console.log("✅ Fenêtre ouverte avec succès");
-        }
-      }, 1000);
-    }
-  }
-}
-
-/* ===== MESSAGE POUR POP-UP BLOQUÉ (MODALE HTML) ===== */
-
-function showBlockedPopupMessage(chatURL) {
-  // Créer la modale
-  const modal = document.createElement('div');
-  modal.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.85);
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  `;
-  
-  const content = document.createElement('div');
-  content.style.cssText = `
-    background: white;
-    max-width: 600px;
-    width: 100%;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-  `;
-  
-  // Titre
-  const title = document.createElement('h2');
-  title.textContent = '⚠️ Ouverture bloquée';
-  title.style.cssText = `
-    margin: 0 0 20px 0;
-    color: #ff6b6b;
-    font-size: 24px;
-  `;
-  
-  // Message
-  const message = document.createElement('p');
-  message.textContent = 'Votre navigateur bloque l\'ouverture automatique de la fenêtre.';
-  message.style.cssText = `
-    margin: 0 0 20px 0;
-    color: #333;
-    font-size: 16px;
-    line-height: 1.5;
-  `;
-  
-  // Label
-  const label = document.createElement('p');
-  label.textContent = '📋 Copiez ce lien :';
-  label.style.cssText = `
-    margin: 0 0 10px 0;
-    color: #333;
-    font-weight: 600;
-    font-size: 16px;
-  `;
-  
-  // Zone de lien sélectionnable
-  const linkBox = document.createElement('div');
-  linkBox.style.cssText = `
-    background: #f5f5f5;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    font-family: monospace;
-    font-size: 14px;
-    word-break: break-all;
-    cursor: text;
-    user-select: all;
-  `;
-  linkBox.textContent = chatURL;
-  
-  // Sélectionner le texte au clic
-  linkBox.addEventListener('click', function() {
-    const range = document.createRange();
-    range.selectNodeContents(linkBox);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-  });
-  
-  // Container pour les boutons
-  const buttonsContainer = document.createElement('div');
-  buttonsContainer.style.cssText = `
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  `;
-  
-  // Bouton Copier
-  const copyBtn = document.createElement('button');
-  copyBtn.textContent = '📋 Copier le lien';
-  copyBtn.style.cssText = `
-    flex: 1;
-    min-width: 150px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 16px;
-  `;
-  copyBtn.addEventListener('click', function() {
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(chatURL)
-        .then(() => {
-          copyBtn.textContent = '✅ Copié !';
-          copyBtn.style.background = '#10b981';
-          setTimeout(() => {
-            copyBtn.textContent = '📋 Copier le lien';
-            copyBtn.style.background = '#4CAF50';
-          }, 2000);
-        })
-        .catch(err => {
-          console.error("Erreur copie:", err);
-          alert("Veuillez sélectionner et copier manuellement (Ctrl+C ou Cmd+C)");
-        });
-    } else {
-      alert("Veuillez sélectionner et copier manuellement (Ctrl+C ou Cmd+C)");
-    }
-  });
-  
-  // Bouton Fermer
-  const closeBtn = document.createElement('button');
-  closeBtn.textContent = '✕ Fermer';
-  closeBtn.style.cssText = `
-    flex: 1;
-    min-width: 150px;
-    background: #6c757d;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 16px;
-  `;
-  closeBtn.addEventListener('click', function() {
-    document.body.removeChild(modal);
-  });
-  
-  // Instruction
-  const instruction = document.createElement('p');
-  instruction.textContent = '➡️ Collez ensuite le lien dans votre navigateur (Ctrl+V ou Cmd+V)';
-  instruction.style.cssText = `
-    margin: 20px 0 0 0;
-    color: #666;
-    font-size: 14px;
-    text-align: center;
-    font-style: italic;
-  `;
-  
-  // Assembler
-  buttonsContainer.appendChild(copyBtn);
-  buttonsContainer.appendChild(closeBtn);
-  
-  content.appendChild(title);
-  content.appendChild(message);
-  content.appendChild(label);
-  content.appendChild(linkBox);
-  content.appendChild(buttonsContainer);
-  content.appendChild(instruction);
-  
-  modal.appendChild(content);
-  document.body.appendChild(modal);
-  
-  // Fermer en cliquant en dehors
-  modal.addEventListener('click', function(e) {
-    if(e.target === modal){
-      document.body.removeChild(modal);
-    }
-  });
-  
-  // Sélectionner automatiquement le lien
-  setTimeout(() => {
-    const range = document.createRange();
-    range.selectNodeContents(linkBox);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }, 100);
+  // ✅ OUVERTURE DIRECTE CHATGPT
+  const chatURL = 'https://chatgpt.com/g/g-6914f232fb048191b5df9a123ac6af82-Passerelle-Orientation';
+  window.open(chatURL, '_blank');
+  console.log("✅ Ouverture ChatGPT");
 }
 
 /* ===== MÉTHODE DE COPIE ALTERNATIVE ===== */
