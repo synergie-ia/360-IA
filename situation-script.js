@@ -1,9 +1,9 @@
 /* 
   ============================================
-  RECONVERSION 360 IA - BILAN DE SITUATION
+  ORIENTATION JEUNES IA - BILAN DE SITUATION
   ============================================
   Gestion du formulaire de bilan personnel
-  VERSION 36 - Ajout Q21 Tests psychotechniques
+  VERSION JEUNES - 15 questions (q1 à q15)
   ============================================
 */
 
@@ -134,17 +134,17 @@ function validateForm() {
     }
   });
   
-  // Validation spécifique pour l'âge
+  // Validation spécifique pour l'âge (14-30 ans pour Orientation Jeunes)
   const ageField = document.getElementById('age');
   if(ageField && ageField.value) {
     const age = parseInt(ageField.value);
-    if(age < 16 || age > 99) {
+    if(age < 14 || age > 30) {
       isValid = false;
       ageField.classList.add('error');
       
       const errorMsg = document.createElement('span');
       errorMsg.className = 'error-message';
-      errorMsg.textContent = 'L\'âge doit être entre 16 et 99 ans';
+      errorMsg.textContent = 'L\'âge doit être entre 14 et 30 ans';
       ageField.parentNode.appendChild(errorMsg);
       
       if(!firstError) {
@@ -172,11 +172,11 @@ function validateForm() {
 function collectFormData() {
   const formData = {};
   
-  // Liste de tous les champs du formulaire (ajout de q21)
+  // Liste de tous les champs du formulaire - ORIENTATION JEUNES : 15 QUESTIONS
   const fields = [
     'prenom', 'age',
     'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10',
-    'q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q17', 'q18', 'q19', 'q20', 'q21'
+    'q11', 'q12', 'q13', 'q14', 'q15'
   ];
   
   fields.forEach(fieldId => {
