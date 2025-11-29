@@ -27,77 +27,76 @@ const QUESTIONS = [
   {
     id: "q1",
     title: "1. Mouvement & plein air",
-    text: "Je me vois plutôt dans un métier qui bouge, en extérieur, en mouvement ou physiquement actif.",
+    text: "Je me vois plutôt dans un métier où je bouge, me dépense physiquement et où je peux parfois travailler en extérieur (bouger, se déplacer, être actif, se dépenser, travailler dehors).",
     dim: "MP"
   },
   {
     id: "q2",
     title: "2. Manuel & Technique",
-    text: "Je me vois plutôt dans un métier manuel, concret, où l'on fabrique, répare ou manipule des objets.",
+    text: "Je me vois plutôt dans un métier où je fabrique, répare ou bricole des objets avec mes mains (fabriquer, réparer, bricoler, monter, démonter).",
     dim: "MT"
   },
   {
     id: "q3",
     title: "3. Investigation & Information",
-    text: "Je me vois plutôt dans un métier où l'on enquête, où l'on cherche, où l'on comprend profondément les choses.",
+    text: "Je me vois plutôt dans un métier où je cherche des informations, enquête et comprends comment les choses fonctionnent (chercher, enquêter, comprendre, découvrir, explorer).",
     dim: "IN"
   },
   {
     id: "q4",
     title: "4. Sciences & Technologies",
-    text: "Je me vois plutôt dans un métier lié aux technologies, aux systèmes techniques ou aux outils spécialisés.",
+    text: "Je me vois plutôt dans un métier où j'utilise des ordinateurs, des machines ou des outils techniques pour travailler (utiliser, programmer, installer, configurer, dépanner).",
     dim: "ST"
   },
   {
     id: "q5",
     title: "5. Arts & Expressions",
-    text: "Je me vois plutôt dans un métier lié aux arts, à la création ou à l'expression artistique.",
+    text: "Je me vois plutôt dans un métier où je crée, m'exprime artistiquement ou réalise des choses visuelles (dessiner, peindre, sculpter, illustrer, composer, interpréter).",
     dim: "AE"
   },
   {
     id: "q6",
     title: "6. Idées & Conception",
-    text: "Je me vois plutôt dans un métier où l'on imagine, conçoit ou crée de nouvelles idées.",
+    text: "Je me vois plutôt dans un métier où j'invente de nouvelles idées, imagine des projets et trouve des solutions originales (inventer, imaginer, concevoir, proposer, innover).",
     dim: "IC"
   },
   {
     id: "q7",
     title: "7. Aide & Accompagnement",
-    text: "Je me vois plutôt dans un métier où l'on aide, accompagne ou soutient les autres.",
+    text: "Je me vois plutôt dans un métier où j'aide les gens, les écoute et les soutiens quand ils en ont besoin (aider, écouter, soutenir, accompagner, rassurer).",
     dim: "AA"
   },
   {
     id: "q8",
     title: "8. Relations & Sociabilité",
-    text: "Je me vois plutôt dans un métier où l'on échange, écoute, comprend les autres et crée du lien social.",
+    text: "Je me vois plutôt dans un métier où je rencontre beaucoup de gens, échange avec eux et crée du contact (rencontrer, échanger, discuter, accueillir, convaincre).",
     dim: "RS"
   },
   {
     id: "q9",
     title: "9. Leadership & Stratégie",
-    text: "Je me vois plutôt dans un métier où l'on dirige, organise ou prend des décisions importantes.",
+    text: "Je me vois plutôt dans un métier où je dirige une équipe, organise le travail et prends les décisions importantes (diriger, organiser, décider, manager, coordonner).",
     dim: "LS"
   },
   {
     id: "q10",
     title: "10. Action & Initiative",
-    text: "Je me vois plutôt dans un métier où il faut agir vite, prendre des initiatives et passer à l'action.",
+    text: "Je me vois plutôt dans un métier où je réagis rapidement, prends des initiatives et passe à l'action sans attendre (agir, réagir, intervenir, déclencher, se lancer).",
     dim: "AI"
   },
   {
     id: "q11",
     title: "11. Règles & Méthodes",
-    text: "Je me vois plutôt dans un métier où l'on applique des règles, des méthodes et où la précision est essentielle.",
+    text: "Je me vois plutôt dans un métier où je suis des règles précises, respecte des procédures et vérifie que tout est correct (suivre, respecter, vérifier, contrôler, appliquer).",
     dim: "RM"
   },
   {
     id: "q12",
     title: "12. Données & Chiffres",
-    text: "Je me vois plutôt dans un métier où l'on analyse des données, compare, calcule ou modélise des informations.",
+    text: "Je me vois plutôt dans un métier où je travaille avec des chiffres, calcule ou analyse des données et des statistiques (calculer, compter, analyser, comparer, mesurer).",
     dim: "DC"
   }
 ];
-
 
 // ===== MATRICES DE CORRÉLATION =====
 // Ordre : MP, MT, IN, ST, AE, IC, AA, RS, LS, AI, RM, DC
