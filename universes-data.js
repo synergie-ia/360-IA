@@ -39,13 +39,13 @@ const QUESTIONS = [
   {
     id: "q3",
     title: "3. Investigation & Information",
-    text: "Je me vois plutôt dans un métier où je cherche des informations, enquête et comprends comment les choses fonctionnent (chercher, enquêter, comprendre, découvrir, explorer).",
+    text: "Je me vois plutôt dans un métier où je cherche des informations, enquête et comprends comment les choses fonctionnent (chercher, enquêter, investiguer, interviewer, documenter).",
     dim: "IN"
   },
   {
     id: "q4",
     title: "4. Sciences & Technologies",
-    text: "Je me vois plutôt dans un métier où j'utilise des sciences, des technologies ou des outils spécialisés pour travailler (expérimenter, observer, analyser, utiliser, programmer).",
+    text: "Je me vois plutôt dans un métier où j'utilise des sciences, des technologies ou des outils spécialisés pour travailler (expérimenter, mesurer, tester, programmer, configurer).",
     dim: "ST"
   },
   {
