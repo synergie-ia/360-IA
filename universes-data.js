@@ -45,7 +45,7 @@ const QUESTIONS = [
   {
     id: "q4",
     title: "4. Sciences & Technologies",
-    text: "Je me vois plutôt dans un métier où j'utilise des ordinateurs, des machines ou des outils techniques pour travailler (utiliser, programmer, installer, configurer, dépanner).",
+    text: "Je me vois plutôt dans un métier où j'utilise des sciences, des technologies ou des outils spécialisés pour travailler (expérimenter, observer, analyser, utiliser, programmer).",
     dim: "ST"
   },
   {
@@ -97,7 +97,6 @@ const QUESTIONS = [
     dim: "DC"
   }
 ];
-
 // ===== MATRICES DE CORRÉLATION =====
 // Ordre : MP, MT, IN, ST, AE, IC, AA, RS, LS, AI, RM, DC
 // Coefficients : 6=essentiel, 4=important, 2=utile
