@@ -136,17 +136,17 @@ body {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* PREMIÈRE CARTE PLUS FONCÉE */
+/* COULEURS SELON LA CAPTURE D'ÉCRAN */
 .action-card:nth-child(1) {
   background: linear-gradient(135deg, #0072C6 0%, #0052A3 100%) !important;
 }
 
 .action-card:nth-child(2) {
-  background: linear-gradient(135deg, #41B6E6 0%, #0072C6 100%) !important;
+  background: linear-gradient(135deg, #5CBDE6 0%, #41B6E6 100%) !important;
 }
 
 .action-card:nth-child(3) {
-  background: linear-gradient(135deg, #0052A3 0%, #003580 100%) !important;
+  background: linear-gradient(135deg, #003580 0%, #001F4D 100%) !important;
 }
 
 /* ICÔNES - MÊME TAILLE QUE GESTACRISES */
