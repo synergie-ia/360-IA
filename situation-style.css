@@ -136,17 +136,17 @@ body {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* COULEURS UNIES COMME GESTACRISES */
+/* COULEURS AVEC DÉGRADÉS - DU PLUS CLAIR AU PLUS FONCÉ */
 .action-card:nth-child(1) {
-  background: #0072C6 !important;
+  background: linear-gradient(135deg, #41B6E6 0%, #0072C6 100%) !important;
 }
 
 .action-card:nth-child(2) {
-  background: #0052A3 !important;
+  background: linear-gradient(135deg, #0072C6 0%, #0052A3 100%) !important;
 }
 
 .action-card:nth-child(3) {
-  background: #003580 !important;
+  background: linear-gradient(135deg, #0052A3 0%, #003580 100%) !important;
 }
 
 /* ICÔNES - MÊME TAILLE QUE GESTACRISES */
