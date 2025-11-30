@@ -4,7 +4,7 @@
   --card:#ffffff;
   --ink:#0052A3;
   --muted:#0052A3;
-  --line:#41B6E6;
+  --line:#d1d5db;
   --c0:#e74c3c;
   --c1:#f39c12;
   --c2:#9ca3af;
@@ -99,7 +99,7 @@ html,body{
 /* ===== BOÎTE D'INFORMATION ===== */
 .info-box{
   background:#ffffff;
-  border:2px solid #41B6E6;
+  border:2px solid #d1d5db;
   border-radius:10px;
   padding:12px 14px;
   margin:12px 0;
@@ -123,7 +123,7 @@ html,body{
 
 .legend-box{
   background:#ffffff;
-  border:2px solid #41B6E6;
+  border:2px solid #d1d5db;
   border-radius:10px;
   padding:14px 16px;
   margin:16px 0 20px;
@@ -144,13 +144,13 @@ html,body{
   color:#0052A3;
   text-align:center;
   padding-top:10px;
-  border-top:2px solid #41B6E6;
+  border-top:2px solid #d1d5db;
 }
 
 /* ===== MESSAGE D'INFORMATION UNIVERS ===== */
 .univers-info-message{
   background:#ffffff;
-  border:2px solid #41B6E6;
+  border:2px solid #d1d5db;
   border-radius:8px;
   padding:12px 16px;
   margin:0 0 20px 0;
@@ -183,7 +183,7 @@ html,body{
 /* ===== CARTES DE QUESTIONS - DESIGN OPTIMISÉ ===== */
 .question-card{
   background:#ffffff;
-  border:2px solid #41B6E6;
+  border:2px solid #d1d5db;
   border-radius:12px;
   padding:18px;
   margin:16px 0;
@@ -242,7 +242,7 @@ html,body{
   width:85px;
   height:85px;
   border-radius:12px;
-  border:3px solid #41B6E6;
+  border:3px solid #d1d5db;
   background:#fff;
   cursor:pointer;
   transition:all .15s ease;
@@ -255,7 +255,7 @@ html,body{
 }
 
 .rate-btn:hover:not(.disabled){
-  border-color:#0072C6;
+  border-color:#9ca3af;
   box-shadow:0 3px 10px rgba(0,0,0,.2);
   transform:translateY(-3px);
 }
@@ -391,7 +391,7 @@ html,body{
 #profileSection,
 #univers-section{
   background:#ffffff;
-  border:2px solid #41B6E6;
+  border:2px solid #d1d5db;
   border-radius:16px;
   padding:20px 16px;
   margin:24px 0;
@@ -404,7 +404,7 @@ html,body{
   gap:12px;
   align-items:center;
   padding:8px 0;
-  border-top:1px dashed #41B6E6;
+  border-top:1px dashed #d1d5db;
 }
 
 .profile-row:first-child{border-top:none}
@@ -429,7 +429,7 @@ html,body{
 
 /* ===== CARTES UNIVERS ===== */
 .univers-card{
-  border:2px solid #41B6E6;
+  border:2px solid #d1d5db;
   border-radius:10px;
   padding:10px 12px;
   margin:8px 0;
@@ -438,7 +438,7 @@ html,body{
 }
 
 .univers-card:hover{
-  border-color:#0072C6;
+  border-color:#9ca3af;
   box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
@@ -666,7 +666,7 @@ html,body{
   width:clamp(36px, 8vw, 40px);
   height:clamp(36px, 8vw, 40px);
   border-radius:50%;
-  border:2px solid #41B6E6;
+  border:2px solid #d1d5db;
   background:#fff;
   display:flex;
   align-items:center;
@@ -677,7 +677,7 @@ html,body{
 }
 
 .btn-select-univers:hover{
-  box-shadow:0 0 0 3px rgba(65,182,230,.2);
+  box-shadow:0 0 0 3px rgba(209,213,219,.3);
   transform:scale(1.05);
 }
 
@@ -697,7 +697,7 @@ html,body{
 .sub-univers-list{
   display:none;
   background:#ffffff;
-  border:1px solid #41B6E6;
+  border:1px solid #d1d5db;
   padding:14px;
   border-radius:8px;
   margin-top:12px;
@@ -712,7 +712,7 @@ html,body{
   gap:10px;
   padding:10px 0;
   font-size:clamp(13px, 2.5vw, 14px);
-  border-bottom:1px dashed #41B6E6;
+  border-bottom:1px dashed #d1d5db;
 }
 
 .sub-item:last-child{
@@ -746,7 +746,7 @@ html,body{
   margin:12px 0;
   padding:10px;
   background:#ffffff;
-  border:2px solid #41B6E6;
+  border:2px solid #d1d5db;
   border-radius:8px;
   transition:all .3s ease;
 }
@@ -762,7 +762,7 @@ html,body{
   background:#ffffff;
   padding:12px 16px;
   border-radius:8px;
-  border:2px solid #41B6E6;
+  border:2px solid #d1d5db;
 }
 
 /* ===== BOUTONS PRINCIPAUX ===== */
@@ -776,7 +776,8 @@ html,body{
   font-weight:700;
   font-size:clamp(15px, 3vw, 16px);
   cursor:pointer;
-  margin-top:12px;
+  margin:12px auto;
+  display:block;
   transition:all .2s ease;
 }
 
