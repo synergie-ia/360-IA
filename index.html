@@ -1,138 +1,352 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Passerelle-Orientation</title>
-  <link rel="stylesheet" href="index-style.css" />
-</head>
-<body>
-  <div class="container">
-    <!-- ===== TITRE PRINCIPAL ===== -->
-    <header class="hero">
-      <h1 class="hero-title">
-        <span class="title-line1">
-          L'intelligence artificielle au service de l'orientation scolaire  
-        </span>
-        <span class="title-line2">
-        </span>
-      </h1>
-      
-      <!-- ===== BOUTON UNIVERS-MÉTIERS ===== -->
-      <div class="univers-button-container">
-        <button id="btnUniversMetiers" class="univers-btn">
-          <svg class="univers-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="2" y1="12" x2="22" y2="12"></line>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-          </svg>
-          <span>Voir les univers-métiers</span>
-        </button>
-      </div>
-    </header>
-    
-    <!-- ===== CARTES ===== -->
-    <div class="cards-grid">
-      <!-- CARTE 1 -->
-      <div class="action-card">
-        <div class="card-icon">🎯</div>
-        <h2 class="card-title">Découvrez votre profil professionnel</h2>
-        <p class="card-desc">Identifiez vos centres d'intérêt et explorez les univers-métiers qui vous correspondent.</p>
-        <button class="card-btn" onclick="window.location.href='test.html'">
-          Démarrer le questionnaire
-        </button>
-      </div>
-      
-      <!-- CARTE 2 -->
-      <div class="action-card">
-        <div class="card-icon">📋</div>
-        <h2 class="card-title">Réalisez votre bilan personnel</h2>
-        <p class="card-desc">Faites le point sur votre situation, vos compétences, votre parcours et vos aspirations.</p>
-        <button class="card-btn" onclick="window.location.href='situation.html'">
-          Compléter mon bilan
-        </button>
-      </div>
-      
-      <!-- CARTE 3 -->
-      <div class="action-card">
-        <div class="card-icon">🧭</div>
-        <h2 class="card-title">Construisez votre projet professionnel</h2>
-        <p class="card-desc">Bénéficiez d'un accompagnement intelligent pour structurer un projet réaliste et réalisable.</p>
-        <button id="btnConstructProject" class="card-btn">
-          Construire mon projet
-        </button>
-      </div>
-    </div>
-    
-    <!-- ===== BOUTONS BAS ===== -->
-    <div class="action-buttons-section">
-      <button id="btnResetData" class="action-btn-small reset-btn">
-        <svg class="btn-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="1 4 1 10 7 10"></polyline>
-          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-        </svg>
-        <span>Réinitialiser mes données</span>
-      </button>
-      
-      <button id="btnCopyResults" class="action-btn-small copy-btn">
-        <svg class="btn-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-        <span>Copier mes résultats</span>
-      </button>
-      
-      <button id="btnDownloadPDF" class="action-btn-small download-btn">
-        <svg class="btn-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
-        </svg>
-        <span>Télécharger mes résultats</span>
-      </button>
-    </div>
-    
-    <p class="action-notice">
-  📌 <strong>Important :</strong> Si vous n'utilisez pas le navigateur Atlas de ChatGPT, 
-  copiez ou téléchargez vos résultats avant de continuer
-</p>
-    <!-- ===== SECTION CACHÉE POUR ATLAS ===== -->
-    <div id="atlasData" style="display: none;" aria-hidden="true">
-      <article id="atlasContent" data-type="Passerelle-Orientation-results">
-        <header>
-          <h1>Passerelle-Orientation - Résultats</h1>
-          <time id="atlasDate"></time>
-        </header>
-        
-        <section id="atlasProfile" data-section="profil-personnel">
-          <h2>Profil Personnel</h2>
-          <div id="atlasProfileData"></div>
-        </section>
-        
-        <section id="atlasUnivers" data-section="univers-selectionnes">
-          <h2>Univers Sélectionnés</h2>
-          <div id="atlasUniversData"></div>
-        </section>
-        
-        <section id="atlasBilan" data-section="bilan-personnel">
-          <h2>Bilan Personnel</h2>
-          <div id="atlasIdentite" data-subsection="identite"></div>
-          <div id="atlasSituation" data-subsection="situation"></div>
-          <div id="atlasRessources" data-subsection="ressources"></div>
-          <div id="atlasValeurs" data-subsection="valeurs"></div>
-          <div id="atlasContraintes" data-subsection="contraintes"></div>
-          <div id="atlasFormation" data-subsection="formation"></div>
-          <div id="atlasTests" data-subsection="tests"></div>
-          <div id="atlasOuverture" data-subsection="ouverture"></div>
-        </section>
-      </article>
-    </div>
-    
-    <footer class="page-footer">
-      © 2025 Synergie IA - Passerelle-Orientation
-    </footer>
-  </div>
+/* ===== VARIABLES ===== */
+:root {
+  --primary: #41B6E6;
+  --primary-dark: #0072C6;
+  --secondary: #0052A3;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --text-dark: #0052A3;
+  --text-medium: #6b7280;
+  --text-light: #9ca3af;
+  --bg-light: #f9fafb;
+  --bg-white: #ffffff;
+  --border: #41B6E6;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: white;
+  color: #0052A3;
+  line-height: 1.6;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 60px 40px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* TITRE - MÊME TAILLE QUE GESTACRISES */
+.hero-title {
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #0052A3 !important;
+  margin-bottom: 15px;
+}
+
+.title-line1,
+.title-line2 {
+  display: block;
+  color: #0052A3 !important;
+}
+
+/* ===== BOUTON UNIVERS-MÉTIERS ===== */
+.univers-button-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.univers-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  background: linear-gradient(135deg, #41B6E6 0%, #0072C6 100%) !important;
+  color: white !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.univers-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.univers-btn:active {
+  transform: translateY(0);
+}
+
+.univers-icon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+/* ===== CARDS GRID - PLUS D'ESPACE ===== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+/* CARTES - PLUS PETITES COMME GESTACRISES */
+.action-card {
+  background: var(--bg-white);
+  border: none;
+  border-radius: 16px;
+  padding: 20px 15px;
+  text-align: center;
+  transition: var(--transition);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  position: relative;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.action-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* DÉGRADÉS COMME GESTACRISES BOUTONS 2, 3, 4 */
+.action-card:nth-child(1) {
+  background: linear-gradient(135deg, #009EDE 0%, #0066CC 100%) !important;
+}
+
+.action-card:nth-child(2) {
+  background: linear-gradient(135deg, #0066CC 0%, #0033A0 100%) !important;
+}
+
+.action-card:nth-child(3) {
+  background: linear-gradient(135deg, #0033A0 0%, #002470 100%) !important;
+}
+
+/* ICÔNES - PLUS PETITES */
+.card-icon {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  pointer-events: none;
+}
+
+/* TITRES - PLUS PETITS */
+.card-title {
+  font-size: 0.95em;
+  font-weight: 600;
+  color: white !important;
+  margin-bottom: 10px;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+.card-desc {
+  display: none;
+}
+
+/* BOUTONS INVISIBLES MAIS CLIQUABLES */
+.card-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0;
+  opacity: 0;
+  z-index: 10;
+}
+
+/* ===== BADGES DE COMPLÉTION ===== */
+.completion-badge {
+  background: var(--success);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 8px;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+  pointer-events: none;
+  position: relative;
+  z-index: 5;
+}
+
+/* ===== ACTION BUTTONS SECTION ===== */
+.action-buttons-section {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.action-btn-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  background: linear-gradient(135deg, #41B6E6 0%, #0072C6 100%) !important;
+  color: white !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.action-btn-small:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, #5CBDE6 0%, #0082D6 100%) !important;
+}
+
+.action-btn-small:active {
+  transform: translateY(0);
+}
+
+.btn-icon-small {
+  width: 20px;
+  height: 20px;
+}
+
+/* ===== ACTION NOTICE ===== */
+.action-notice {
+  text-align: center;
+  font-size: 15px;
+  color: #0052A3 !important;
+  margin-bottom: 40px;
+  font-style: normal;
+  padding: 14px 20px;
+  background: #e6f3ff;
+  border-left: 4px solid #0072C6;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.action-notice strong {
+  color: #0052A3 !important;
+  font-weight: 700;
+}
+
+/* ===== FOOTER ===== */
+.page-footer {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 2px solid var(--border);
+  color: var(--text-medium);
+  font-size: 14px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+  }
   
-  <script src="index-script.js"></script>
-</body>
-</html>
+  .container {
+    padding: 40px 20px;
+  }
+  
+  .hero-title {
+    font-size: 1.4em;
+    color: #0052A3 !important;
+  }
+  
+  .univers-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  
+  .univers-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .action-card {
+    min-height: 120px;
+    padding: 18px 12px;
+  }
+
+  .card-icon {
+    font-size: 2.2em;
+  }
+
+  .card-title {
+    font-size: 0.9em;
+  }
+  
+  .action-buttons-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .action-btn-small {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.action-card {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.action-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.action-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.action-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
