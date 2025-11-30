@@ -453,13 +453,13 @@ function updateUniversCounter(){
       : `${n} univers sélectionnés${maxLabel}`;
   
   if(n >= 5){
-    counter.style.background = "#fef3c7";
-    counter.style.color = "#92400e";
-    counter.style.borderColor = "#fcd34d";
+    counter.style.background = "#ffffff";
+    counter.style.color = "#0052A3";
+    counter.style.borderColor = "#d1d5db";
   } else {
-    counter.style.background = "#eef2ff";
-    counter.style.color = "#5a4af4";
-    counter.style.borderColor = "transparent";
+    counter.style.background = "#ffffff";
+    counter.style.color = "#0052A3";
+    counter.style.borderColor = "#d1d5db";
   }
 }
 
