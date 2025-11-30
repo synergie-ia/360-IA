@@ -641,8 +641,8 @@ html,body{
 }
 
 .btn-toggle-sub{
-  background:linear-gradient(135deg, #41B6E6 0%, #0072C6 100%);
-  border:none;
+  background:#ffffff;
+  border:2px solid #d1d5db;
   border-radius:8px;
   padding:8px;
   font-size:clamp(18px, 4vw, 20px);
@@ -654,11 +654,12 @@ html,body{
   display:flex;
   align-items:center;
   justify-content:center;
-  color:white;
+  color:#0052A3;
 }
 
 .btn-toggle-sub:hover{
-  background:linear-gradient(135deg, #5CBDE6 0%, #0082D6 100%);
+  background:#f9fafb;
+  border-color:#9ca3af;
   transform:scale(1.1);
 }
 
