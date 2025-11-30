@@ -28,7 +28,7 @@
 html,body{
   margin:0;
   padding:0;
-  background:var(--bg);
+  background:#ffffff;
   color:var(--ink);
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   line-height:1.5;
@@ -98,7 +98,7 @@ html,body{
 
 /* ===== BOÎTE D'INFORMATION ===== */
 .info-box{
-  background:#e6f3ff;
+  background:#ffffff;
   border:2px solid #41B6E6;
   border-radius:10px;
   padding:12px 14px;
@@ -122,7 +122,7 @@ html,body{
 }
 
 .legend-box{
-  background:#e6f3ff;
+  background:#ffffff;
   border:2px solid #41B6E6;
   border-radius:10px;
   padding:14px 16px;
@@ -149,7 +149,7 @@ html,body{
 
 /* ===== MESSAGE D'INFORMATION UNIVERS ===== */
 .univers-info-message{
-  background:#e6f3ff;
+  background:#ffffff;
   border:2px solid #41B6E6;
   border-radius:8px;
   padding:12px 16px;
@@ -182,7 +182,7 @@ html,body{
 
 /* ===== CARTES DE QUESTIONS - DESIGN OPTIMISÉ ===== */
 .question-card{
-  background:var(--card);
+  background:#ffffff;
   border:2px solid #41B6E6;
   border-radius:12px;
   padding:18px;
@@ -390,7 +390,7 @@ html,body{
 /* ===== RÉSULTATS PROFIL / UNIVERS ===== */
 #profileSection,
 #univers-section{
-  background:var(--card);
+  background:#ffffff;
   border:2px solid #41B6E6;
   border-radius:16px;
   padding:20px 16px;
@@ -417,7 +417,7 @@ html,body{
 
 .profile-bar{
   height:12px;
-  background:#e6f3ff;
+  background:#f0f0f0;
   border-radius:999px;
   overflow:hidden;
 }
@@ -562,7 +562,7 @@ html,body{
 /* Couleurs par niveau de compatibilité */
 .univers-card.level-5{
   border-left:5px solid var(--very-compatible);
-  background:linear-gradient(135deg, #d1fae5 0%, #ffffff 100%);
+  background:#ffffff;
 }
 
 .univers-card.level-5:hover{
@@ -571,7 +571,7 @@ html,body{
 
 .univers-card.level-4{
   border-left:5px solid var(--compatible);
-  background:linear-gradient(135deg, #d1fae5 0%, #ffffff 100%);
+  background:#ffffff;
 }
 
 .univers-card.level-4:hover{
@@ -580,7 +580,7 @@ html,body{
 
 .univers-card.level-3{
   border-left:5px solid var(--medium-compatible);
-  background:linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+  background:#ffffff;
 }
 
 .univers-card.level-3:hover{
@@ -589,7 +589,7 @@ html,body{
 
 .univers-card.level-2{
   border-left:5px solid var(--low-compatible);
-  background:linear-gradient(135deg, #ffedd5 0%, #ffffff 100%);
+  background:#ffffff;
 }
 
 .univers-card.level-2:hover{
@@ -598,7 +598,7 @@ html,body{
 
 .univers-card.level-1{
   border-left:5px solid var(--not-compatible);
-  background:linear-gradient(135deg, #fee2e2 0%, #ffffff 100%);
+  background:#ffffff;
   opacity:0.85;
 }
 
@@ -610,25 +610,25 @@ html,body{
 .univers-card.selected.level-5,
 .univers-card.selected.level-4{
   border-left-width:8px;
-  background:linear-gradient(135deg, #a7f3d0 0%, #d1fae5 100%);
+  background:#f0fdf4;
   box-shadow:0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .univers-card.selected.level-3{
   border-left-width:8px;
-  background:linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 100%);
+  background:#f9fafb;
   box-shadow:0 4px 12px rgba(209, 213, 219, 0.3);
 }
 
 .univers-card.selected.level-2{
   border-left-width:8px;
-  background:linear-gradient(135deg, #fed7aa 0%, #ffedd5 100%);
+  background:#fff7ed;
   box-shadow:0 4px 12px rgba(249, 115, 22, 0.3);
 }
 
 .univers-card.selected.level-1{
   border-left-width:8px;
-  background:linear-gradient(135deg, #fecaca 0%, #fee2e2 100%);
+  background:#fef2f2;
   box-shadow:0 4px 12px rgba(220, 38, 38, 0.3);
   opacity:1;
 }
@@ -696,7 +696,8 @@ html,body{
 /* ===== SOUS-UNIVERS ===== */
 .sub-univers-list{
   display:none;
-  background:#e6f3ff;
+  background:#ffffff;
+  border:1px solid #41B6E6;
   padding:14px;
   border-radius:8px;
   margin-top:12px;
@@ -744,7 +745,7 @@ html,body{
   color:#0052A3;
   margin:12px 0;
   padding:10px;
-  background:#e6f3ff;
+  background:#ffffff;
   border:2px solid #41B6E6;
   border-radius:8px;
   transition:all .3s ease;
@@ -758,7 +759,7 @@ html,body{
   text-align:center;
   line-height:1.6;
   font-weight:600;
-  background:#e6f3ff;
+  background:#ffffff;
   padding:12px 16px;
   border-radius:8px;
   border:2px solid #41B6E6;
