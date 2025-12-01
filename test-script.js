@@ -34,6 +34,7 @@ function loadSelections(){
 
 function saveSelections(){
   localStorage.setItem('selectedUnivers', JSON.stringify([...selectedUnivers]));
+  updateCompletionBadges(); // Mise à jour des badges après sauvegarde
 }
 
 function loadAnswers(){
@@ -47,6 +48,21 @@ function loadAnswers(){
 
 function saveAnswers(){
   localStorage.setItem('questionnaire_answers', JSON.stringify(answers));
+  updateCompletionBadges(); // Mise à jour des badges après sauvegarde
+}
+
+/* ===== GESTION DES BADGES DE COMPLÉTION ===== */
+
+function updateCompletionBadges(){
+  // Badge pour les centres d'intérêts (au moins 3 univers sélectionnés)
+  const interetsCompleted = selectedUnivers.size >= 3;
+  localStorage.setItem('interets_completed', interetsCompleted ? 'true' : 'false');
+  
+  // Badge pour la situation (toutes les questions répondues)
+  const situationCompleted = allQuestionsAnswered();
+  localStorage.setItem('situation_completed', situationCompleted ? 'true' : 'false');
+  
+  console.log(`📌 Badges mis à jour: Intérêts=${interetsCompleted}, Situation=${situationCompleted}`);
 }
 
 /* ===== UTILITAIRES ===== */
@@ -674,6 +690,9 @@ document.addEventListener('DOMContentLoaded', function() {
   loadSelections();
   loadAnswers();
   
+  // Mise à jour initiale des badges
+  updateCompletionBadges();
+  
   console.log(`Total questions: ${totalQuestions}\n`);
   
   renderQuestions();
@@ -731,6 +750,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         localStorage.setItem('selected_univers_details', JSON.stringify(selectedUniversDetails));
+        
+        // Mise à jour du badge après validation
+        updateCompletionBadges();
         
         console.log('✅ Sélection validée:', selectedUniversDetails);
         
