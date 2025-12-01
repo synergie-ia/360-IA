@@ -1,6 +1,6 @@
 /* 
   ============================================
-  Passerelle-Orientation - PAGE D'ACCUEIL
+  Pass-Orientation - PAGE D'ACCUEIL
   ============================================
   Gestion des badges de complétion et actions
   VERSION COMPLÈTE - Copie profil + univers + bilan
@@ -358,7 +358,7 @@ function copyResultsToClipboard() {
     const situationData = localStorage.getItem('situation_data');
     
     let textToCopy = "═══════════════════════════════════════\n";
-    textToCopy += "   Passerelle-Orientation - MES RÉSULTATS\n";
+    textToCopy += "   Pass-Orientation - MES RÉSULTATS\n";
     textToCopy += "═══════════════════════════════════════\n\n";
     
     // PROFIL PERSONNEL
@@ -473,7 +473,7 @@ function copyResultsToClipboard() {
     }
     
     textToCopy += "═══════════════════════════════════════\n";
-    textToCopy += "Généré par Passerelle-Orientation\n";
+    textToCopy += "Généré par Pass-Orientation\n";
     textToCopy += new Date().toLocaleDateString('fr-FR', { 
       year: 'numeric', 
       month: 'long', 
@@ -653,7 +653,7 @@ function downloadPDF() {
     }
     
     pdfContent += "═══════════════════════════════════════════════════════\n";
-    pdfContent += "Document généré par Passerelle-Orientation\n";
+    pdfContent += "Document généré par Pass-Orientation\n";
     pdfContent += "© 2025 Synergie IA\n";
     pdfContent += "═══════════════════════════════════════════════════════";
     
@@ -663,7 +663,7 @@ function downloadPDF() {
     a.href = url;
     
     const dateStr = new Date().toISOString().split('T')[0];
-    a.download = `Passerelle-Orientation_${dateStr}.txt`;
+    a.download = `Pass-Orientation_${dateStr}.txt`;
     
     document.body.appendChild(a);
     a.click();
@@ -705,7 +705,7 @@ function checkProjectAccess() {
   }
   
   // ✅ OUVERTURE DIRECTE CHATGPT
-  const chatURL = 'https://chatgpt.com/g/g-6914f232fb048191b5df9a123ac6af82-Passerelle-Orientation';
+  const chatURL = 'https://chatgpt.com/g/g-6914f232fb048191b5df9a123ac6af82-Pass-Orientation';
   window.open(chatURL, '_blank');
   console.log("✅ Ouverture ChatGPT");
 }
