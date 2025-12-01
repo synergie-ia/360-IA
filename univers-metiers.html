@@ -68,8 +68,8 @@ body {
 h1 {
   color: var(--ink);
   font-size: 30px;
-  margin-bottom: 2rem;
   font-weight: 700;
+  margin-bottom: 2rem;
 }
 
 /* Grille */
@@ -130,4 +130,377 @@ h1 {
   cursor: pointer;
   transition: all 0.2s ease;
   z-index: 10;
-  color
+  color: var(--ink);
+}
+
+.loupe-icon:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* MODAL OVERLAY */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* MODAL CONTENT */
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header modal */
+.modal-header {
+  background: linear-gradient(135deg, #41B6E6 0%, #0072C6 100%);
+  color: #fff;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.modal-header-icon {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+}
+
+.modal-header-title {
+  flex: 1;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: left;
+  color: white;
+}
+
+/* Bouton fermer (croix rouge) */
+.close-btn {
+  width: 36px;
+  height: 36px;
+  background: #ef4444;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.close-btn:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+}
+
+.close-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+  stroke-width: 3;
+}
+
+/* Corps modal */
+.modal-body {
+  padding: 2rem;
+  max-height: calc(80vh - 100px);
+  overflow-y: auto;
+}
+
+.sous-univers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sous-univers-item {
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink);
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+.sous-univers-item:hover {
+  background: #f9fafb;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-color: #9ca3af;
+}
+
+.sous-univers-item:last-child {
+  margin-bottom: 0;
+}
+
+.sous-univers-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sous-univers-name::before {
+  content: "→";
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.sous-univers-desc {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin-left: 1.2rem;
+}
+
+/* Scrollbar */
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+@media (max-width: 768px) {
+  .univers-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .univers-card {
+    padding: 1.2rem 0.8rem;
+    min-height: 120px;
+  }
+  
+  .univers-icon {
+    font-size: 2.5rem;
+  }
+  
+  .univers-name {
+    font-size: 0.85rem;
+  }
+  
+  .modal-content {
+    width: 95%;
+    max-height: 85vh;
+  }
+  
+  .modal-header {
+    padding: 1rem;
+  }
+  
+  .modal-header-icon {
+    font-size: 2rem;
+  }
+  
+  .modal-header-title {
+    font-size: 1.1rem;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .sous-univers-item {
+    padding: 0.8rem;
+  }
+  
+  .sous-univers-name {
+    font-size: 0.9rem;
+  }
+  
+  .sous-univers-desc {
+    font-size: 0.85rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <button class="btn-retour" onclick="window.location.href='index.html'">
+    <span class="arrow">←</span>
+    <span>Retour à l'accueil</span>
+  </button>
+
+  <h1>Les 21 Univers Professionnels</h1>
+
+  <div class="univers-grid" id="universGrid"></div>
+</div>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-header-icon" id="modalIcon">🌾</span>
+      <h2 class="modal-header-title" id="modalTitle">Univers</h2>
+      <button class="close-btn" id="closeBtn">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ul class="sous-univers-list" id="sousUniversList"></ul>
+    </div>
+  </div>
+</div>
+
+<script src="universes-data.js"></script>
+<script>
+(function() {
+  'use strict';
+  
+  // Vérifier si universesData existe
+  if (typeof universesData === 'undefined') {
+    console.error('❌ universesData non chargé');
+    alert('Erreur : Les données des univers ne sont pas chargées.');
+    return;
+  }
+
+  // Éléments DOM
+  const grid = document.getElementById('universGrid');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalIcon = document.getElementById('modalIcon');
+  const modalTitle = document.getElementById('modalTitle');
+  const sousUniversList = document.getElementById('sousUniversList');
+  const closeBtn = document.getElementById('closeBtn');
+
+  // Générer les cartes
+  universesData.forEach(function(univers) {
+    const card = document.createElement('div');
+    card.className = 'univers-card';
+    
+    card.innerHTML = `
+      <svg class="loupe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <div class="univers-icon">${univers.icon}</div>
+      <div class="univers-name">${univers.name}</div>
+    `;
+    
+    // Clic sur la carte = ouvrir modal
+    card.addEventListener('click', function(e) {
+      e.stopPropagation();
+      ouvrirModal(univers);
+    });
+    
+    grid.appendChild(card);
+  });
+
+  // Fonction ouvrir modal
+  function ouvrirModal(univers) {
+    modalIcon.textContent = univers.icon;
+    modalTitle.textContent = univers.name;
+    
+    // Vider et remplir la liste
+    sousUniversList.innerHTML = '';
+    
+    if (univers.subUniverses && univers.subUniverses.length > 0) {
+      univers.subUniverses.forEach(function(su) {
+        const li = document.createElement('li');
+        li.className = 'sous-univers-item';
+        
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'sous-univers-name';
+        nameDiv.textContent = su.name;
+        
+        const descDiv = document.createElement('div');
+        descDiv.className = 'sous-univers-desc';
+        descDiv.textContent = su.description || '';
+        
+        li.appendChild(nameDiv);
+        if (su.description) {
+          li.appendChild(descDiv);
+        }
+        sousUniversList.appendChild(li);
+      });
+    } else {
+      const li = document.createElement('li');
+      li.className = 'sous-univers-item';
+      li.textContent = 'Aucun sous-univers disponible.';
+      sousUniversList.appendChild(li);
+    }
+    
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Fonction fermer modal
+  function fermerModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Événements fermeture
+  closeBtn.addEventListener('click', fermerModal);
+  
+  modalOverlay.addEventListener('click', function(e) {
+    if (e.target === modalOverlay) {
+      fermerModal();
+    }
+  });
+
+  // Échap pour fermer
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+      fermerModal();
+    }
+  });
+
+  console.log('✅ ' + universesData.length + ' univers professionnels chargés');
+})();
+</script>
+</body>
+</html>
