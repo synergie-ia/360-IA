@@ -71,7 +71,12 @@ function handleFormSubmit(event) {
   // Sauvegarde dans localStorage
   try {
     localStorage.setItem('situation_data', JSON.stringify(formData));
+    
+    // ✅ BADGE "SITUATION" ACTIVÉ ICI UNIQUEMENT APRÈS VALIDATION RÉUSSIE
+    localStorage.setItem('situation_completed', 'true');
+    
     console.log("✅ Bilan enregistré avec succès");
+    console.log("✅ Badge SITUATION activé");
     console.log("📊 Données sauvegardées:", formData);
     
     // Afficher message de succès
@@ -204,8 +209,9 @@ function autoSave() {
     });
     
     if(hasData) {
+      // ✅ CORRECTION: Auto-sauvegarde séparée qui N'ACTIVE PAS le badge
       localStorage.setItem('situation_data_autosave', JSON.stringify(formData));
-      console.log("💾 Auto-sauvegarde effectuée (silencieuse)");
+      console.log("💾 Auto-sauvegarde effectuée (silencieuse, badge non activé)");
       // Pas de notification visuelle
     }
   } catch(error) {
