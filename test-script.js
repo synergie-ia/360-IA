@@ -1,6 +1,6 @@
 /* 
   ============================================
-  RECONVERSION 360 IA - QUESTIONNAIRE PROFIL
+  Passerelle-  - QUESTIONNAIRE PROFIL
   ============================================
   VERSION 12 QUESTIONS - 1 QUESTION PAR DIMENSION
   Limitation stricte des notes : 0(×2), 1(×3), 2(×3), 3(×4), 4(×3)
@@ -34,11 +34,9 @@ function loadSelections(){
 
 function saveSelections(){
   localStorage.setItem('selectedUnivers', JSON.stringify([...selectedUnivers]));
-  // Mise à jour du badge : si on passe en dessous de 3, on retire le badge
-  if(selectedUnivers.size < 3){
-    localStorage.setItem('interets_completed', 'false');
-    console.log('📌 Badge centres d\'intérêts retiré (moins de 3 univers)');
-  }
+  // ✅ CORRECTION: Ne jamais modifier le badge ici
+  // Le badge sera géré uniquement lors de la validation
+  console.log(`💾 ${selectedUnivers.size} univers sélectionné(s) (non validé)`);
 }
 
 function loadAnswers(){
@@ -52,10 +50,10 @@ function loadAnswers(){
 
 function saveAnswers(){
   localStorage.setItem('questionnaire_answers', JSON.stringify(answers));
-  // Mise à jour du badge situation
-  const situationCompleted = allQuestionsAnswered();
-  localStorage.setItem('situation_completed', situationCompleted ? 'true' : 'false');
-  console.log(`📌 Badge situation mis à jour: ${situationCompleted}`);
+  // ✅ CORRECTION: Ne plus activer le badge automatiquement
+  // Le badge "interets_completed" sera activé uniquement lors de la validation des univers
+  const questionsCompleted = allQuestionsAnswered();
+  console.log(`📌 Questions complétées: ${questionsCompleted}/${totalQuestions}`);
 }
 
 /* ===== UTILITAIRES ===== */
@@ -763,9 +761,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         localStorage.setItem('selected_univers_details', JSON.stringify(selectedUniversDetails));
         
-        // MISE À JOUR DU BADGE UNIQUEMENT ICI APRÈS VALIDATION RÉUSSIE
+        // ✅ BADGE "CENTRES D'INTÉRÊTS" ACTIVÉ ICI UNIQUEMENT
         localStorage.setItem('interets_completed', 'true');
-        console.log('✅ Badge centres d\'intérêts activé (validation confirmée avec ' + selectedUnivers.size + ' univers)');
+        console.log('✅ Badge CENTRES D\'INTÉRÊTS activé (validation confirmée avec ' + selectedUnivers.size + ' univers)');
         
         console.log('✅ Sélection validée:', selectedUniversDetails);
         
