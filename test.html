@@ -26,7 +26,8 @@
     <!-- LÉGENDE SANS ÉCHELLE DE NOTES -->
     <div class="legend-box">
       <div class="legend-intro">Évaluez votre intérêt pour chaque type de métier en choisissant une note de 0 à 4</div>
-    <div class="legend-warning">⚠️ Nombre maximum de notes : 2 notes à 0   ---     3 notes à 1   ---     3 notes à 2   ---     4 notes à 3   ---     3 notes à 4</div>
+      <div class="legend-warning">⚠️ Nombre maximum de notes : 2 notes à 0   ---     3 notes à 1   ---     3 notes à 2   ---     4 notes à 3   ---     3 notes à 4</div>
+    </div>
     
     <!-- Conteneur des questions -->
     <div id="questionsContainer"></div>
@@ -43,7 +44,7 @@
     
     <!-- Section résultat profil -->
     <div id="profileSection" class="hidden">
-      <h2 style="margin:32px 0 16px;font-size:24px;color:#000000;">📊 Votre profil d'intérêts professionnels</h2>
+      <h2 style="margin:32px 0 16px;font-size:24px;color:#0052A3;">📊 Votre profil d'intérêts professionnels</h2>
       <div id="profileResults"></div>
       <div style="text-align:center;margin-top:24px;">
         <button id="goUniversesBtn" class="main-btn">🌍 Voir mes univers compatibles</button>
@@ -52,11 +53,13 @@
     
     <!-- Section univers métiers -->
     <div id="univers-section" class="hidden">
-      <h2 style="margin:32px 0 16px;font-size:24px;color:#000000;">🌍 Vos univers-métiers compatibles</h2>
+      <h2 style="margin:32px 0 16px;font-size:24px;color:#0052A3;">🌍 Vos univers-métiers compatibles</h2>
       
-      <div id="selectedUniversCounter" class="counter-univers">0 univers-métiers sélectionné</div>
-      
-      <p class="notice">Sélectionnez au moins 3 univers-métiers qui vous intéressent et cliquez sur 🔎 pour explorer leurs sous-domaines</p>
+      <!-- Compteur et instructions dans le même cadre -->
+      <div class="univers-selection-box">
+        <div id="selectedUniversCounter" class="counter-univers-inline">0 univers sélectionné (3 à 5 requis)</div>
+        <p class="notice-inline">Sélectionnez au moins 3 univers-métiers qui vous intéressent et cliquez sur 🔎 pour explorer leurs sous-domaines</p>
+      </div>
       
       <div id="univers-results"></div>
       
