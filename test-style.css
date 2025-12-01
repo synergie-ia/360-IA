@@ -443,8 +443,8 @@ html,body{
 }
 
 .univers-card.selected{
-  border-color:var(--green);
-  background:#f0fdf4;
+  border-color:#d1d5db;
+  background:#ffffff;
 }
 
 .univers-header{
@@ -606,29 +606,29 @@ html,body{
   box-shadow:0 8px 24px rgba(220, 38, 38, 0.2);
 }
 
-/* État sélectionné */
+/* État sélectionné - SANS FOND VERT */
 .univers-card.selected.level-5,
 .univers-card.selected.level-4{
   border-left-width:8px;
-  background:#f0fdf4;
+  background:#ffffff;
   box-shadow:0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .univers-card.selected.level-3{
   border-left-width:8px;
-  background:#f9fafb;
+  background:#ffffff;
   box-shadow:0 4px 12px rgba(209, 213, 219, 0.3);
 }
 
 .univers-card.selected.level-2{
   border-left-width:8px;
-  background:#fff7ed;
+  background:#ffffff;
   box-shadow:0 4px 12px rgba(249, 115, 22, 0.3);
 }
 
 .univers-card.selected.level-1{
   border-left-width:8px;
-  background:#fef2f2;
+  background:#ffffff;
   box-shadow:0 4px 12px rgba(220, 38, 38, 0.3);
   opacity:1;
 }
@@ -738,7 +738,33 @@ html,body{
   line-height:1.4;
 }
 
-/* ===== COMPTEUR UNIVERS ===== */
+/* ===== BOÎTE SÉLECTION UNIVERS (compteur + instructions) ===== */
+.univers-selection-box{
+  background:#ffffff;
+  border:2px solid #d1d5db;
+  border-radius:10px;
+  padding:16px;
+  margin:0 0 20px 0;
+}
+
+.counter-univers-inline{
+  text-align:center;
+  font-weight:700;
+  font-size:clamp(16px, 3.2vw, 18px);
+  color:#0052A3;
+  margin:0 0 12px 0;
+}
+
+.notice-inline{
+  margin:0;
+  font-size:clamp(14px, 2.8vw, 15px);
+  color:#0052A3;
+  text-align:center;
+  line-height:1.6;
+  font-weight:600;
+}
+
+/* ===== COMPTEUR UNIVERS (ancien - on garde pour compatibilité) ===== */
 .counter-univers{
   text-align:center;
   font-weight:600;
