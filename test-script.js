@@ -34,7 +34,11 @@ function loadSelections(){
 
 function saveSelections(){
   localStorage.setItem('selectedUnivers', JSON.stringify([...selectedUnivers]));
-  updateCompletionBadges(); // Mise à jour des badges après sauvegarde
+  // Mise à jour du badge : si on passe en dessous de 3, on retire le badge
+  if(selectedUnivers.size < 3){
+    localStorage.setItem('interets_completed', 'false');
+    console.log('📌 Badge centres d\'intérêts retiré (moins de 3 univers)');
+  }
 }
 
 function loadAnswers(){
@@ -48,21 +52,10 @@ function loadAnswers(){
 
 function saveAnswers(){
   localStorage.setItem('questionnaire_answers', JSON.stringify(answers));
-  updateCompletionBadges(); // Mise à jour des badges après sauvegarde
-}
-
-/* ===== GESTION DES BADGES DE COMPLÉTION ===== */
-
-function updateCompletionBadges(){
-  // Badge pour les centres d'intérêts (au moins 3 univers sélectionnés)
-  const interetsCompleted = selectedUnivers.size >= 3;
-  localStorage.setItem('interets_completed', interetsCompleted ? 'true' : 'false');
-  
-  // Badge pour la situation (toutes les questions répondues)
+  // Mise à jour du badge situation
   const situationCompleted = allQuestionsAnswered();
   localStorage.setItem('situation_completed', situationCompleted ? 'true' : 'false');
-  
-  console.log(`📌 Badges mis à jour: Intérêts=${interetsCompleted}, Situation=${situationCompleted}`);
+  console.log(`📌 Badge situation mis à jour: ${situationCompleted}`);
 }
 
 /* ===== UTILITAIRES ===== */
@@ -479,6 +472,25 @@ function updateUniversCounter(){
   }
 }
 
+/* ===== GESTION ÉTAT BOUTON VALIDATION ===== */
+
+function updateValidationButtonState(){
+  const btnValidateSelection = document.getElementById('btnValidateSelection');
+  if(!btnValidateSelection) return;
+  
+  const canValidate = selectedUnivers.size >= 3 && selectedUnivers.size <= 5;
+  
+  if(canValidate){
+    btnValidateSelection.disabled = false;
+    btnValidateSelection.style.opacity = '1';
+    btnValidateSelection.style.cursor = 'pointer';
+  } else {
+    btnValidateSelection.disabled = true;
+    btnValidateSelection.style.opacity = '0.5';
+    btnValidateSelection.style.cursor = 'not-allowed';
+  }
+}
+
 /* ===== CARTE UNIVERS ===== */
 
 function renderUniversCard(u, index){
@@ -571,6 +583,7 @@ function attachUniversEvents(){
       
       saveSelections();
       updateUniversCounter();
+      updateValidationButtonState();
     });
   });
 }
@@ -616,6 +629,7 @@ function displayUnivers(){
     root.innerHTML = infoHTML + top10.map((u, index) => renderUniversCard(u, index)).join("");
     attachUniversEvents();
     updateUniversCounter();
+    updateValidationButtonState();
 
     const btnShow = document.getElementById("btn-show-all");
     btnShow.classList.remove("hidden");
@@ -690,9 +704,6 @@ document.addEventListener('DOMContentLoaded', function() {
   loadSelections();
   loadAnswers();
   
-  // Mise à jour initiale des badges
-  updateCompletionBadges();
-  
   console.log(`Total questions: ${totalQuestions}\n`);
   
   renderQuestions();
@@ -729,6 +740,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if(btnValidateSelection){
     btnValidateSelection.addEventListener('click', ()=>{
       
+      // Vérification stricte
       if(selectedUnivers.size < 3){
         alert("⚠️ Minimum 3 univers requis.\n\nActuellement : " + selectedUnivers.size);
         return;
@@ -751,8 +763,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         localStorage.setItem('selected_univers_details', JSON.stringify(selectedUniversDetails));
         
-        // Mise à jour du badge après validation
-        updateCompletionBadges();
+        // MISE À JOUR DU BADGE UNIQUEMENT ICI APRÈS VALIDATION RÉUSSIE
+        localStorage.setItem('interets_completed', 'true');
+        console.log('✅ Badge centres d\'intérêts activé (validation confirmée avec ' + selectedUnivers.size + ' univers)');
         
         console.log('✅ Sélection validée:', selectedUniversDetails);
         
