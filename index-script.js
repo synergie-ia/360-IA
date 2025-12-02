@@ -278,6 +278,7 @@ function resetAllData() {
       'selected_univers_details',
       'selectedUnivers',
       'situation_data',
+      'situation_data_autosave', // AJOUTÉ : Auto-sauvegarde
       'data_exported'
     ];
     
@@ -692,7 +693,7 @@ function checkProjectAccess() {
   // ✅ CONTRÔLE 1 : Test + Univers + Bilan
   if(!hasUnivers || !hasSituation){
     if(!hasUnivers && !hasSituation){
-      alert("⚠️ Accès non autorisé\n\nPour continuer, vous devez d'abord :\n\n1. Sélectionner au moins 3 univers\n2. Remplir votre bilan personnel");
+      alert("⚠️ Accès non autorisé\n\nPour construire votre projet, vous devez d'abord :\n\n1. Sélectionner au moins 3 univers\n2. Remplir votre bilan personnel");
       return;
     }
     
