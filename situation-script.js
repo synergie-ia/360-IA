@@ -4,7 +4,7 @@
   ============================================
   Gestion du formulaire de bilan personnel
   VERSION JEUNES - 15 questions (q1 à q15)
-  VERSION 2 - Pas de retour automatique
+  VERSION 3 - Conservation garantie des données
   ============================================
 */
 
@@ -13,8 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log("📋 PAGE BILAN - Initialisation");
   console.log("================================\n");
   
-  // Charger les données existantes si disponibles
-  loadSavedData();
+  // Attendre que le DOM soit vraiment prêt puis charger les données
+  setTimeout(() => {
+    loadSavedData();
+  }, 100);
   
   // Gestion de la soumission du formulaire
   const form = document.getElementById('situationForm');
@@ -25,12 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // Auto-sauvegarde à chaque modification de champ
   const formInputs = document.querySelectorAll('#situationForm input, #situationForm textarea');
   formInputs.forEach(input => {
-    input.addEventListener('change', autoSave);
-    input.addEventListener('blur', autoSave); // Sauvegarde aussi quand on quitte le champ
+    input.addEventListener('input', autoSave); // Change 'change' en 'input' pour sauvegarder en temps réel
+    input.addEventListener('blur', autoSave);
   });
   
-  // Auto-sauvegarde toutes les 10 secondes (au lieu de 30)
-  setInterval(autoSave, 10000);
+  // Auto-sauvegarde toutes les 5 secondes
+  setInterval(autoSave, 5000);
   
   console.log("✅ Initialisation terminée");
   console.log("✅ Auto-sauvegarde activée");
@@ -40,22 +42,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadSavedData() {
   try {
+    console.log("📥 Tentative de chargement des données...");
+    
     // Essayer d'abord les données validées
     let savedData = localStorage.getItem('situation_data');
+    let source = 'validées';
     
     // Si pas de données validées, essayer l'auto-sauvegarde
     if(!savedData) {
       savedData = localStorage.getItem('situation_data_autosave');
-      console.log("📥 Chargement des données d'auto-sauvegarde...");
-    } else {
-      console.log("📥 Chargement des données sauvegardées...");
+      source = 'auto-sauvegarde';
     }
     
     if(savedData) {
+      console.log(`📥 Chargement des données ${source}...`);
+      
       const data = JSON.parse(savedData);
       console.log("📊 Données trouvées:", data);
       
-      // Liste des champs du formulaire (ignorer timestamp et autres métadonnées)
+      // Liste des champs du formulaire
       const formFields = [
         'prenom', 'age',
         'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10',
@@ -66,25 +71,50 @@ function loadSavedData() {
       let fieldsLoaded = 0;
       formFields.forEach(fieldId => {
         const field = document.getElementById(fieldId);
-        if(field && data[fieldId]) {
+        if(field && data[fieldId] !== undefined && data[fieldId] !== null && data[fieldId] !== '') {
           field.value = data[fieldId];
           fieldsLoaded++;
+          console.log(`   ✓ ${fieldId}: "${data[fieldId].substring(0, 30)}..."`);
         }
       });
       
-      console.log(`✅ ${fieldsLoaded} champs chargés avec succès`);
+      if(fieldsLoaded > 0) {
+        console.log(`✅ ${fieldsLoaded} champs chargés avec succès`);
+        
+        // Message visuel pour l'utilisateur
+        showLoadMessage(fieldsLoaded);
+      }
     } else {
       console.log("ℹ️ Aucune donnée sauvegardée trouvée");
     }
   } catch(error) {
     console.error("❌ Erreur lors du chargement:", error);
+    alert("⚠️ Erreur lors du chargement de vos données.\n\nVérifiez la console (F12) pour plus de détails.");
   }
+}
+
+/* ===== MESSAGE DE CHARGEMENT ===== */
+
+function showLoadMessage(count) {
+  const pageTitle = document.querySelector('.page-title');
+  if(!pageTitle) return;
+  
+  const loadMsg = document.createElement('div');
+  loadMsg.style.cssText = 'background: #10b981; color: white; padding: 10px 20px; border-radius: 8px; margin: 10px 0; text-align: center; font-size: 14px;';
+  loadMsg.textContent = `✅ ${count} réponses chargées depuis votre dernière visite`;
+  
+  pageTitle.insertAdjacentElement('afterend', loadMsg);
+  
+  setTimeout(() => {
+    loadMsg.style.transition = 'opacity 1s';
+    loadMsg.style.opacity = '0';
+    setTimeout(() => loadMsg.remove(), 1000);
+  }, 3000);
 }
 
 /* ===== SOUMISSION DU FORMULAIRE ===== */
 
 function handleFormSubmit(event) {
-  // IMPORTANT: Empêcher le rechargement de la page
   event.preventDefault();
   
   console.log("💾 Enregistrement du bilan...");
@@ -101,13 +131,16 @@ function handleFormSubmit(event) {
   try {
     localStorage.setItem('situation_data', JSON.stringify(formData));
     
+    // Supprimer l'auto-sauvegarde puisqu'on a une version validée
+    localStorage.removeItem('situation_data_autosave');
+    
     console.log("✅ Bilan enregistré avec succès");
     console.log("📊 Données sauvegardées:", formData);
     
     // Afficher message de succès
     showSuccessMessage();
     
-    // Message simple sans proposition de retour automatique
+    // Message simple
     alert(
       "✅ BILAN ENREGISTRÉ !\n\n" +
       "Votre bilan personnel a été sauvegardé avec succès.\n\n" +
@@ -146,20 +179,18 @@ function validateForm() {
       isValid = false;
       field.classList.add('error');
       
-      // Ajouter un message d'erreur
       const errorMsg = document.createElement('span');
       errorMsg.className = 'error-message';
       errorMsg.textContent = 'Ce champ est obligatoire';
       field.parentNode.appendChild(errorMsg);
       
-      // Mémoriser le premier champ en erreur
       if(!firstError) {
         firstError = field;
       }
     }
   });
   
-  // Validation spécifique pour l'âge (14-30 ans pour Orientation Jeunes)
+  // Validation spécifique pour l'âge
   const ageField = document.getElementById('age');
   if(ageField && ageField.value) {
     const age = parseInt(ageField.value);
@@ -197,7 +228,6 @@ function validateForm() {
 function collectFormData() {
   const formData = {};
   
-  // Liste de tous les champs du formulaire - ORIENTATION JEUNES : 15 QUESTIONS
   const fields = [
     'prenom', 'age',
     'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10',
@@ -211,13 +241,12 @@ function collectFormData() {
     }
   });
   
-  // Ajouter un timestamp
   formData.timestamp = new Date().toISOString();
   
   return formData;
 }
 
-/* ===== AUTO-SAUVEGARDE (SILENCIEUSE) ===== */
+/* ===== AUTO-SAUVEGARDE ===== */
 
 function autoSave() {
   try {
@@ -229,8 +258,15 @@ function autoSave() {
     });
     
     if(hasData) {
-      localStorage.setItem('situation_data_autosave', JSON.stringify(formData));
-      console.log("💾 Auto-sauvegarde effectuée (silencieuse)");
+      // Ne sauvegarder l'auto-save QUE si pas de données validées
+      const validatedData = localStorage.getItem('situation_data');
+      
+      if(!validatedData) {
+        localStorage.setItem('situation_data_autosave', JSON.stringify(formData));
+        console.log("💾 Auto-sauvegarde effectuée");
+      } else {
+        console.log("ℹ️ Auto-sauvegarde ignorée (données validées présentes)");
+      }
     }
   } catch(error) {
     console.error("❌ Erreur auto-sauvegarde:", error);
@@ -247,7 +283,7 @@ function showSuccessMessage() {
   const originalBg = btn.style.background;
   
   btn.innerHTML = `
-    <svg class="btn-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+    <svg style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
     <span>✅ Bilan enregistré !</span>
@@ -264,7 +300,6 @@ function showSuccessMessage() {
 
 /* ===== GESTION DES ERREURS DE SAISIE ===== */
 
-// Supprimer l'erreur quand l'utilisateur commence à taper
 document.addEventListener('input', function(event) {
   if(event.target.matches('input[required], textarea[required]')) {
     if(event.target.value.trim()) {
@@ -276,17 +311,5 @@ document.addEventListener('input', function(event) {
     }
   }
 });
-
-/* ===== ANIMATIONS CSS ===== */
-
-// Ajouter les styles d'animation au document
-const style = document.createElement('style');
-style.textContent = `
-  .btn-icon-small {
-    width: 20px;
-    height: 20px;
-  }
-`;
-document.head.appendChild(style);
 
 console.log("✅ Script situation chargé et prêt");
