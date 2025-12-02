@@ -722,7 +722,7 @@ function checkProjectAccess() {
   }
   
   // ✅ OUVERTURE CHATGPT
-  const chatURL = 'https://chatgpt.com/g/g-6914f232fb048191b5df9a123ac6af82-Pass-Orientation';
+  const chatURL = 'https://chatgpt.com/g/g-69286ee4397881919a0f0d8517d86c4a-pass-orientation';
   window.open(chatURL, '_blank');
   console.log("✅ Ouverture ChatGPT");
 }
