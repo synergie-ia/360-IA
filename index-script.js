@@ -2,11 +2,10 @@
   ============================================
   Pass-Orientation - PAGE D'ACCUEIL
   ============================================
-  Gestion des badges de complétion et actions
+  Gestion des actions
   VERSION COMPLÈTE - Copie profil + univers + bilan
-  VERSION ATLAS - Section HTML cachée pour ChatGPT
   VERSION JEUNES - Adapté pour 15 questions
-  VERSION 38 - Suppression message confirmation + détection blocage
+  VERSION 39 - Atlas désactivé + Copie obligatoire
   ============================================
 */
 
@@ -15,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log("🏠 PAGE D'ACCUEIL - Initialisation");
   console.log("====================================\n");
   
-  updateCompletionBadges();
-  updateAtlasData(); // NOUVEAU : Remplir la section Atlas
+  // updateCompletionBadges(); // DÉSACTIVÉ
+  // updateAtlasData(); // DÉSACTIVÉ - Atlas en commentaire
   
   const btnReset = document.getElementById('btnResetData');
   if(btnReset){
@@ -46,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-/* ===== NOUVELLE FONCTION : REMPLIR SECTION ATLAS ===== */
+/* ===== ATLAS DATA - DÉSACTIVÉ =====
 
 function updateAtlasData() {
   console.log("🌐 Atlas - Mise à jour des données...");
@@ -212,7 +211,9 @@ function updateAtlasData() {
   console.log("✅ Atlas - Mise à jour terminée");
 }
 
-/* ===== BADGES DE COMPLÉTION ===== */
+===== FIN ATLAS DÉSACTIVÉ ===== */
+
+/* ===== BADGES DE COMPLÉTION - DÉSACTIVÉ =====
 
 function updateCompletionBadges() {
   const hasAnswers = localStorage.getItem('questionnaire_answers');
@@ -238,6 +239,8 @@ function updateCompletionBadges() {
     console.log('✅ Badge Bilan ajouté');
   }
 }
+
+===== FIN BADGES DÉSACTIVÉ ===== */
 
 /* ===== RÉINITIALISATION ===== */
 
@@ -681,12 +684,12 @@ function downloadPDF() {
   }
 }
 
-/* ===== VÉRIFICATION ACCÈS PROJET (VERSION SIMPLIFIÉE) ===== */
+/* ===== VÉRIFICATION ACCÈS PROJET - COPIE OBLIGATOIRE ===== */
 
 function checkProjectAccess() {
   const { hasUnivers, hasSituation } = checkRequiredData();
   
-  // ✅ CONTRÔLES OBLIGATOIRES : Test + Univers + Bilan
+  // ✅ CONTRÔLE 1 : Test + Univers + Bilan
   if(!hasUnivers || !hasSituation){
     if(!hasUnivers && !hasSituation){
       alert("⚠️ Accès non autorisé\n\nPour construire votre projet, vous devez d'abord :\n\n1. Sélectionner au moins 3 univers\n2. Remplir votre bilan personnel");
@@ -704,7 +707,21 @@ function checkProjectAccess() {
     }
   }
   
-  // ✅ OUVERTURE DIRECTE CHATGPT
+  // ✅ CONTRÔLE 2 : COPIE OBLIGATOIRE
+  const dataExported = localStorage.getItem('data_exported');
+  if(!dataExported || dataExported !== 'true'){
+    alert(
+      "⚠️ COPIE OBLIGATOIRE\n\n" +
+      "Avant d'accéder à ChatGPT, vous devez d'abord :\n\n" +
+      "1. Cliquer sur \"Copier mes résultats\"\n" +
+      "2. Attendre la confirmation de copie\n" +
+      "3. Puis revenir cliquer sur \"Construire mon projet\"\n\n" +
+      "Vous pourrez alors coller vos données dans ChatGPT."
+    );
+    return;
+  }
+  
+  // ✅ OUVERTURE CHATGPT
   const chatURL = 'https://chatgpt.com/g/g-6914f232fb048191b5df9a123ac6af82-Pass-Orientation';
   window.open(chatURL, '_blank');
   console.log("✅ Ouverture ChatGPT");
