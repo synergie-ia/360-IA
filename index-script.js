@@ -6,6 +6,7 @@
   VERSION COMPLÈTE - Copie profil + univers + bilan
   VERSION JEUNES - Adapté pour 15 questions
   VERSION 39 - Atlas désactivé + Copie obligatoire
+  VERSION 40 - Confirmation connexion ChatGPT
   ============================================
 */
 
@@ -535,7 +536,7 @@ function downloadPDF() {
     let pdfContent = "";
     
     pdfContent += "═══════════════════════════════════════════════════════\n";
-    pdfContent += "        Passerelle-Orientation - MES RÉSULTATS\n";
+    pdfContent += "        Pass-Orientation - MES RÉSULTATS\n";
     pdfContent += "═══════════════════════════════════════════════════════\n\n";
     pdfContent += "Date de génération: " + new Date().toLocaleDateString('fr-FR', { 
       weekday: 'long',
@@ -722,10 +723,29 @@ function checkProjectAccess() {
     return;
   }
   
-  // ✅ OUVERTURE CHATGPT
-  const chatURL = 'https://chatgpt.com/g/g-69286ee4397881919a0f0d8517d86c4a-pass-orientation';
-  window.open(chatURL, '_blank');
-  console.log("✅ Ouverture ChatGPT");
+  // ✅ CONFIRMATION CONNEXION CHATGPT
+  const isConnected = confirm(
+    "⚠️ CONNEXION CHATGPT REQUISE\n\n" +
+    "Vous devez être connecté à ChatGPT pour accéder à l'accompagnement personnalisé.\n\n" +
+    "Êtes-vous actuellement connecté à votre compte ChatGPT ?\n\n" +
+    "➡️ Cliquez sur OK si vous êtes connecté\n" +
+    "➡️ Cliquez sur Annuler si vous devez d'abord vous connecter"
+  );
+  
+  if(isConnected){
+    // ✅ OUVERTURE CHATGPT
+    const chatURL = 'https://chatgpt.com/g/g-69286ee4397881919a0f0d8517d86c4a-pass-orientation';
+    window.open(chatURL, '_blank');
+    console.log("✅ Ouverture ChatGPT");
+  } else {
+    alert(
+      "ℹ️ COMMENT SE CONNECTER\n\n" +
+      "1. Ouvrez ChatGPT dans un nouvel onglet\n" +
+      "2. Connectez-vous à votre compte\n" +
+      "3. Revenez sur cette page\n" +
+      "4. Cliquez à nouveau sur \"Construire mon projet\""
+    );
+  }
 }
 
 /* ===== MÉTHODE DE COPIE ALTERNATIVE ===== */
