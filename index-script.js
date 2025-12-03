@@ -694,7 +694,7 @@ function checkProjectAccess() {
   // ✅ CONTRÔLE 1 : Test + Univers + Bilan
   if(!hasUnivers || !hasSituation){
     if(!hasUnivers && !hasSituation){
-      alert("⚠️ Accès non autorisé\n\nPour construire votre projet, vous devez d'abord :\n\n1. Sélectionner au moins 3 univers\n2. Remplir votre bilan personnel");
+      alert("⚠️ Accès non autorisé\n\nVous devez d'abord :\n\n1. Sélectionner au moins 3 univers\n2. Remplir votre bilan personnel");
       return;
     }
     
@@ -717,7 +717,7 @@ function checkProjectAccess() {
       "Avant d'accéder à ChatGPT, vous devez d'abord :\n\n" +
       "1. Cliquer sur \"Copier mes résultats\"\n" +
       "2. Attendre la confirmation de copie\n" +
-      "3. Puis revenir cliquer sur \"Construire mon projet\"\n\n" +
+      "3. Puis revenir cliquer sur \"Découvrez les métiers\"\n\n" +
       "Vous pourrez alors coller vos données dans ChatGPT."
     );
     return;
@@ -743,7 +743,7 @@ function checkProjectAccess() {
       "1. Ouvrez ChatGPT dans un nouvel onglet\n" +
       "2. Connectez-vous à votre compte\n" +
       "3. Revenez sur cette page\n" +
-      "4. Cliquez à nouveau sur \"Construire mon projet\""
+      "4. Cliquez à nouveau sur \"Découvrez les métiers\""
     );
   }
 }
@@ -809,7 +809,7 @@ function showCopySuccess() {
   alert(
     "✅ DONNÉES COPIÉES !\n\n" +
     "📋 Vos résultats sont dans le presse-papiers.\n\n" +
-    "➡️ Cliquez sur \"Construire mon projet\"\n" +
+    "➡️ Cliquez sur \"Découvrez les métiers\"\n" +
     "➡️ Puis collez dans ChatGPT (Ctrl+V ou Cmd+V)"
   );
 }
@@ -842,7 +842,7 @@ function showDownloadSuccess() {
   alert(
     "✅ FICHIER TÉLÉCHARGÉ !\n\n" +
     "📄 Votre fichier a été enregistré.\n\n" +
-    "➡️ Cliquez sur \"Construire mon projet\"\n" +
+    "➡️ Cliquez sur \"Découvrez les métiers\"\n" +
     "➡️ Puis transmettez ce fichier à l'IA"
   );
 }
