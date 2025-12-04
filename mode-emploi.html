@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mode d'emploi - Pass-Transition</title>
+  <link rel="stylesheet" href="mode-emploi.css">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- En-tête -->
+    <div class="hero">
+      <h1 class="hero-title">
+        <span class="title-line1">Pass-Transition</span>
+        <span class="title-line2">Mode d'emploi</span>
+      </h1>
+    </div>
+
+    <!-- Contenu -->
+    <div class="content">
+      
+      <p><strong>Pass-Transition</strong> vous accompagne dans votre projet de <strong>transition professionnelle</strong> en 3 étapes obligatoires :</p>
+
+      <h2>Étape 1 : Test des intérêts professionnels</h2>
+      
+      <p><strong>Bouton :</strong> "Passer le test des intérêts professionnels"</p>
+      
+      <p>Répondez aux questions pour évaluer vos intérêts professionnels. L'application calcule automatiquement votre profil d'intérêts. Les univers métiers les plus compatibles avec votre profil s'affichent.</p>
+      
+      <p><strong>Action requise :</strong> Sélectionnez entre 3 et 5 univers qui vous intéressent.</p>
+
+      <h2>Étape 2 : Questionnaire de situation personnelle</h2>
+      
+      <p><strong>Bouton :</strong> "Compléter mon profil personnel"</p>
+      
+      <p>Renseignez votre parcours professionnel. Indiquez vos valeurs et objectifs de carrière. Décrivez vos compétences et votre situation actuelle.</p>
+      
+      <p><strong>⚠️ À remplir avec soin :</strong> Ces informations sont essentielles pour obtenir des recommandations pertinentes.</p>
+      
+      <p><strong>Important :</strong> Toutes les questions doivent être complétées.</p>
+
+      <h2>Copier vos résultats</h2>
+      
+      <p><strong>Bouton :</strong> "Copier mes résultats pour ChatGPT"</p>
+      
+      <p><em>Ce bouton devient actif uniquement après avoir complété les étapes 1 et 2.</em></p>
+      
+      <p>Cliquez pour copier automatiquement vos résultats du test des intérêts professionnels et toutes vos réponses aux questionnaires. Un message confirme que vos données sont copiées.</p>
+
+      <h2>Étape 3 : Accéder à ChatGPT pour le diagnostic</h2>
+      
+      <p><strong>Bouton :</strong> "Accéder à ChatGPT"</p>
+      
+      <p><em>Ce bouton devient actif uniquement après avoir copié vos résultats.</em></p>
+      
+      <p><strong>Procédure :</strong></p>
+      
+      <p>1. <strong>Connectez-vous d'abord sur ChatGPT</strong> (si ce n'est pas déjà fait)</p>
+      
+      <p>2. Cliquez sur "Accéder à ChatGPT" - vous serez redirigé vers ChatGPT</p>
+      
+      <p>3. Collez vos résultats copiés dans ChatGPT</p>
+      
+      <p>4. L'IA établit un diagnostic à partir de votre profil d'intérêts professionnels, votre situation personnelle et parcours, vos compétences et objectifs</p>
+      
+      <p>5. ChatGPT vous propose les <strong>métiers et formations</strong> adaptés à votre profil</p>
+
+      <h2>Réinitialiser</h2>
+      
+      <p><strong>Bouton :</strong> "Initialiser les données"</p>
+      
+      <p>Efface toutes vos réponses pour recommencer une nouvelle saisie.</p>
+
+      <h2>⚠️ Points importants</h2>
+      
+      <p>Vous ne pouvez pas copier vos résultats si toutes les questions ne sont pas complétées.</p>
+      
+      <p>Vous ne pouvez pas accéder à ChatGPT si vos résultats n'ont pas été copiés.</p>
+      
+      <p>Vous devez être connecté à ChatGPT avant de coller vos résultats.</p>
+      
+      <p>Remplissez soigneusement les questionnaires pour des recommandations pertinentes.</p>
+
+    </div>
+
+    <!-- Bouton retour -->
+    <div class="action-buttons-section">
+      <button id="btnBack" class="action-btn-small">
+        <svg class="btn-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Retour à l'accueil</span>
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <p>© 2025 Synergie IA - Pass-Transition</p>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('btnBack').addEventListener('click', function() {
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
